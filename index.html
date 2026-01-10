@@ -20,7 +20,7 @@
       --blue: #6fc6ff;
       --text: #222;
 
-      --heroBorder: rgba(255, 126, 179, 0.20);
+      --heroBorder: rgba(255, 126, 179, 0.18);
       --heroBg: rgba(255, 255, 255, 0.88);
       --shadow: 0 24px 60px rgba(0, 0, 0, 0.10);
     }
@@ -30,7 +30,6 @@
       color: var(--text);
       min-height: 100vh;
       padding: 24px;
-
       background:
         radial-gradient(900px 350px at 15% 10%, rgba(255, 126, 179, 0.22), transparent 60%),
         radial-gradient(900px 350px at 85% 20%, rgba(111, 198, 255, 0.20), transparent 55%),
@@ -39,20 +38,19 @@
       overflow-x: hidden;
     }
 
-    /* ✅ ДВА СЛОЯ КОНТУРНЫХ ЛАПОК */
+    /* ДВА СЛОЯ КОНТУРНЫХ ЛАПОК */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
-
-      background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ff2f8d' stroke-opacity='0.55' stroke-width='2.6'%3E%3Ccircle cx='52' cy='50' r='7'/%3E%3Ccircle cx='74' cy='42' r='7'/%3E%3Ccircle cx='96' cy='50' r='7'/%3E%3Cpath d='M66 74 C66 60 84 60 84 74 C84 92 66 92 66 74 Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ff2f8d' stroke-opacity='0.45' stroke-width='2.4'%3E%3Ccircle cx='52' cy='50' r='7'/%3E%3Ccircle cx='74' cy='42' r='7'/%3E%3Ccircle cx='96' cy='50' r='7'/%3E%3Cpath d='M66 74 C66 60 84 60 84 74 C84 92 66 92 66 74 Z'/%3E%3C/g%3E%3C/svg%3E");
       background-repeat: repeat;
       background-size: 150px 150px;
-      opacity: 0.95;
+      opacity: 0.85;
       mix-blend-mode: multiply;
-      filter: saturate(1.15);
+      filter: saturate(1.10);
     }
 
     body::after{
@@ -61,8 +59,7 @@
       inset: -10%;
       pointer-events: none;
       z-index: 0;
-
-      background-image: url("data:image/svg+xml,%3Csvg width='340' height='340' viewBox='0 0 340 340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%233aa9ff' stroke-opacity='0.40' stroke-width='3.2'%3E%3Ccircle cx='120' cy='110' r='14'/%3E%3Ccircle cx='170' cy='96' r='14'/%3E%3Ccircle cx='220' cy='110' r='14'/%3E%3Cpath d='M150 170 C150 135 190 135 190 170 C190 215 150 215 150 170 Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='340' height='340' viewBox='0 0 340 340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%233aa9ff' stroke-opacity='0.30' stroke-width='3'%3E%3Ccircle cx='120' cy='110' r='14'/%3E%3Ccircle cx='170' cy='96' r='14'/%3E%3Ccircle cx='220' cy='110' r='14'/%3E%3Cpath d='M150 170 C150 135 190 135 190 170 C190 215 150 215 150 170 Z'/%3E%3C/g%3E%3C/svg%3E");
       background-repeat: repeat;
       background-size: 360px 360px;
       transform: rotate(-8deg);
@@ -71,14 +68,19 @@
     }
 
     a { color: inherit; }
-    .page { width: 100%; max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
 
-    /* ===== HERO container ===== */
+   .page{
+  width: 100%;
+  max-width: 1200px; /* ✅ стало 1100–1200px */
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+    }
+    /* ===== HERO контейнер ===== */
     .container {
       background: var(--heroBg);
       border: 1px solid var(--heroBorder);
       width: 100%;
-      padding: 0;
       border-radius: 30px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
@@ -91,168 +93,71 @@
       position: absolute;
       inset: -2px;
       background:
-        radial-gradient(520px 260px at 18% 0%, rgba(255, 126, 179, 0.33), transparent 62%),
-        radial-gradient(520px 260px at 82% 12%, rgba(111, 198, 255, 0.28), transparent 64%),
+        radial-gradient(520px 260px at 18% 0%, rgba(255, 126, 179, 0.30), transparent 62%),
+        radial-gradient(520px 260px at 82% 12%, rgba(111, 198, 255, 0.26), transparent 64%),
         linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.10));
       pointer-events: none;
       z-index: 0;
     }
 
-    /* =========================
-       ✅ HERO (исправлено: не конфликтует со старыми .badge/.footer)
-       ========================= */
+    /* ===== HERO (облегчённый) ===== */
     .hero{
       position: relative;
-      padding: clamp(26px, 5vw, 54px) clamp(18px, 4vw, 34px);
-      text-align: left;
+      padding: clamp(28px, 5vw, 58px) clamp(18px, 4vw, 40px);
+      text-align: center;
     }
 
-    .hero__wrap{
-      max-width: 980px;
+    .heroInner{
+      max-width: 860px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: clamp(16px, 4vw, 34px);
-      align-items: center;
       position: relative;
       z-index: 2;
     }
 
-    .hero__bg{
-      position:absolute;
-      inset:0;
-      z-index:0;
-      pointer-events:none;
-    }
-
-    .blob{
-      position:absolute;
-      filter: blur(18px);
-      opacity: .85;
-      border-radius: 999px;
-      transform: translateZ(0);
-    }
-    .blob--pink{
-      width: 520px; height: 520px;
-      left: -160px; top: -190px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,126,179,.95), rgba(255,117,140,.25) 60%, rgba(255,255,255,0) 72%);
-    }
-    .blob--blue{
-      width: 520px; height: 520px;
-      right: -190px; bottom: -230px;
-      background: radial-gradient(circle at 30% 30%, rgba(111,198,255,.85), rgba(111,198,255,.18) 62%, rgba(255,255,255,0) 74%);
-    }
-
-    .dots{
-      position:absolute;
-      inset:-40px;
-      opacity:.10;
-      background-image: radial-gradient(#ff7eb3 1px, transparent 1px);
-      background-size: 22px 22px;
-      transform: rotate(-6deg);
-    }
-
-    .heroBadge{
+    .badge{
       display:inline-flex;
       gap:10px;
       align-items:center;
       padding: 10px 14px;
       border-radius: 999px;
       background: rgba(255,255,255,.75);
-      border: 1px solid rgba(255,126,179,.25);
+      border: 1px solid rgba(255,126,179,.22);
       box-shadow: 0 10px 24px rgba(34,34,34,.06);
       font-weight: 900;
       color: #2a2a2a;
       backdrop-filter: blur(10px);
     }
-    .heroBadge__dot{
+    .badge__dot{
       width:10px; height:10px;
       border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #ff7eb3, #ff758c);
-      box-shadow: 0 0 0 6px rgba(255,126,179,.18);
+      box-shadow: 0 0 0 6px rgba(255,126,179,.16);
     }
 
-    .hero__title{
+    .heroTitle{
       margin-top: 16px;
-      font-size: clamp(34px, 5.6vw, 56px);
-      line-height: 1.05;
+      font-size: clamp(34px, 5.6vw, 58px);
+      line-height: 1.02;
       letter-spacing: -0.02em;
+      font-weight: 900;
       color: #171717;
-      font-weight: 900;
-    }
-    .hero__titleAccent{
-      display:block;
-      margin-top: 8px;
-      font-size: clamp(16px, 2.4vw, 22px);
-      font-weight: 800;
-      color: rgba(23,23,23,.72);
     }
 
-    .hero__subtitle{
-      margin-top: 14px;
-      font-size: clamp(15px, 2.1vw, 18px);
-      line-height: 1.6;
-      color: rgba(23,23,23,.72);
-      max-width: 52ch;
+    .heroSub{
+      margin-top: 12px;
+      font-size: clamp(15px, 2.2vw, 18px);
+      line-height: 1.65;
+      color: rgba(23,23,23,.70);
+      max-width: 60ch;
+      margin-left:auto;
+      margin-right:auto;
     }
 
-    /* навигация-якоря */
-    .navchips{
-      margin-top: 16px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .navchips a{
-      text-decoration:none;
-      padding: 10px 12px;
-      border-radius: 999px;
-      font-weight: 900;
-      font-size: 13px;
-      background: rgba(255,255,255,0.80);
-      border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.06);
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .navchips a:hover{ transform: translateY(-1px); box-shadow: 0 16px 34px rgba(0,0,0,0.08); }
-
-    .hero__chips{
-      margin-top: 18px;
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.75);
-      border: 1px solid rgba(34,34,34,.06);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
-      backdrop-filter: blur(10px);
-      font-weight: 900;
-      color: rgba(23,23,23,.78);
-      font-size: 13px;
-    }
-    .chip__icon{
-      width: 30px; height: 30px;
-      display:grid;
-      place-items:center;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255,126,179,.22), rgba(111,198,255,.16));
-      border: 1px solid rgba(255,126,179,.18);
-      font-size: 15px;
-    }
-
-    .hero__actions{
+    .heroActions{
       margin-top: 18px;
       display:flex;
       gap: 12px;
+      justify-content:center;
       flex-wrap: wrap;
       align-items:center;
     }
@@ -263,192 +168,126 @@
       align-items:center;
       justify-content:center;
       padding: 14px 18px;
-      border-radius: 14px;
+      border-radius: 16px;
       font-weight: 900;
-      letter-spacing: 0.01em;
       text-decoration:none;
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      transition: transform .15s ease, box-shadow .15s ease;
       user-select:none;
       font-size: 15px;
-      white-space: nowrap;
+      border: 0;
     }
     .btn:active{ transform: translateY(1px); }
 
-    .btn--primary{
-      color: white;
+    .btnPrimary{
+      color: #fff;
       background: linear-gradient(135deg, #ff7eb3, #ff758c);
       box-shadow: 0 18px 40px rgba(255,117,140,.35);
-      overflow:hidden;
     }
-    .btn--primary:hover{
+    .btnPrimary:hover{
       transform: translateY(-1px);
       box-shadow: 0 22px 50px rgba(255,117,140,.42);
     }
-    .btn__shine{
-      position:absolute;
-      inset:-40%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
-      transform: translateX(-60%) rotate(10deg);
-      animation: shine 3.2s ease-in-out infinite;
-      pointer-events:none;
-    }
-    @keyframes shine{
-      0%, 55% { transform: translateX(-70%) rotate(10deg); opacity:0; }
-      65% { opacity:1; }
-      100% { transform: translateX(70%) rotate(10deg); opacity:0; }
-    }
 
-    .btn--ghost{
+    .btnGhost{
       color: rgba(23,23,23,.82);
-      background: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.70);
       border: 1px solid rgba(34,34,34,.08);
       box-shadow: 0 12px 26px rgba(34,34,34,.06);
       backdrop-filter: blur(10px);
     }
-    .btn--ghost:hover{
+    .btnGhost:hover{
       transform: translateY(-1px);
       box-shadow: 0 16px 34px rgba(34,34,34,.08);
     }
 
-    .hero__note{
-      margin-top: 12px;
-      color: rgba(23,23,23,.62);
-      font-weight: 700;
-      font-size: 13px;
-    }
-
-    /* Правая карточка */
-    .hero__right{ position: relative; }
-
-    .heroCard{
-      background: rgba(255,255,255,.75);
-      border: 1px solid rgba(34,34,34,.08);
-      border-radius: 22px;
-      box-shadow: 0 26px 70px rgba(34,34,34,.10);
-      backdrop-filter: blur(14px);
-      overflow:hidden;
-    }
-
-    .heroCard__top{
+    /* ===== Навигация-иконки (чтобы было видно, что кликабельно) ===== */
+    .navIcons{
+      margin-top: 18px;
       display:flex;
-      gap: 12px;
-      padding: 16px 16px 10px;
-      align-items:center;
+      gap: 10px;
+      justify-content:center;
+      flex-wrap: wrap;
     }
 
-    .avatar{
-      width: 46px; height: 46px;
+    .navIcon{
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.80);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.06);
+      font-weight: 900;
+      font-size: 13px;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .navIcon:hover{ transform: translateY(-1px); box-shadow: 0 16px 34px rgba(0,0,0,0.08); }
+
+    .navIcon__i{
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
       display:grid;
       place-items:center;
-      position: relative;
-      background: linear-gradient(135deg, rgba(255,126,179,.25), rgba(111,198,255,.20));
-      border: 1px solid rgba(255,126,179,.18);
+      font-size: 16px;
+      border: 1px solid rgba(0,0,0,0.06);
+      background: linear-gradient(135deg, rgba(255,126,179,.18), rgba(111,198,255,.14));
     }
-    .avatar__ring{
-      position:absolute;
-      inset:-8px;
-      border-radius: 999px;
-      border: 2px dashed rgba(255,126,179,.25);
-      opacity:.8;
-    }
-    .avatar__emoji{ font-size: 20px; }
 
-    .heroCard__metaTitle{
-      font-weight: 900;
-      color: #171717;
-    }
-    .heroCard__metaSub{
-      margin-top: 2px;
-      font-weight: 700;
+    .heroNote{
+      margin-top: 14px;
       color: rgba(23,23,23,.60);
+      font-weight: 700;
       font-size: 13px;
     }
 
-    .heroCard__photo{ padding: 0 16px 16px; }
-
-    .photoStub{
-      height: 180px;
-      border-radius: 18px;
-      border: 1px solid rgba(34,34,34,.08);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,126,179,.22), transparent 45%),
-        radial-gradient(circle at 80% 30%, rgba(111,198,255,.18), transparent 45%),
-        linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.65));
+    /* ===== Блок “Коротко” под героем ===== */
+    .quick{
+      margin-top: 18px;
       display:grid;
-      place-items:center;
-      color: rgba(23,23,23,.55);
-      font-weight: 800;
-      text-align:center;
-      padding: 12px;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
     }
 
-    .heroImg{
-      width:100%;
-      height:180px;
-      object-fit: cover;
+    .qItem{
+      grid-column: span 3;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(0,0,0,0.06);
       border-radius: 18px;
-      border: 1px solid rgba(34,34,34,.08);
-      display:block;
-      filter: saturate(1.05) contrast(1.02);
-    }
-
-    .heroCard__stats{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
+      padding: 14px 12px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+      display:flex;
+      align-items:center;
       gap: 10px;
-      padding: 0 16px 16px;
+      justify-content:flex-start;
+      text-align:left;
     }
-    .stat{
-      border-radius: 16px;
-      padding: 12px 10px;
-      border: 1px solid rgba(34,34,34,.06);
-      background: rgba(255,255,255,.65);
-    }
-    .stat__num{
-      font-weight: 900;
-      color: #171717;
-      font-size: 18px;
-    }
-    .stat__label{
-      margin-top: 4px;
-      font-weight: 800;
-      color: rgba(23,23,23,.58);
-      font-size: 12px;
-    }
-
-    /* плавающие эмодзи */
-    .floating{
-      position:absolute;
-      width: 44px; height: 44px;
-      border-radius: 999px;
+    .qIcon{
+      width: 38px; height: 38px;
+      border-radius: 14px;
       display:grid;
       place-items:center;
-      background: rgba(255,255,255,.75);
-      border: 1px solid rgba(34,34,34,.08);
-      box-shadow: 0 18px 44px rgba(34,34,34,.10);
-      backdrop-filter: blur(10px);
-      animation: float 4.2s ease-in-out infinite;
-      pointer-events:none;
+      font-size: 18px;
+      border: 1px solid rgba(255,126,179,.16);
+      background: linear-gradient(135deg, rgba(255,126,179,.16), rgba(111,198,255,.12));
     }
-    .floating--1{ left: -10px; top: 22px; animation-delay: .2s; }
-    .floating--2{ right: -10px; top: 90px; animation-delay: .8s; }
-    .floating--3{ left: 22px; bottom: -12px; animation-delay: 1.3s; }
+    .qText strong{ display:block; font-weight: 900; font-size: 13px; color:#222; }
+    .qText span{ display:block; font-weight: 700; font-size: 12px; color: rgba(34,34,34,.60); margin-top: 2px; }
 
-    @keyframes float{
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* Responsive hero */
-    @media (max-width: 900px){
-      .hero__wrap{ grid-template-columns: 1fr; }
+    .footer {
+      margin-top: 16px;
+      font-size: 13px;
+      color: #777;
+      text-align:center;
+      padding-bottom: 2px;
     }
 
     /* ===== SECTIONS ===== */
     .section {
       margin-top: 22px;
-      padding: 28px 20px;
+      padding: 30px 20px;
       border-radius: 26px;
       text-align: center;
       background: rgba(255,255,255,0.78);
@@ -469,7 +308,7 @@
       padding: 8px 12px;
       border-radius: 999px;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 900;
       color: #c84a7a;
       background: rgba(255, 228, 239, 0.80);
       border: 1px solid rgba(255, 126, 179, 0.18);
@@ -480,6 +319,7 @@
       font-size: 26px;
       margin-bottom: 10px;
       letter-spacing: -0.2px;
+      font-weight: 900;
     }
 
     .section p {
@@ -533,7 +373,7 @@
       margin-bottom: 12px;
     }
 
-    .card h3 { font-size: 16px; margin-bottom: 6px; }
+    .card h3 { font-size: 16px; margin-bottom: 6px; font-weight: 900; }
     .card p { margin: 0; color: #555; font-size: 14px; line-height: 1.6; max-width: none; }
 
     /* ===== Gallery ===== */
@@ -583,18 +423,14 @@
       background: rgba(255,255,255,0.86);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(0,0,0,0.06);
-      font-weight: 800;
+      font-weight: 900;
       color: #333;
       display:flex;
       gap:10px;
       align-items:center;
       justify-content: space-between;
     }
-
-    .cap small{
-      font-weight: 700;
-      color:#666;
-    }
+    .cap small{ font-weight: 800; color:#666; }
 
     /* ===== Steps ===== */
     .steps { margin-top: 18px; display: grid; gap: 12px; text-align: left; }
@@ -618,7 +454,7 @@
       background: rgba(255, 228, 239, 0.86);
       border: 1px solid rgba(255, 126, 179, 0.18);
     }
-    .step strong { display: block; margin-bottom: 4px; }
+    .step strong { display: block; margin-bottom: 4px; font-weight: 900; }
     .step span { color: #555; font-size: 14px; line-height: 1.6; }
 
     /* ===== Contact box ===== */
@@ -631,9 +467,29 @@
       text-align: left;
       box-shadow: 0 18px 45px rgba(0,0,0,0.07);
     }
-    .contact small { color: #666; display: block; margin-top: 6px; }
+    .contact small { color: #666; display: block; margin-top: 6px; font-weight: 700; }
 
-    /* кнопки (внизу в секциях) */
+    /* ===== Партнёры ===== */
+    .partnerGrid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      text-align:left;
+    }
+    .partnerCard{
+      grid-column: span 6;
+      background: rgba(255,255,255,0.90);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+    }
+    .partnerCard h3{ font-size: 16px; font-weight: 900; margin-bottom: 8px; }
+    .partnerCard ul{ padding-left: 18px; color:#555; font-size: 14px; line-height: 1.6; }
+    .partnerCard li{ margin: 6px 0; }
+    .partnerCard .hint{ margin-top: 10px; font-weight: 800; color: rgba(23,23,23,.65); font-size: 13px; }
+
     .actions {
       display: flex;
       gap: 12px;
@@ -648,7 +504,7 @@
       text-decoration: none;
       padding: 14px 22px;
       border-radius: 999px;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 15px;
       transition: transform 0.18s ease, box-shadow 0.18s ease;
       box-shadow: 0 14px 30px rgba(255, 117, 140, 0.32);
@@ -664,21 +520,18 @@
       box-shadow: 0 14px 30px rgba(0,0,0,0.06);
     }
 
-    .siteFooter{
-      margin-top: 18px;
-      font-size: 13px;
-      color: #777;
-      text-align:center;
-      padding-bottom: 2px;
-    }
-
     /* Responsive */
+    @media (max-width: 900px){
+      .qItem{ grid-column: span 6; }
+      .partnerCard{ grid-column: span 12; }
+    }
     @media (max-width: 760px) {
       body { padding: 16px; }
       .section h2 { font-size: 22px; }
       .card { grid-column: span 12; }
       .shot { grid-column: span 12; }
       .gallery { gap: 12px; }
+      .qItem{ grid-column: span 12; }
     }
   </style>
 </head>
@@ -689,99 +542,57 @@
     <!-- HERO -->
     <section class="container" aria-label="Первый экран">
       <header class="hero">
-        <div class="hero__bg" aria-hidden="true">
-          <span class="blob blob--pink"></span>
-          <span class="blob blob--blue"></span>
-          <span class="dots"></span>
-        </div>
+        <div class="heroInner">
+          <div class="badge">
+            <span class="badge__dot"></span>
+            Скоро открытие
+          </div>
 
-        <div class="hero__wrap">
-          <div class="hero__left">
-            <div class="heroBadge">
-              <span class="heroBadge__dot"></span>
-              Скоро открытие
+          <h1 class="heroTitle">Йога с собаками</h1>
+
+          <p class="heroSub">
+            Уютная практика + щенки рядом — чтобы выдохнуть, расслабиться и просто почувствовать себя живой.
+            <br>Воронеж 💗
+          </p>
+
+          <!-- ВИДНАЯ навигация -->
+          <nav class="navIcons" aria-label="Навигация по разделам">
+            <a class="navIcon" href="#about"><span class="navIcon__i">✨</span>О проекте</a>
+            <a class="navIcon" href="#gallery"><span class="navIcon__i">📸</span>Атмосфера</a>
+            <a class="navIcon" href="#audience"><span class="navIcon__i">🐾</span>Для кого</a>
+            <a class="navIcon" href="#signup"><span class="navIcon__i">💌</span>Запись</a>
+            <a class="navIcon" href="#partners"><span class="navIcon__i">🤝</span>Партнёрам</a>
+          </nav>
+
+          <div class="heroActions">
+            <a class="btn btnPrimary" href="#signup">Хочу на первую запись</a>
+            <a class="btn btnGhost" href="#about">Узнать формат</a>
+          </div>
+
+          <div class="heroNote">Стартуем скоро — оставь контакт, и мы напишем первой.</div>
+
+          <!-- Коротко (вынесли из шапки, чтобы не давило) -->
+          <div class="quick" aria-label="Коротко о формате">
+            <div class="qItem">
+              <div class="qIcon">🕒</div>
+              <div class="qText"><strong>60 минут</strong><span>комфортный темп</span></div>
             </div>
-
-            <h1 class="hero__title">
-              Йога с собаками
-              <span class="hero__titleAccent">Воронеж • уютная студия</span>
-            </h1>
-
-            <p class="hero__subtitle">
-              Мягкая практика + щенки рядом = максимум антистресса.
-              <br>Тёплые встречи, уют и хвостатая любовь 💗
-            </p>
-
-            <nav class="navchips" aria-label="Навигация по разделам">
-              <a href="#about">✨ О проекте</a>
-              <a href="#gallery">📸 Атмосфера</a>
-              <a href="#audience">🐾 Для кого</a>
-              <a href="#signup">💌 Запись</a>
-            </nav>
-
-            <div class="hero__chips" aria-label="Особенности">
-              <div class="chip"><span class="chip__icon">🕒</span>60 минут</div>
-              <div class="chip"><span class="chip__icon">🧘‍♀️</span>мягкая практика</div>
-              <div class="chip"><span class="chip__icon">🐾</span>щенки рядом</div>
-              <div class="chip"><span class="chip__icon">🌿</span>антистресс</div>
+            <div class="qItem">
+              <div class="qIcon">🧘‍♀️</div>
+              <div class="qText"><strong>мягкая практика</strong><span>подойдёт новичкам</span></div>
             </div>
-
-            <div class="hero__actions">
-              <a class="btn btn--primary" href="#signup">
-                Хочу на первую запись
-                <span class="btn__shine"></span>
-              </a>
-              <a class="btn btn--ghost" href="#about">Что это такое?</a>
+            <div class="qItem">
+              <div class="qIcon">🐶</div>
+              <div class="qText"><strong>щенки рядом</strong><span>тепло и контакт</span></div>
             </div>
-
-            <div class="hero__note">
-              ✨ Стартуем скоро — оставь заявку и получи приоритет на первые места
+            <div class="qItem">
+              <div class="qIcon">🌿</div>
+              <div class="qText"><strong>антистресс</strong><span>выдох и спокойствие</span></div>
             </div>
           </div>
 
-          <div class="hero__right">
-            <div class="heroCard">
-              <div class="heroCard__top">
-                <div class="avatar">
-                  <span class="avatar__ring"></span>
-                  <span class="avatar__emoji">🐶</span>
-                </div>
-                <div class="heroCard__meta">
-                  <div class="heroCard__metaTitle">DOGA SPACE VRN</div>
-                  <div class="heroCard__metaSub">Уютная студия • маленькие группы</div>
-                </div>
-              </div>
-
-              <div class="heroCard__photo">
-                <!-- Если хочешь фото — замени заглушку на:
-                     <img class="heroImg" src="assets/yoga-corgi-1.png" alt="Студия">
-                -->
-                <div class="photoStub">Здесь будет фото студии / щенка</div>
-              </div>
-
-              <div class="heroCard__stats">
-                <div class="stat">
-                  <div class="stat__num">8–12</div>
-                  <div class="stat__label">человек в группе</div>
-                </div>
-                <div class="stat">
-                  <div class="stat__num">0%</div>
-                  <div class="stat__label">стресса после</div>
-                </div>
-                <div class="stat">
-                  <div class="stat__num">100%</div>
-                  <div class="stat__label">милоты</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="floating floating--1">🐾</div>
-            <div class="floating floating--2">💗</div>
-            <div class="floating floating--3">🧘‍♀️</div>
-          </div>
+          <div class="footer">© 2026 • Йога с собаками</div>
         </div>
-
-        <div class="siteFooter">© 2026 • Йога с собаками</div>
       </header>
     </section>
 
@@ -809,24 +620,24 @@
         <figure class="shot big">
           <img src="assets/yoga-corgi-1.png" alt="Йога в зале — девушка и корги" loading="lazy">
           <figcaption class="cap">
-            <span>🧘‍♀️ Йога-зал</span>
-            <small>мягкий свет</small>
+            <span>🤍 Обнимашки</span>
+            <small>антистресс</small>
           </figcaption>
         </figure>
 
         <figure class="shot">
           <img src="assets/yoga-corgi-2.png" alt="Йога с корги — другая поза" loading="lazy">
           <figcaption class="cap">
-            <span>🐾 Мягкая практика</span>
-            <small>без спешки</small>
+            <span>🐾 Практика</span>
+            <small>мягко и спокойно</small>
           </figcaption>
         </figure>
 
         <figure class="shot">
-          <img src="assets/yoga-corgi-3.png" alt="Обнимашки с корги в студии" loading="lazy">
+          <img src="assets/yoga-corgi-3.png" alt="Девушка обнимается с корги в зале" loading="lazy">
           <figcaption class="cap">
-            <span>🤍 Обнимашки</span>
-            <small>антистресс</small>
+            <span>🧘‍♀️ Йога-зал</span>
+            <small>мягкий свет</small>
           </figcaption>
         </figure>
       </div>
@@ -871,17 +682,8 @@
       </div>
     </section>
 
-    <!-- WHY NEED -->
-    <section class="section soft">
-      <div class="kicker">Тебе станет легче</div>
-      <h2>Почему тебе это нужно</h2>
-      <p>В обычной жизни мы всё время напряжены: стараемся быть лучше, быстрее, правильнее.</p>
-      <p>Йога с собаками — это редкое пространство, где от тебя ничего не ждут. Где можно быть настоящей.</p>
-      <p>Ты выходишь не уставшей, а наполненной. Спокойной. Тёплой. Живой.</p>
-    </section>
-
     <!-- HOW IT GOES -->
-    <section class="section">
+    <section class="section soft">
       <div class="kicker">Как проходит</div>
       <h2>Что будет на занятии</h2>
       <p>Без жёстких требований. Мягко, понятно и по любви.</p>
@@ -907,8 +709,51 @@
           <div class="num">3</div>
           <div>
             <strong>Расслабление</strong>
-            <span>Финальная шавасана — и да, корги может лечь рядом 🐾</span>
+            <span>Финальная шавасана — и да, щенок может лечь рядом 🐾</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section class="section" id="partners">
+      <div class="kicker">Сотрудничество</div>
+      <h2>Партнёрам</h2>
+      <p>
+        Мы открыты к партнёрствам — особенно с заводчиками и питомниками.
+        Нам важно гуманное отношение к щенкам и тёплый контакт.
+      </p>
+
+      <div class="partnerGrid">
+        <div class="partnerCard">
+          <h3>Заводчикам и питомникам 🐶</h3>
+          <ul>
+            <li>Бережное участие щенков (контроль нагрузки, отдых, комфорт)</li>
+            <li>Упоминание питомника/заводчика в соцсетях и на сайте</li>
+            <li>Фото/видео-материалы с занятий (по договорённости)</li>
+            <li>Возможность найти «своих людей» для будущих хозяев</li>
+          </ul>
+          <div class="hint">Напиши — обсудим формат и условия.</div>
+        </div>
+
+        <div class="partnerCard">
+          <h3>Брендам и компаниям ✨</h3>
+          <ul>
+            <li>Интеграции в контент (фото/видео)</li>
+            <li>Подарки/промо для участников</li>
+            <li>Партнёрские мероприятия</li>
+            <li>Совместные благотворительные инициативы</li>
+          </ul>
+          <div class="hint">Ищем «своих» по ценностям — спокойно и красиво.</div>
+        </div>
+
+        <div class="partnerCard" style="grid-column: span 12;">
+          <h3>Контакт для партнёров 🤝</h3>
+          <p style="max-width:none; margin:0; text-align:left;">
+            Почта: <strong>partner@yourdomain.ru</strong><br>
+            Telegram: <strong>@yourname</strong><br>
+            Город: <strong>Воронеж</strong>
+          </p>
         </div>
       </div>
     </section>
