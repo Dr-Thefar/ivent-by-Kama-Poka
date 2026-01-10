@@ -5,7 +5,6 @@
   <title>Йога с собаками — скоро открытие</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Шрифты -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -27,7 +26,6 @@
       min-height: 100vh;
       padding: 24px;
 
-      /* База градиента */
       background:
         radial-gradient(900px 350px at 15% 10%, rgba(255, 126, 179, 0.22), transparent 60%),
         radial-gradient(900px 350px at 85% 20%, rgba(111, 198, 255, 0.20), transparent 55%),
@@ -36,7 +34,7 @@
       overflow-x: hidden;
     }
 
-    /* ✅ ДВА СЛОЯ КОНТУРНЫХ ЛАПОК (чтобы было ВИДНО) */
+    /* Лапки (видимые, контурные, 2 слоя) */
     body::before{
       content:"";
       position: fixed;
@@ -44,13 +42,12 @@
       pointer-events: none;
       z-index: 0;
 
-      /* Мелкие лапки */
-      background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ff4f9a' stroke-opacity='0.35' stroke-width='2.2'%3E%3Ccircle cx='52' cy='50' r='7'/%3E%3Ccircle cx='74' cy='42' r='7'/%3E%3Ccircle cx='96' cy='50' r='7'/%3E%3Cpath d='M66 74 C66 60 84 60 84 74 C84 92 66 92 66 74 Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ff2f8f' stroke-opacity='0.55' stroke-width='2.8'%3E%3Ccircle cx='52' cy='50' r='7'/%3E%3Ccircle cx='74' cy='42' r='7'/%3E%3Ccircle cx='96' cy='50' r='7'/%3E%3Cpath d='M66 74 C66 60 84 60 84 74 C84 92 66 92 66 74 Z'/%3E%3C/g%3E%3C/svg%3E");
       background-repeat: repeat;
       background-size: 160px 160px;
-      opacity: 0.85;
+      opacity: 0.9;
       mix-blend-mode: multiply;
-      filter: saturate(1.1);
+      filter: saturate(1.2) drop-shadow(0 1px 0 rgba(255,255,255,0.35));
     }
 
     body::after{
@@ -60,19 +57,18 @@
       pointer-events: none;
       z-index: 0;
 
-      /* Крупные лапы (редко, как “водяной знак”) */
-      background-image: url("data:image/svg+xml,%3Csvg width='340' height='340' viewBox='0 0 340 340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236fc6ff' stroke-opacity='0.22' stroke-width='3'%3E%3Ccircle cx='120' cy='110' r='14'/%3E%3Ccircle cx='170' cy='96' r='14'/%3E%3Ccircle cx='220' cy='110' r='14'/%3E%3Cpath d='M150 170 C150 135 190 135 190 170 C190 215 150 215 150 170 Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='340' height='340' viewBox='0 0 340 340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236fc6ff' stroke-opacity='0.40' stroke-width='3.4'%3E%3Ccircle cx='120' cy='110' r='14'/%3E%3Ccircle cx='170' cy='96' r='14'/%3E%3Ccircle cx='220' cy='110' r='14'/%3E%3Cpath d='M150 170 C150 135 190 135 190 170 C190 215 150 215 150 170 Z'/%3E%3C/g%3E%3C/svg%3E");
       background-repeat: repeat;
       background-size: 340px 340px;
       transform: rotate(-8deg);
       opacity: 1;
       mix-blend-mode: multiply;
+      filter: saturate(1.1);
     }
 
     a { color: inherit; }
     .page { width: 100%; max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
 
-    /* ===== HERO ===== */
     .container {
       background: rgba(255, 255, 255, 0.86);
       border: 1px solid rgba(255, 126, 179, 0.16);
@@ -179,7 +175,6 @@
       color: #777;
     }
 
-    /* ===== SECTIONS ===== */
     .section {
       margin-top: 22px;
       padding: 28px 20px;
@@ -224,7 +219,6 @@
       margin: 0 auto 10px;
     }
 
-    /* ===== Cards ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -270,7 +264,7 @@
     .card h3 { font-size: 16px; margin-bottom: 6px; }
     .card p { margin: 0; color: #555; font-size: 14px; line-height: 1.6; max-width: none; }
 
-    /* ===== Gallery ===== */
+    /* Галерея — локальные фотки */
     .gallery {
       margin-top: 18px;
       display: grid;
@@ -280,10 +274,10 @@
 
     .shot {
       grid-column: span 6;
-      border-radius: 22px;
+      border-radius: 24px;
       overflow: hidden;
       border: 1px solid rgba(0,0,0,0.06);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.10);
       background: rgba(255,255,255,0.8);
       position: relative;
       transform: translateZ(0);
@@ -291,16 +285,38 @@
 
     .shot.big { grid-column: span 12; }
 
-    .shot img{
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.25s ease;
-      filter: saturate(1.05) contrast(1.02);
+    .shot::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(255,126,179,0.10), rgba(111,198,255,0.10));
+      opacity: 0.9;
+      mix-blend-mode: soft-light;
+      pointer-events:none;
     }
 
-    .shot:hover img{ transform: scale(1.03); }
+    .shot::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: radial-gradient(600px 240px at 15% 10%, rgba(255,255,255,0.35), transparent 55%);
+      opacity: 0.8;
+      pointer-events:none;
+    }
+
+    .shot img{
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease, filter 0.25s ease;
+      filter: saturate(1.25) contrast(1.10) brightness(1.02);
+    }
+
+    .shot:hover img{
+      transform: scale(1.04);
+      filter: saturate(1.35) contrast(1.15) brightness(1.05);
+    }
 
     .cap{
       position:absolute;
@@ -309,11 +325,11 @@
       bottom: 14px;
       padding: 12px 14px;
       border-radius: 16px;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.88);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(0,0,0,0.06);
-      font-weight: 700;
-      color: #333;
+      font-weight: 800;
+      color: #222;
       display:flex;
       gap:10px;
       align-items:center;
@@ -321,11 +337,10 @@
     }
 
     .cap small{
-      font-weight: 600;
+      font-weight: 700;
       color:#666;
     }
 
-    /* ===== Steps ===== */
     .steps { margin-top: 18px; display: grid; gap: 12px; text-align: left; }
     .step {
       display: flex;
@@ -350,7 +365,6 @@
     .step strong { display: block; margin-bottom: 4px; }
     .step span { color: #555; font-size: 14px; line-height: 1.6; }
 
-    /* ===== FAQ ===== */
     details {
       text-align: left;
       background: rgba(255,255,255,0.88);
@@ -368,7 +382,6 @@
     summary::-webkit-details-marker { display: none; }
     details p { margin: 10px 0 0; max-width: none; }
 
-    /* ===== Contact box ===== */
     .contact { margin-top: 18px; display: grid; gap: 12px; }
     .contact .box {
       background: linear-gradient(135deg, rgba(255, 126, 179, 0.16), rgba(111, 198, 255, 0.14));
@@ -380,7 +393,6 @@
     }
     .contact small { color: #666; display: block; margin-top: 6px; }
 
-    /* Responsive */
     @media (max-width: 760px) {
       body { padding: 16px; }
       .container { padding: 34px 20px; }
@@ -397,7 +409,6 @@
 <body>
   <main class="page">
 
-    <!-- HERO -->
     <section class="container" aria-label="Первый экран">
       <div class="hero-inner">
         <div class="emoji">🐶🧘‍♀️</div>
@@ -427,7 +438,6 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section class="section soft" id="about">
       <div class="kicker">Тёплая практика</div>
       <h2>Почему именно с собаками</h2>
@@ -441,82 +451,54 @@
       </p>
     </section>
 
-    <!-- ✅ GALLERY -->
     <section class="section" id="gallery">
       <div class="kicker">Атмосфера</div>
-      <h2>Милые моменты с хвостиками</h2>
-      <p>Нежность, смех и настоящая перезагрузка. (Фото подгружаются автоматически.)</p>
+      <h2>Это выглядит как “вау, хочу”</h2>
+      <p>Фото лежат в папке <b>assets</b> (без внешних ссылок).</p>
 
       <div class="gallery">
-        <!-- Молодая пара + корги (рандом по запросу) -->
         <figure class="shot big">
-          <img
-            src="https://source.unsplash.com/featured/1200x700/?corgi,couple,puppy"
-            alt="Молодая пара со щенками корги"
-            loading="lazy"
-            referrerpolicy="no-referrer"
-          />
+          <img src="assets/corgi-couple.jpg" alt="Молодая пара со щенками корги" loading="lazy">
           <figcaption class="cap">
-            <span>🐶 Молодая пара + корги</span>
-            <small>самая милая сцена</small>
+            <span>🐶 Пара + корги</span>
+            <small>самый милый кадр</small>
           </figcaption>
         </figure>
 
         <figure class="shot">
-          <img
-            src="https://source.unsplash.com/featured/900x650/?yoga,dog"
-            alt="Йога с собакой"
-            loading="lazy"
-            referrerpolicy="no-referrer"
-          />
+          <img src="assets/yoga-dog.jpg" alt="Йога с собакой" loading="lazy">
           <figcaption class="cap">
             <span>🧘‍♀️ Практика</span>
-            <small>мягко и безопасно</small>
+            <small>мягко и красиво</small>
           </figcaption>
         </figure>
 
         <figure class="shot">
-          <img
-            src="https://source.unsplash.com/featured/900x650/?puppy,smile"
-            alt="Щенок и улыбка"
-            loading="lazy"
-            referrerpolicy="no-referrer"
-          />
+          <img src="assets/puppy-smile.jpg" alt="Щенок и улыбка" loading="lazy">
           <figcaption class="cap">
-            <span>🐾 Щенячья терапия</span>
-            <small>радость здесь</small>
+            <span>😄 Эмоции</span>
+            <small>живой кайф</small>
           </figcaption>
         </figure>
 
         <figure class="shot">
-          <img
-            src="https://source.unsplash.com/featured/900x650/?woman,yoga,dog"
-            alt="Девушка с собакой на занятии"
-            loading="lazy"
-            referrerpolicy="no-referrer"
-          />
+          <img src="assets/couple-dog.jpg" alt="Пара с собакой" loading="lazy">
           <figcaption class="cap">
             <span>🤍 Тепло</span>
-            <small>без “надо”</small>
+            <small>внутри спокойно</small>
           </figcaption>
         </figure>
 
         <figure class="shot">
-          <img
-            src="https://source.unsplash.com/featured/900x650/?corgi,puppies"
-            alt="Щенки корги"
-            loading="lazy"
-            referrerpolicy="no-referrer"
-          />
+          <img src="assets/corgi-puppies.jpg" alt="Щенки корги" loading="lazy">
           <figcaption class="cap">
-            <span>✨ Корги-энергия</span>
-            <small>заряд на день</small>
+            <span>✨ Корги-вибрации</span>
+            <small>улыбка сама</small>
           </figcaption>
         </figure>
       </div>
     </section>
 
-    <!-- AUDIENCE -->
     <section class="section" id="audience">
       <div class="kicker">Это для тебя, если</div>
       <h2>Для кого эта йога</h2>
@@ -555,23 +537,14 @@
       </div>
     </section>
 
-    <!-- WHY NEED -->
     <section class="section soft">
       <div class="kicker">Тебе станет легче</div>
       <h2>Почему тебе это нужно</h2>
-      <p>
-        В обычной жизни мы всё время напряжены: стараемся быть лучше, быстрее, правильнее.
-      </p>
-      <p>
-        Йога с собаками — это редкое пространство, где от тебя ничего не ждут.
-        Где можно быть настоящей.
-      </p>
-      <p>
-        Ты выходишь не уставшей, а наполненной. Спокойной. Тёплой. Живой.
-      </p>
+      <p>В обычной жизни мы всё время напряжены: стараемся быть лучше, быстрее, правильнее.</p>
+      <p>Йога с собаками — редкое пространство, где от тебя ничего не ждут. Где можно быть настоящей.</p>
+      <p>Ты выходишь не уставшей, а наполненной. Спокойной. Тёплой. Живой.</p>
     </section>
 
-    <!-- HOW IT GOES -->
     <section class="section">
       <div class="kicker">Как проходит</div>
       <h2>Что будет на занятии</h2>
@@ -604,7 +577,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="section" id="faq">
       <div class="kicker">Вопросы</div>
       <h2>FAQ</h2>
@@ -627,14 +599,10 @@
       </div>
     </section>
 
-    <!-- SIGNUP -->
     <section class="section soft" id="signup">
       <div class="kicker">Запись</div>
       <h2>Хочу на первое занятие</h2>
-      <p>
-        Оставь контакт — и мы напишем, когда откроем расписание.
-        Можно сделать запись через Telegram/Instagram.
-      </p>
+      <p>Оставь контакт — и мы напишем, когда откроем расписание. Можно сделать запись через Telegram/Instagram.</p>
 
       <div class="contact">
         <div class="box">
