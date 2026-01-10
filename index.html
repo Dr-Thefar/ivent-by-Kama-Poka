@@ -12,52 +12,97 @@
 
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background: linear-gradient(135deg, #fdf1f7, #f7fbff);
-      color: #333;
+      color: #222;
+      background:
+        radial-gradient(900px 350px at 15% 10%, rgba(255, 126, 179, 0.20), transparent 60%),
+        radial-gradient(900px 350px at 85% 20%, rgba(111, 198, 255, 0.18), transparent 55%),
+        linear-gradient(135deg, #fdf1f7, #f7fbff);
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 24px;
     }
 
-    .page {
-      width: 100%;
-      max-width: 900px;
-    }
+    a { color: inherit; }
+    .page { width: 100%; max-width: 980px; margin: 0 auto; }
 
+    /* ===== HERO ===== */
     .container {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 126, 179, 0.14);
       width: 100%;
-      padding: 40px 30px;
-      border-radius: 24px;
+      padding: 44px 32px;
+      border-radius: 28px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.10);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
     }
 
-    .emoji { font-size: 48px; margin-bottom: 16px; }
-
-    h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
-
-    p {
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 18px;
-      color: #555;
+    .container:before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        radial-gradient(420px 220px at 20% 0%, rgba(255, 126, 179, 0.22), transparent 60%),
+        radial-gradient(420px 220px at 80% 10%, rgba(111, 198, 255, 0.18), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
     }
+
+    .hero-inner { position: relative; z-index: 1; }
+
+    .emoji { font-size: 52px; margin-bottom: 14px; }
 
     .badge {
       display: inline-block;
-      background: #ffe4ef;
+      background: rgba(255, 228, 239, 0.85);
       color: #c84a7a;
-      padding: 6px 14px;
+      padding: 8px 14px;
       border-radius: 999px;
       font-size: 14px;
-      margin-bottom: 18px;
-      font-weight: 600;
+      margin-bottom: 16px;
+      font-weight: 700;
+      border: 1px solid rgba(255, 126, 179, 0.18);
+    }
+
+    h1 { font-size: 32px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.3px; }
+
+    .lead {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #444;
+      max-width: 640px;
+      margin: 0 auto 18px;
+    }
+
+    .hero-mini {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 16px 0 22px;
+    }
+
+    .pill {
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      color: #333;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
     }
 
     .button {
@@ -65,56 +110,190 @@
       background: linear-gradient(135deg, #ff7eb3, #ff758c);
       color: #fff;
       text-decoration: none;
-      padding: 14px 28px;
+      padding: 14px 22px;
       border-radius: 999px;
-      font-weight: 600;
-      font-size: 16px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 10px 20px rgba(255, 117, 140, 0.35);
-      margin-top: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 14px 30px rgba(255, 117, 140, 0.30);
     }
 
     .button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 28px rgba(255, 117, 140, 0.45);
+      box-shadow: 0 18px 42px rgba(255, 117, 140, 0.40);
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,0.92);
+      color: #c84a7a;
+      border: 1px solid rgba(255, 126, 179, 0.22);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.06);
     }
 
     .footer {
-      margin-top: 22px;
-      font-size: 14px;
-      color: #888;
+      margin-top: 18px;
+      font-size: 13px;
+      color: #777;
     }
 
-    /* Блоки лендинга */
+    /* ===== SECTIONS ===== */
     .section {
-      max-width: 720px;
-      margin: 34px auto 0;
-      padding: 22px 18px;
+      margin-top: 22px;
+      padding: 28px 20px;
+      border-radius: 26px;
       text-align: center;
-      border-radius: 22px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.07);
+      backdrop-filter: blur(8px);
+    }
+
+    .section.soft {
+      background:
+        radial-gradient(700px 250px at 20% 0%, rgba(255, 126, 179, 0.14), transparent 60%),
+        radial-gradient(700px 250px at 80% 10%, rgba(111, 198, 255, 0.12), transparent 60%),
+        rgba(255,255,255,0.75);
+    }
+
+    .kicker {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #c84a7a;
+      background: rgba(255, 228, 239, 0.75);
+      border: 1px solid rgba(255, 126, 179, 0.18);
+      margin-bottom: 12px;
     }
 
     .section h2 {
-      font-size: 22px;
-      margin-bottom: 14px;
+      font-size: 26px;
+      margin-bottom: 10px;
+      letter-spacing: -0.2px;
     }
 
-    .list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .list li {
-      background: #fff0f6;
-      margin: 10px 0;
-      padding: 14px 18px;
-      border-radius: 16px;
+    .section p {
       font-size: 15px;
+      line-height: 1.7;
+      color: #444;
+      max-width: 760px;
+      margin: 0 auto 10px;
     }
 
-    .soft {
-      background: #fdf7fb;
+    /* ===== Audience cards ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+      text-align: left;
+    }
+
+    .card {
+      grid-column: span 6;
+      background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(255, 126, 179, 0.14);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 55px rgba(0,0,0,0.10);
+      border-color: rgba(255, 126, 179, 0.28);
+    }
+
+    .card.accent {
+      grid-column: span 12;
+      background: linear-gradient(135deg, rgba(255, 126, 179, 0.16), rgba(111, 198, 255, 0.12));
+      border-color: rgba(255, 126, 179, 0.22);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(255, 126, 179, 0.22), rgba(111, 198, 255, 0.18));
+      border: 1px solid rgba(0,0,0,0.04);
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 { font-size: 16px; margin-bottom: 6px; }
+    .card p { margin: 0; color: #555; font-size: 14px; line-height: 1.6; max-width: none; }
+
+    /* ===== Steps ===== */
+    .steps { margin-top: 18px; display: grid; gap: 12px; text-align: left; }
+    .step {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+    }
+    .num {
+      min-width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #c84a7a;
+      background: rgba(255, 228, 239, 0.8);
+      border: 1px solid rgba(255, 126, 179, 0.18);
+    }
+    .step strong { display: block; margin-bottom: 4px; }
+    .step span { color: #555; font-size: 14px; line-height: 1.6; }
+
+    /* ===== FAQ ===== */
+    details {
+      text-align: left;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #333;
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    details p { margin: 10px 0 0; max-width: none; }
+
+    /* ===== Contact box ===== */
+    .contact {
+      margin-top: 18px;
+      display: grid;
+      gap: 12px;
+    }
+    .contact .box {
+      background: linear-gradient(135deg, rgba(255, 126, 179, 0.14), rgba(111, 198, 255, 0.12));
+      border: 1px solid rgba(255, 126, 179, 0.20);
+      border-radius: 22px;
+      padding: 18px;
+      text-align: left;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.07);
+    }
+    .contact small { color: #666; display: block; margin-top: 6px; }
+
+    /* Responsive */
+    @media (max-width: 760px) {
+      body { padding: 16px; }
+      .container { padding: 34px 20px; }
+      h1 { font-size: 28px; }
+      .section h2 { font-size: 22px; }
+      .card { grid-column: span 12; }
+      .grid { gap: 12px; }
     }
   </style>
 </head>
@@ -122,42 +301,43 @@
 <body>
   <main class="page">
 
-    <!-- Первый экран -->
-    <div class="container">
-      <div class="emoji">🐶🧘‍♀️</div>
-      <div class="badge">Скоро открытие</div>
+    <!-- HERO -->
+    <section class="container" aria-label="Первый экран">
+      <div class="hero-inner">
+        <div class="emoji">🐶🧘‍♀️</div>
+        <div class="badge">Скоро открытие</div>
 
-      <h1>Йога с собаками</h1>
+        <h1>Йога с собаками</h1>
 
-      <p>
-        Пространство, где йога, спокойствие и хвостатая любовь
-        встречаются в одном месте.
-        <br><br>
-        Мы готовим что-то очень тёплое 💕
-      </p>
+        <p class="lead">
+          Пространство, где йога, спокойствие и хвостатая любовь встречаются в одном месте.
+          <br>
+          Мы готовим что-то очень тёплое 💕
+        </p>
 
-      <a href="#" class="button">Мы скоро здесь</a>
+        <div class="hero-mini">
+          <div class="pill">🕒 60 минут</div>
+          <div class="pill">🧘‍♀️ мягкая практика</div>
+          <div class="pill">🐾 щенки рядом</div>
+          <div class="pill">🌿 антистресс</div>
+        </div>
 
-      <div class="footer">© 2026 • Йога с собаками</div>
-    </div>
+        <div class="actions">
+          <a href="#signup" class="button">Хочу на первую запись</a>
+          <a href="#about" class="button secondary">Что это такое?</a>
+        </div>
 
-    <!-- Дальше контент -->
-    <section class="section">
-      <h2>Для кого эта йога</h2>
-      <ul class="list">
-        <li>Если ты постоянно в напряжении и устала думать</li>
-        <li>Если хочется выдохнуть и почувствовать тепло</li>
-        <li>Если обычная йога кажется слишком строгой</li>
-        <li>Если тебе не хватает живых эмоций и радости</li>
-        <li>Если ты любишь собак — или хочешь научиться чувствовать спокойствие</li>
-      </ul>
+        <div class="footer">© 2026 • Йога с собаками</div>
+      </div>
     </section>
 
-    <section class="section soft">
+    <!-- ABOUT -->
+    <section class="section soft" id="about">
+      <div class="kicker">Тёплая практика</div>
       <h2>Почему именно с собаками</h2>
       <p>
-        Собаки создают ощущение безопасности и принятия.
-        Их присутствие помогает телу расслабиться естественно — без усилий и напряжения.
+        Собаки создают ощущение безопасности и принятия. Их присутствие помогает телу
+        расслабиться естественно — без усилий и напряжения.
       </p>
       <p>
         Когда рядом щенок, ты перестаёшь контролировать, сравнивать и торопиться.
@@ -165,7 +345,48 @@
       </p>
     </section>
 
-    <section class="section">
+    <!-- AUDIENCE (обновлено!) -->
+    <section class="section" id="audience">
+      <div class="kicker">Это для тебя, если</div>
+      <h2>Для кого эта йога</h2>
+      <p>Коротко и по делу — выбери себя в одной из карточек.</p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🧠💤</div>
+          <h3>Хочешь выключить голову</h3>
+          <p>Меньше мыслей — больше дыхания и тела.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🌿</div>
+          <h3>Нужен антистресс без “надо”</h3>
+          <p>Без гонки, идеальности и давления.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">✨</div>
+          <h3>Обычная йога кажется строгой</h3>
+          <p>Здесь можно улыбаться, ошибаться и быть собой.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">😄🐶</div>
+          <h3>Хочется радости и живых эмоций</h3>
+          <p>Щенки делают практику тёплой и настоящей.</p>
+        </article>
+
+        <article class="card accent">
+          <div class="icon">🫶🐾</div>
+          <h3>Любишь собак (или хочешь научиться расслабляться)</h3>
+          <p>Контакт, принятие и спокойствие — мягко, без давления.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- WHY NEED -->
+    <section class="section soft">
+      <div class="kicker">Тебе станет легче</div>
       <h2>Почему тебе это нужно</h2>
       <p>
         В обычной жизни мы всё время напряжены: стараемся быть лучше, быстрее, правильнее.
@@ -177,6 +398,118 @@
       <p>
         Ты выходишь не уставшей, а наполненной. Спокойной. Тёплой. Живой.
       </p>
+    </section>
+
+    <!-- HOW IT GOES -->
+    <section class="section">
+      <div class="kicker">Как проходит</div>
+      <h2>Что будет на занятии</h2>
+      <p>Без жёстких требований. Мягко, понятно и по любви.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <strong>Тёплое знакомство</strong>
+            <span>Пару минут адаптации: ты, коврик, пространство и хвостики рядом.</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <strong>Мягкая практика</strong>
+            <span>Дыхание, растяжка, лёгкие асаны. Подойдёт даже новичкам.</span>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <strong>Расслабление</strong>
+            <span>Финальная шавасана — и да, щенок может лечь рядом 🐾</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="section soft">
+      <div class="kicker">Результат</div>
+      <h2>Что ты получишь</h2>
+
+      <div class="grid">
+        <article class="card">
+          <div class="icon">🫧</div>
+          <h3>Снижение стресса</h3>
+          <p>Тело отпускает зажимы, дыхание становится ровнее.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🤍</div>
+          <h3>Тепло и принятие</h3>
+          <p>Контакт с собакой помогает “размягчиться” внутри.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">💪</div>
+          <h3>Лёгкость в теле</h3>
+          <p>Мягкая нагрузка без “умирания” после тренировки.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">🌙</div>
+          <h3>Сон и спокойствие</h3>
+          <p>После занятия обычно легче уснуть и меньше тревожиться.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="kicker">Вопросы</div>
+      <h2>FAQ</h2>
+
+      <div class="steps" style="margin-top: 18px;">
+        <details>
+          <summary>Я новичок. Можно?</summary>
+          <p>Да. Практика мягкая, мы даём простые варианты и объясняем спокойно.</p>
+        </details>
+
+        <details>
+          <summary>А если я боюсь собак?</summary>
+          <p>Можно прийти “потихоньку”: мы не заставляем взаимодействовать. Комфорт — главный.</p>
+        </details>
+
+        <details>
+          <summary>Что взять с собой?</summary>
+          <p>Удобную одежду, воду. Коврик можно свой или уточним на месте.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- SIGNUP -->
+    <section class="section soft" id="signup">
+      <div class="kicker">Запись</div>
+      <h2>Хочу на первое занятие</h2>
+      <p>
+        Оставь контакт — и мы напишем, когда откроем расписание.
+        Можно сделать запись через Telegram/Instagram.
+      </p>
+
+      <div class="contact">
+        <div class="box">
+          <strong>Контакты (замени под себя):</strong>
+          <small>Telegram: @yourname</small>
+          <small>Instagram: @yourname</small>
+          <small>Город: Воронеж</small>
+        </div>
+
+        <div class="actions" style="justify-content: flex-start;">
+          <a class="button" href="#">Написать в Telegram</a>
+          <a class="button secondary" href="#audience">Посмотреть ещё</a>
+        </div>
+      </div>
     </section>
 
   </main>
