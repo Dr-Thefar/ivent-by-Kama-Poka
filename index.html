@@ -267,7 +267,7 @@
     .card h3 { font-size: 16px; margin-bottom: 6px; }
     .card p { margin: 0; color: #555; font-size: 14px; line-height: 1.6; max-width: none; }
 
-    /* ===== Gallery (локальные фото) ===== */
+    /* ===== Gallery (исправлено: пути + пропорции + ровные карточки) ===== */
     .gallery {
       margin-top: 18px;
       display: grid;
@@ -281,20 +281,25 @@
       overflow: hidden;
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 18px 45px rgba(0,0,0,0.08);
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.85);
       position: relative;
       transform: translateZ(0);
+      aspect-ratio: 4 / 3; /* ✅ единый размер */
     }
 
-    .shot.big { grid-column: span 12; }
+    .shot.big {
+      grid-column: span 12;
+      aspect-ratio: 16 / 9; /* ✅ “герой-фото” */
+    }
 
     .shot img{
       width: 100%;
-      height: 360px;
-      object-fit: cover;
+      height: 100%;
       display: block;
+      object-fit: cover; /* ✅ всегда красиво кадрирует */
       transition: transform 0.25s ease;
       filter: saturate(1.08) contrast(1.03);
+      background: linear-gradient(135deg, rgba(255,126,179,0.08), rgba(111,198,255,0.08)); /* если долго грузит */
     }
 
     .shot:hover img{ transform: scale(1.03); }
@@ -385,7 +390,6 @@
       .section h2 { font-size: 22px; }
       .card { grid-column: span 12; }
       .shot { grid-column: span 12; }
-      .shot img{ height: 280px; }
       .gallery { gap: 12px; }
     }
   </style>
@@ -437,53 +441,39 @@
         Ты просто есть.
       </p>
     </section>
-<!-- ===== GALLERY ===== -->
-<section class="section" id="gallery">
-  <div class="kicker">Атмосфера</div>
-  <h2>Йога, тепло и хвостатая терапия</h2>
-  <p>
-    Живые, нежные моменты.  
-    Так проходят наши занятия 💕
-  </p>
 
-  <div class="gallery">
-    <!-- Главное фото -->
-    <figure class="shot big">
-      <img
-        src="assets/yoga-corgi-1.png"
-        alt="Йога в зале — девушка и корги"
-      />
-      <figcaption class="cap">
-        <span>🧘‍♀️ Йога-зал</span>
-        <small>мягкий свет</small>
-      </figcaption>
-    </figure>
+    <!-- ===== GALLERY ===== -->
+    <section class="section" id="gallery">
+      <div class="kicker">Атмосфера</div>
+      <h2>Йога, тепло и хвостатая терапия</h2>
+      <p>Живые, нежные моменты. Так проходят наши занятия 💕</p>
 
-    <!-- Вторая поза -->
-    <figure class="shot">
-      <img
-        src="assets/yoga-corgi-2.png"
-        alt="Йога с корги — другая поза"
-      />
-      <figcaption class="cap">
-        <span>🐾 Практика</span>
-        <small>без спешки</small>
-      </figcaption>
-    </figure>
+      <div class="gallery">
+        <figure class="shot big">
+          <img src="assets/assets/yoga-corgi-1.png" alt="Йога в зале — девушка и корги" loading="lazy">
+          <figcaption class="cap">
+            <span>🧘‍♀️ Йога-зал</span>
+            <small>мягкий свет</small>
+          </figcaption>
+        </figure>
 
-    <!-- Обнимку -->
-    <figure class="shot">
-      <img
-        src="assets/yoga-corgi-3.png"
-        alt="Девушка обнимается с корги в зале"
-      />
-      <figcaption class="cap">
-        <span>🤍 Обнимашки</span>
-        <small>антистресс</small>
-      </figcaption>
-    </figure>
-  </div>
-</section>
+        <figure class="shot">
+          <img src="assets/assets/yoga-corgi-2.png" alt="Йога с корги — другая поза" loading="lazy">
+          <figcaption class="cap">
+            <span>🐾 Практика</span>
+            <small>без спешки</small>
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img src="assets/assets/yoga-corgi-3.png" alt="Девушка обнимается с корги в зале" loading="lazy">
+          <figcaption class="cap">
+            <span>🤍 Обнимашки</span>
+            <small>антистресс</small>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
 
     <!-- AUDIENCE -->
     <section class="section" id="audience">
@@ -528,16 +518,9 @@
     <section class="section soft">
       <div class="kicker">Тебе станет легче</div>
       <h2>Почему тебе это нужно</h2>
-      <p>
-        В обычной жизни мы всё время напряжены: стараемся быть лучше, быстрее, правильнее.
-      </p>
-      <p>
-        Йога с собаками — это редкое пространство, где от тебя ничего не ждут.
-        Где можно быть настоящей.
-      </p>
-      <p>
-        Ты выходишь не уставшей, а наполненной. Спокойной. Тёплой. Живой.
-      </p>
+      <p>В обычной жизни мы всё время напряжены: стараемся быть лучше, быстрее, правильнее.</p>
+      <p>Йога с собаками — это редкое пространство, где от тебя ничего не ждут. Где можно быть настоящей.</p>
+      <p>Ты выходишь не уставшей, а наполненной. Спокойной. Тёплой. Живой.</p>
     </section>
 
     <!-- HOW IT GOES -->
@@ -573,37 +556,11 @@
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="kicker">Вопросы</div>
-      <h2>FAQ</h2>
-
-      <div class="steps" style="margin-top: 18px;">
-        <details>
-          <summary>Я новичок. Можно?</summary>
-          <p>Да. Практика мягкая, мы даём простые варианты и объясняем спокойно.</p>
-        </details>
-
-        <details>
-          <summary>А если я боюсь собак?</summary>
-          <p>Можно прийти “потихоньку”: мы не заставляем взаимодействовать. Комфорт — главный.</p>
-        </details>
-
-        <details>
-          <summary>Что взять с собой?</summary>
-          <p>Удобную одежду, воду. Коврик можно свой или уточним на месте.</p>
-        </details>
-      </div>
-    </section>
-
     <!-- SIGNUP -->
     <section class="section soft" id="signup">
       <div class="kicker">Запись</div>
       <h2>Хочу на первое занятие</h2>
-      <p>
-        Оставь контакт — и мы напишем, когда откроем расписание.
-        Можно сделать запись через Telegram/Instagram.
-      </p>
+      <p>Оставь контакт — и мы напишем, когда откроем расписание. Можно сделать запись через Telegram/Instagram.</p>
 
       <div class="contact">
         <div class="box">
