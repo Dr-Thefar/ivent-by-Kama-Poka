@@ -14,32 +14,68 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
+    :root{
+      --pink: #ff7eb3;
+      --pink2:#ff758c;
+      --blue: #6fc6ff;
+      --text: #222;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
-      color: #222;
-
-      /* ✅ ЛАПКИ + красивый градиент как у тебя */
-      background:
-        /* Лапки (SVG паттерн) */
-        url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ff7eb3' fill-opacity='0.09'%3E%3Ccircle cx='35' cy='30' r='6'/%3E%3Ccircle cx='55' cy='25' r='6'/%3E%3Ccircle cx='75' cy='30' r='6'/%3E%3Ccircle cx='55' cy='50' r='10'/%3E%3C/g%3E%3C/svg%3E"),
-        radial-gradient(900px 350px at 15% 10%, rgba(255, 126, 179, 0.20), transparent 60%),
-        radial-gradient(900px 350px at 85% 20%, rgba(111, 198, 255, 0.18), transparent 55%),
-        linear-gradient(135deg, #fdf1f7, #f7fbff);
-
-      background-repeat: repeat, no-repeat, no-repeat, no-repeat;
-      background-size: 120px 120px, auto, auto, auto;
-
+      color: var(--text);
       min-height: 100vh;
       padding: 24px;
+
+      /* База градиента */
+      background:
+        radial-gradient(900px 350px at 15% 10%, rgba(255, 126, 179, 0.22), transparent 60%),
+        radial-gradient(900px 350px at 85% 20%, rgba(111, 198, 255, 0.20), transparent 55%),
+        linear-gradient(135deg, #fdf1f7, #f7fbff);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ✅ ДВА СЛОЯ КОНТУРНЫХ ЛАПОК (чтобы было ВИДНО) */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+
+      /* Мелкие лапки */
+      background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ff4f9a' stroke-opacity='0.35' stroke-width='2.2'%3E%3Ccircle cx='52' cy='50' r='7'/%3E%3Ccircle cx='74' cy='42' r='7'/%3E%3Ccircle cx='96' cy='50' r='7'/%3E%3Cpath d='M66 74 C66 60 84 60 84 74 C84 92 66 92 66 74 Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 160px 160px;
+      opacity: 0.85;
+      mix-blend-mode: multiply;
+      filter: saturate(1.1);
+    }
+
+    body::after{
+      content:"";
+      position: fixed;
+      inset: -10%;
+      pointer-events: none;
+      z-index: 0;
+
+      /* Крупные лапы (редко, как “водяной знак”) */
+      background-image: url("data:image/svg+xml,%3Csvg width='340' height='340' viewBox='0 0 340 340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236fc6ff' stroke-opacity='0.22' stroke-width='3'%3E%3Ccircle cx='120' cy='110' r='14'/%3E%3Ccircle cx='170' cy='96' r='14'/%3E%3Ccircle cx='220' cy='110' r='14'/%3E%3Cpath d='M150 170 C150 135 190 135 190 170 C190 215 150 215 150 170 Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 340px 340px;
+      transform: rotate(-8deg);
+      opacity: 1;
+      mix-blend-mode: multiply;
     }
 
     a { color: inherit; }
-    .page { width: 100%; max-width: 980px; margin: 0 auto; }
+    .page { width: 100%; max-width: 980px; margin: 0 auto; position: relative; z-index: 1; }
 
     /* ===== HERO ===== */
     .container {
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid rgba(255, 126, 179, 0.14);
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(255, 126, 179, 0.16);
       width: 100%;
       padding: 44px 32px;
       border-radius: 28px;
@@ -55,8 +91,8 @@
       position: absolute;
       inset: -2px;
       background:
-        radial-gradient(420px 220px at 20% 0%, rgba(255, 126, 179, 0.22), transparent 60%),
-        radial-gradient(420px 220px at 80% 10%, rgba(111, 198, 255, 0.18), transparent 60%);
+        radial-gradient(420px 220px at 20% 0%, rgba(255, 126, 179, 0.25), transparent 60%),
+        radial-gradient(420px 220px at 80% 10%, rgba(111, 198, 255, 0.20), transparent 60%);
       pointer-events: none;
       z-index: 0;
     }
@@ -66,14 +102,14 @@
 
     .badge {
       display: inline-block;
-      background: rgba(255, 228, 239, 0.85);
+      background: rgba(255, 228, 239, 0.90);
       color: #c84a7a;
       padding: 8px 14px;
       border-radius: 999px;
       font-size: 14px;
       margin-bottom: 16px;
-      font-weight: 700;
-      border: 1px solid rgba(255, 126, 179, 0.18);
+      font-weight: 800;
+      border: 1px solid rgba(255, 126, 179, 0.20);
     }
 
     h1 { font-size: 32px; font-weight: 800; margin-bottom: 10px; letter-spacing: -0.3px; }
@@ -98,7 +134,7 @@
       font-size: 13px;
       padding: 10px 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 10px 25px rgba(0,0,0,0.06);
       color: #333;
@@ -114,12 +150,12 @@
 
     .button {
       display: inline-block;
-      background: linear-gradient(135deg, #ff7eb3, #ff758c);
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
       color: #fff;
       text-decoration: none;
       padding: 14px 22px;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 15px;
       transition: transform 0.18s ease, box-shadow 0.18s ease;
       box-shadow: 0 14px 30px rgba(255, 117, 140, 0.30);
@@ -131,9 +167,9 @@
     }
 
     .button.secondary {
-      background: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.94);
       color: #c84a7a;
-      border: 1px solid rgba(255, 126, 179, 0.22);
+      border: 1px solid rgba(255, 126, 179, 0.24);
       box-shadow: 0 14px 30px rgba(0,0,0,0.06);
     }
 
@@ -149,7 +185,7 @@
       padding: 28px 20px;
       border-radius: 26px;
       text-align: center;
-      background: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.78);
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.07);
       backdrop-filter: blur(8px);
@@ -157,9 +193,9 @@
 
     .section.soft {
       background:
-        radial-gradient(700px 250px at 20% 0%, rgba(255, 126, 179, 0.14), transparent 60%),
-        radial-gradient(700px 250px at 80% 10%, rgba(111, 198, 255, 0.12), transparent 60%),
-        rgba(255,255,255,0.75);
+        radial-gradient(700px 250px at 20% 0%, rgba(255, 126, 179, 0.16), transparent 60%),
+        radial-gradient(700px 250px at 80% 10%, rgba(111, 198, 255, 0.14), transparent 60%),
+        rgba(255,255,255,0.78);
     }
 
     .kicker {
@@ -167,9 +203,9 @@
       padding: 8px 12px;
       border-radius: 999px;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       color: #c84a7a;
-      background: rgba(255, 228, 239, 0.75);
+      background: rgba(255, 228, 239, 0.80);
       border: 1px solid rgba(255, 126, 179, 0.18);
       margin-bottom: 12px;
     }
@@ -188,7 +224,7 @@
       margin: 0 auto 10px;
     }
 
-    /* ===== Audience cards ===== */
+    /* ===== Cards ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -199,7 +235,7 @@
 
     .card {
       grid-column: span 6;
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.90);
       border: 1px solid rgba(255, 126, 179, 0.14);
       border-radius: 22px;
       padding: 18px 18px 16px;
@@ -215,7 +251,7 @@
 
     .card.accent {
       grid-column: span 12;
-      background: linear-gradient(135deg, rgba(255, 126, 179, 0.16), rgba(111, 198, 255, 0.12));
+      background: linear-gradient(135deg, rgba(255, 126, 179, 0.18), rgba(111, 198, 255, 0.14));
       border-color: rgba(255, 126, 179, 0.22);
     }
 
@@ -225,7 +261,7 @@
       display: grid;
       place-items: center;
       border-radius: 16px;
-      background: linear-gradient(135deg, rgba(255, 126, 179, 0.22), rgba(111, 198, 255, 0.18));
+      background: linear-gradient(135deg, rgba(255, 126, 179, 0.24), rgba(111, 198, 255, 0.20));
       border: 1px solid rgba(0,0,0,0.04);
       font-size: 22px;
       margin-bottom: 12px;
@@ -234,6 +270,61 @@
     .card h3 { font-size: 16px; margin-bottom: 6px; }
     .card p { margin: 0; color: #555; font-size: 14px; line-height: 1.6; max-width: none; }
 
+    /* ===== Gallery ===== */
+    .gallery {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .shot {
+      grid-column: span 6;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.08);
+      background: rgba(255,255,255,0.8);
+      position: relative;
+      transform: translateZ(0);
+    }
+
+    .shot.big { grid-column: span 12; }
+
+    .shot img{
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .shot:hover img{ transform: scale(1.03); }
+
+    .cap{
+      position:absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,0,0,0.06);
+      font-weight: 700;
+      color: #333;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content: space-between;
+    }
+
+    .cap small{
+      font-weight: 600;
+      color:#666;
+    }
+
     /* ===== Steps ===== */
     .steps { margin-top: 18px; display: grid; gap: 12px; text-align: left; }
     .step {
@@ -241,7 +332,7 @@
       gap: 12px;
       padding: 16px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.88);
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 14px 30px rgba(0,0,0,0.06);
     }
@@ -251,9 +342,9 @@
       border-radius: 14px;
       display: grid;
       place-items: center;
-      font-weight: 800;
+      font-weight: 900;
       color: #c84a7a;
-      background: rgba(255, 228, 239, 0.8);
+      background: rgba(255, 228, 239, 0.86);
       border: 1px solid rgba(255, 126, 179, 0.18);
     }
     .step strong { display: block; margin-bottom: 4px; }
@@ -262,7 +353,7 @@
     /* ===== FAQ ===== */
     details {
       text-align: left;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.88);
       border: 1px solid rgba(0,0,0,0.06);
       border-radius: 18px;
       padding: 14px 16px;
@@ -270,7 +361,7 @@
     }
     summary {
       cursor: pointer;
-      font-weight: 700;
+      font-weight: 800;
       color: #333;
       list-style: none;
     }
@@ -278,13 +369,9 @@
     details p { margin: 10px 0 0; max-width: none; }
 
     /* ===== Contact box ===== */
-    .contact {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-    }
+    .contact { margin-top: 18px; display: grid; gap: 12px; }
     .contact .box {
-      background: linear-gradient(135deg, rgba(255, 126, 179, 0.14), rgba(111, 198, 255, 0.12));
+      background: linear-gradient(135deg, rgba(255, 126, 179, 0.16), rgba(111, 198, 255, 0.14));
       border: 1px solid rgba(255, 126, 179, 0.20);
       border-radius: 22px;
       padding: 18px;
@@ -300,7 +387,9 @@
       h1 { font-size: 28px; }
       .section h2 { font-size: 22px; }
       .card { grid-column: span 12; }
-      .grid { gap: 12px; }
+      .shot { grid-column: span 12; }
+      .shot img{ height: 260px; }
+      .gallery { gap: 12px; }
     }
   </style>
 </head>
@@ -350,6 +439,81 @@
         Когда рядом щенок, ты перестаёшь контролировать, сравнивать и торопиться.
         Ты просто есть.
       </p>
+    </section>
+
+    <!-- ✅ GALLERY -->
+    <section class="section" id="gallery">
+      <div class="kicker">Атмосфера</div>
+      <h2>Милые моменты с хвостиками</h2>
+      <p>Нежность, смех и настоящая перезагрузка. (Фото подгружаются автоматически.)</p>
+
+      <div class="gallery">
+        <!-- Молодая пара + корги (рандом по запросу) -->
+        <figure class="shot big">
+          <img
+            src="https://source.unsplash.com/featured/1200x700/?corgi,couple,puppy"
+            alt="Молодая пара со щенками корги"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <figcaption class="cap">
+            <span>🐶 Молодая пара + корги</span>
+            <small>самая милая сцена</small>
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img
+            src="https://source.unsplash.com/featured/900x650/?yoga,dog"
+            alt="Йога с собакой"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <figcaption class="cap">
+            <span>🧘‍♀️ Практика</span>
+            <small>мягко и безопасно</small>
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img
+            src="https://source.unsplash.com/featured/900x650/?puppy,smile"
+            alt="Щенок и улыбка"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <figcaption class="cap">
+            <span>🐾 Щенячья терапия</span>
+            <small>радость здесь</small>
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img
+            src="https://source.unsplash.com/featured/900x650/?woman,yoga,dog"
+            alt="Девушка с собакой на занятии"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <figcaption class="cap">
+            <span>🤍 Тепло</span>
+            <small>без “надо”</small>
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <img
+            src="https://source.unsplash.com/featured/900x650/?corgi,puppies"
+            alt="Щенки корги"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+          <figcaption class="cap">
+            <span>✨ Корги-энергия</span>
+            <small>заряд на день</small>
+          </figcaption>
+        </figure>
+      </div>
     </section>
 
     <!-- AUDIENCE -->
@@ -440,38 +604,6 @@
       </div>
     </section>
 
-    <!-- BENEFITS -->
-    <section class="section soft">
-      <div class="kicker">Результат</div>
-      <h2>Что ты получишь</h2>
-
-      <div class="grid">
-        <article class="card">
-          <div class="icon">🫧</div>
-          <h3>Снижение стресса</h3>
-          <p>Тело отпускает зажимы, дыхание становится ровнее.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">🤍</div>
-          <h3>Тепло и принятие</h3>
-          <p>Контакт с собакой помогает “размягчиться” внутри.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">💪</div>
-          <h3>Лёгкость в теле</h3>
-          <p>Мягкая нагрузка без “умирания” после тренировки.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">🌙</div>
-          <h3>Сон и спокойствие</h3>
-          <p>После занятия обычно легче уснуть и меньше тревожиться.</p>
-        </article>
-      </div>
-    </section>
-
     <!-- FAQ -->
     <section class="section" id="faq">
       <div class="kicker">Вопросы</div>
@@ -514,7 +646,7 @@
 
         <div class="actions" style="justify-content: flex-start;">
           <a class="button" href="#">Написать в Telegram</a>
-          <a class="button secondary" href="#audience">Посмотреть ещё</a>
+          <a class="button secondary" href="#gallery">Посмотреть фото</a>
         </div>
       </div>
     </section>
