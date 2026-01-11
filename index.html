@@ -32,6 +32,12 @@
       --shapeStroke: #ff8fb3;
       --shapeFill: rgba(255,255,255,0.82);
       --shapeShadow: 0 14px 26px rgba(0,0,0,.10);
+
+      /* ✅ новый розовый glow для "таблеток" и карточек */
+      --glowPink: rgba(255, 120, 160, 0.28);
+      --strokePink: rgba(255, 140, 180, 0.38);
+      --milkPinkA: rgba(255, 200, 220, 0.55);
+      --milkPinkB: rgba(255, 255, 255, 0.88);
     }
 
     /* === BODY === */
@@ -228,7 +234,7 @@
       font-size: 13px;
     }
 
-    /* ===== Навигация (БАЗА) ===== */
+    /* ===== Навигация (ФОРМАТ КАК НА СКРИНЕ: PILL + ROSE GLOW) ===== */
     .navIcons{
       margin-top: 18px;
       display:flex;
@@ -237,34 +243,93 @@
       flex-wrap: wrap;
     }
     .navIcon{
-      text-decoration:none;
-      display:flex;
+      display:inline-flex;
       align-items:center;
-      justify-content:center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration:none;
       font-weight: 900;
-      font-size: 13px;
-      color: rgba(23,23,23,.86);
-      transition: transform .15s ease, filter .15s ease;
-      text-align:center;
-    }
-    .navText{ padding: 0 10px; line-height: 1.1; }
+      font-size: 14px;
+      color: rgba(23,23,23,.88);
 
-    /* ===== “Коротко” (БАЗА) ===== */
+      background: linear-gradient(135deg, var(--milkPinkA), var(--milkPinkB));
+      border: 1px solid var(--strokePink);
+
+      box-shadow:
+        0 12px 28px var(--glowPink),
+        inset 0 0 0 1px rgba(255,255,255,0.6);
+
+      backdrop-filter: blur(10px);
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+    }
+    .navIcon:hover{
+      transform: translateY(-2px);
+      box-shadow:
+        0 18px 45px rgba(255, 120, 160, 0.36),
+        inset 0 0 0 1px rgba(255,255,255,0.75);
+      filter: brightness(1.04);
+    }
+    .navIcon:active{
+      transform: translateY(0);
+      box-shadow: 0 10px 22px rgba(255, 120, 160, 0.28);
+    }
+    .navDot{
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display:grid;
+      place-items:center;
+      font-size: 16px;
+
+      background: radial-gradient(circle at 30% 30%, #ffe6ef, #ffd0e0);
+      border: 1px solid rgba(255, 120, 160, 0.45);
+
+      box-shadow: 0 8px 18px rgba(255, 120, 160, 0.35);
+      flex: 0 0 auto;
+    }
+    .navText{ line-height: 1.1; }
+
+    /* ===== “Коротко” (ФОРМАТ КАК НА СКРИНЕ: CARD + ROSE GLOW) ===== */
     .quick{
       margin-top: 18px;
       display:grid;
       grid-template-columns: repeat(12, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
     .qItem{
       grid-column: span 3;
       display:flex;
       align-items:center;
-      justify-content:center;
-      text-align:center;
+      gap: 12px;
+
+      background: linear-gradient(135deg, rgba(255, 215, 230, 0.55), rgba(255, 255, 255, 0.90));
+      border: 1px solid rgba(255, 140, 180, 0.35);
+      border-radius: 18px;
+      padding: 14px 16px;
+
+      box-shadow:
+        0 16px 40px rgba(255, 120, 160, 0.25),
+        inset 0 0 0 1px rgba(255,255,255,0.6);
+
+      backdrop-filter: blur(10px);
+      text-align: left;
     }
-    .qText2 strong{ display:block; font-weight: 900; font-size: 13px; color: rgba(47,42,44,.95); }
-    .qText2 span{ display:block; font-weight: 700; font-size: 12px; color: rgba(47,42,44,.68); margin-top: 3px; }
+    .qIcon{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      font-size: 18px;
+
+      background: radial-gradient(circle at 30% 30%, #ffe6ef, #ffd0e0);
+      border: 1px solid rgba(255, 120, 160, 0.45);
+      box-shadow: 0 10px 22px rgba(255, 120, 160, 0.35);
+      flex: 0 0 auto;
+    }
+    .qText2 strong{ display:block; font-weight: 900; font-size: 14px; color: rgba(47,42,44,.95); line-height: 1.15; }
+    .qText2 span{ display:block; font-weight: 700; font-size: 12.5px; color: rgba(47,42,44,.68); margin-top: 3px; line-height: 1.25; }
 
     .footer {
       margin-top: 16px;
@@ -272,6 +337,16 @@
       color: rgba(34,34,34,.62);
       text-align:center;
       padding-bottom: 2px;
+    }
+
+    /* responsive для quick */
+    @media (max-width: 980px){
+      .qItem{ grid-column: span 6; }
+    }
+    @media (max-width: 560px){
+      .navIcon{ padding: 10px 14px; font-size: 13px; }
+      .navDot{ width: 32px; height: 32px; font-size: 15px; }
+      .qItem{ grid-column: span 12; }
     }
 
     /* ===== SECTIONS ===== */
@@ -606,124 +681,6 @@
     .contact-box a{ color: var(--accent); font-weight: 900; text-decoration: none; }
     .contact-box a:hover{ text-decoration: underline; }
     .muted{ margin-top: 12px; color: rgba(47,42,44,.62); font-weight: 700; font-size: 13px; }
-
-    /* =========================
-       ✅ ЛАПКИ + СЕРДЕЧКИ (ИСПРАВЛЕНО, БЕЗ ОШИБОК)
-       ========================= */
-
-    /* NAV = ЛАПКИ */
-    .navIcon.paw{
-      width: 150px;
-      height: 120px;
-      padding: 0;
-      border: 0;
-      background: transparent !important;
-      box-shadow: none !important;
-      border-radius: 0 !important;
-      position: relative;
-      display: grid;
-      place-items: center;
-    }
-
-    .navIcon.paw::before{
-      content:"";
-      position:absolute;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25'%3E%3Cstop offset='0%25' stop-color='%23FFE1EE'/%3E%3Cstop offset='100%25' stop-color='%23FFFFFF'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' stroke='%23ff8fb3' stroke-opacity='0.95' stroke-width='3.2' d='M34 45c6 0 11-6 11-14S40 17 34 17 23 23 23 31s5 14 11 14Zm52 0c6 0 11-6 11-14S92 17 86 17 75 23 75 31s5 14 11 14ZM22 68c6 0 11-6 11-14s-5-14-11-14S11 46 11 54s5 14 11 14Zm76 0c6 0 11-6 11-14s-5-14-11-14-11 6-11 14 5 14 11 14ZM60 110c22 0 40-15 40-34 0-18-18-30-40-30S20 58 20 76c0 19 18 34 40 34Z'/%3E%3C/svg%3E");
-      background-repeat:no-repeat;
-      background-position:center;
-      background-size: contain;
-      filter: drop-shadow(var(--shapeShadow));
-      z-index: 0;
-    }
-
-    .navIcon.paw .navText{
-      position: relative;
-      z-index: 1;
-      display: block;
-      width: 78%;
-      padding: 0;
-      line-height: 1.05;
-      font-size: 13px;
-      font-weight: 900;
-      color: rgba(23,23,23,.86);
-      transform: translateY(10px); /* опускаем в “подушечку” */
-      text-wrap: balance;
-    }
-
-    .navIcon.paw:hover{ transform: translateY(-2px); filter: brightness(1.02); }
-
-    /* QUICK = СЕРДЕЧКИ */
-    .qItem.heart{
-      position: relative;
-      width: 170px;
-      height: 140px;
-      margin: 0 auto;
-      filter: drop-shadow(0 10px 22px rgba(255, 143, 179, 0.20));
-    }
-
-    .qItem.heart::before,
-    .qItem.heart::after{
-      content: "";
-      position: absolute;
-      top: 20px;
-      width: 85px;
-      height: 120px;
-      background: var(--shapeFill);
-      border: 2px solid var(--shapeStroke);
-      border-bottom: 0;
-      border-left: 0;
-      border-radius: 50px 50px 0 0;
-    }
-
-    .qItem.heart::before{
-      left: 85px;
-      transform: rotate(-45deg);
-      transform-origin: 0 100%;
-    }
-
-    .qItem.heart::after{
-      left: 0;
-      transform: rotate(45deg);
-      transform-origin: 100% 100%;
-    }
-
-    .qItem.heart .qText2{
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      display: grid;
-      place-items: center;
-      padding: 26px 18px 18px;
-      text-align: center;
-    }
-
-    .qItem.heart .qText2 strong{
-      font-weight: 900;
-      font-size: 15px;
-      line-height: 1.1;
-      color: #2d2d2d;
-    }
-
-    .qItem.heart .qText2 span{
-      margin-top: 6px;
-      font-weight: 700;
-      font-size: 13px;
-      line-height: 1.25;
-      color: rgba(45,45,45,.75);
-    }
-
-    /* Responsive */
-    @media (max-width: 560px){
-      .navIcon.paw{ width: 138px; height: 112px; }
-      .navIcon.paw .navText{ width: 80%; font-size: 12.5px; transform: translateY(9px); }
-
-      .qItem.heart{ width: 145px; height: 125px; }
-      .qItem.heart::before, .qItem.heart::after{ width: 72px; height: 110px; }
-      .qItem.heart .qText2{ padding: 22px 14px 14px; }
-      .qItem.heart .qText2 strong{ font-size: 14px; }
-      .qItem.heart .qText2 span{ font-size: 12px; }
-    }
   </style>
 </head>
 <body>
@@ -743,13 +700,13 @@
             Йога с собаками в Воронеже — уютная практика и живой контакт, чтобы выдохнуть и расслабиться 💗
           </p>
 
-          <!-- НАВИГАЦИЯ = ЛАПКИ -->
+          <!-- ✅ НАВИГАЦИЯ = ТАБЛЕТКИ С ПОДСВЕТОМ (как на скрине) -->
           <nav class="navIcons" aria-label="Навигация по разделам">
-            <a class="navIcon paw" href="#about"><span class="navText">О проекте</span></a>
-            <a class="navIcon paw" href="#gallery"><span class="navText">Атмосфера</span></a>
-            <a class="navIcon paw" href="#audience"><span class="navText">Для кого</span></a>
-            <a class="navIcon paw" href="#signup"><span class="navText">Запись</span></a>
-            <a class="navIcon paw" href="#partners"><span class="navText">Партнёрам</span></a>
+            <a class="navIcon" href="#about"><span class="navDot">✨</span><span class="navText">О проекте</span></a>
+            <a class="navIcon" href="#gallery"><span class="navDot">📸</span><span class="navText">Атмосфера</span></a>
+            <a class="navIcon" href="#audience"><span class="navDot">🐾</span><span class="navText">Для кого</span></a>
+            <a class="navIcon" href="#signup"><span class="navDot">💗</span><span class="navText">Запись</span></a>
+            <a class="navIcon" href="#partners"><span class="navDot">🤝</span><span class="navText">Партнёрам</span></a>
           </nav>
 
           <div class="heroActions">
@@ -764,21 +721,25 @@
 
           <div class="heroNote">Стартуем скоро — оставь контакт, и мы напишем первой.</div>
 
-          <!-- КОРОТКО = СЕРДЕЧКИ -->
+          <!-- ✅ КОРОТКО = КАРТОЧКИ С ИКОНКОЙ СЛЕВА (как на скрине) -->
           <div class="quick" aria-label="Коротко о формате">
-            <div class="qItem heart">
+            <div class="qItem">
+              <div class="qIcon">⏱️</div>
               <div class="qText2"><strong>60 минут</strong><span>комфортный темп</span></div>
             </div>
 
-            <div class="qItem heart">
+            <div class="qItem">
+              <div class="qIcon">🧘‍♀️</div>
               <div class="qText2"><strong>мягкая практика</strong><span>подойдёт новичкам</span></div>
             </div>
 
-            <div class="qItem heart">
-              <div class="qText2"><strong>собачки рядом</strong><span>тепло и контакт</span></div>
+            <div class="qItem">
+              <div class="qIcon">🐶</div>
+              <div class="qText2"><strong>собаки рядом</strong><span>тепло и контакт</span></div>
             </div>
 
-            <div class="qItem heart">
+            <div class="qItem">
+              <div class="qIcon">🌿</div>
               <div class="qText2"><strong>антистресс</strong><span>выдох и спокойствие</span></div>
             </div>
           </div>
