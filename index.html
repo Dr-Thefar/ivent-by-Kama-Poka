@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Йога с собаками — скоро открытие</title>
+  <title>Doga Space VRN — йога с собаками в Воронеже</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Шрифты -->
@@ -14,165 +14,79 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
-   :root {
-  --bg: #FAF4F6;        /* общий фон */
-  --surface: #FFF8F6;   /* карточки/подложки */
-  --pink: #E7B6C8;      /* бренд-розовый */
-  --accent: #5A2E3A;    /* глубокий акцент (кнопки/ссылки) */
-  --text: #2F2A2C;      /* основной текст */
-  --muted: rgba(47,42,44,.72);
-  --border: rgba(90,46,58,.18);
-  --shadow: 0 10px 30px rgba(47,42,44,.10);
-   }
+    :root{
+      --bg: #FAF4F6;        /* общий фон */
+      --surface: #FFF8F6;   /* карточки/подложки */
+      --pink: #E7B6C8;      /* бренд-розовый */
+      --accent: #5A2E3A;    /* глубокий акцент (кнопки/ссылки) */
+      --text: #2F2A2C;      /* основной текст */
+      --muted: rgba(47,42,44,.72);
+      --border: rgba(90,46,58,.18);
+      --shadow: 0 10px 30px rgba(47,42,44,.10);
 
+      /* для HERO */
+      --heroBg: rgba(255,255,255,0.78);
+      --heroBorder: rgba(0,0,0,0.06);
+    }
 
-     body {
-  font-family: 'Montserrat', sans-serif;
-  color: var(--text);
-  min-height: 100vh;
-  padding: 24px;
- background:
-  radial-gradient(1100px 520px at 12% 8%, rgba(255, 96, 170, 0.38), transparent 62%),
-  radial-gradient(1100px 520px at 88% 18%, rgba(90, 200, 255, 0.30), transparent 58%),
-  linear-gradient(135deg, #ffd3ea, #e8f6ff);
-  position: relative;
-  overflow-x: hidden;
-   } 
-
-   body::before{
-  content:"";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ff2f8d' stroke-opacity='0.45' stroke-width='2.4'%3E%3Ccircle cx='52' cy='50' r='7'/%3E%3Ccircle cx='74' cy='42' r='7'/%3E%3Ccircle cx='96' cy='50' r='7'/%3E%3Cpath d='M66 74 C66 60 84 60 84 74 C84 92 66 92 66 74 Z'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 150px 150px;
-  opacity: 0.85;
-  mix-blend-mode: multiply;
-  filter: saturate(1.10);
-  }
-
-  body::after{
-  content:"";
-  position: fixed;
-  inset: -10%;
-  pointer-events: none;
-  z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='340' height='340' viewBox='0 0 340 340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%233aa9ff' stroke-opacity='0.30' stroke-width='3'%3E%3Ccircle cx='120' cy='110' r='14'/%3E%3Ccircle cx='170' cy='96' r='14'/%3E%3Ccircle cx='220' cy='110' r='14'/%3E%3Cpath d='M150 170 C150 135 190 135 190 170 C190 215 150 215 150 170 Z'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 360px 360px;
-  transform: rotate(-8deg);
-  opacity: 1;
-  mix-blend-mode: multiply;
-}
+    /* === BODY (только один раз!) === */
     body{
-  background: var(--bg);
-  color: var(--text);
-}
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+      position: relative;
+      overflow-x: hidden;
 
-.section{ padding: 80px 0; }
-.container{ width: min(1100px, 92%); margin: 0 auto; }
+      /* оставляем красивый фон и НЕ перезаписываем ниже */
+      background:
+        radial-gradient(1100px 520px at 12% 8%, rgba(255, 96, 170, 0.38), transparent 62%),
+        radial-gradient(1100px 520px at 88% 18%, rgba(90, 200, 255, 0.30), transparent 58%),
+        linear-gradient(135deg, #ffd3ea, #e8f6ff);
+    }
 
-.cards{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ff2f8d' stroke-opacity='0.45' stroke-width='2.4'%3E%3Ccircle cx='52' cy='50' r='7'/%3E%3Ccircle cx='74' cy='42' r='7'/%3E%3Ccircle cx='96' cy='50' r='7'/%3E%3Cpath d='M66 74 C66 60 84 60 84 74 C84 92 66 92 66 74 Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 150px 150px;
+      opacity: 0.85;
+      mix-blend-mode: multiply;
+      filter: saturate(1.10);
+    }
 
-.card{
-  background: var(--surface);
-  border-radius: 20px;
-  padding: 20px;
-  border: 1px solid var(--border);
-}
-
-.contact-box{
-  margin-top: 20px;
-  padding: 16px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #E7B6C8, #FFF8F6);
-}
-   /* ===== БЕГУЩАЯ ЛЕНТА (РОЗОВАЯ, ПЛАВНАЯ) ===== */
-.ticker{
-  margin: 18px 0 0;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid rgba(255,126,179,0.22);
-  box-shadow: 0 18px 45px rgba(0,0,0,0.07);
-  background: linear-gradient(90deg,
-    rgba(255,126,179,0.95),
-    rgba(255,117,140,0.95),
-    rgba(255,180,220,0.95),
-    rgba(255,126,179,0.95)
-  );
-}
-
-.ticker__viewport{
-  overflow: hidden;
-}
-
-.ticker__track{
-  display: flex;
-  width: max-content;
-  gap: 18px;
-  padding: 14px 0;
-  will-change: transform;
-  transform: translate3d(0,0,0);
-  animation: tickerMove 12s linear infinite;
-}
-
-.ticker__item{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.55);
-  border: 1px solid rgba(255,255,255,0.28);
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  color: rgba(23,23,23,0.88);
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.pup{
-  display:inline-grid;
-  place-items:center;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.70);
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.06);
-  font-size: 18px;
-}
-
-/* бесшовное движение: трек дублируем, поэтому -50% */
-@keyframes tickerMove{
-  from { transform: translate3d(0,0,0); }
-  to   { transform: translate3d(-50%,0,0); }
-}
-
-@media (prefers-reduced-motion: reduce){
-  .ticker__track{ animation: none; }
-}
+    body::after{
+      content:"";
+      position: fixed;
+      inset: -10%;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='340' height='340' viewBox='0 0 340 340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%233aa9ff' stroke-opacity='0.30' stroke-width='3'%3E%3Ccircle cx='120' cy='110' r='14'/%3E%3Ccircle cx='170' cy='96' r='14'/%3E%3Ccircle cx='220' cy='110' r='14'/%3E%3Cpath d='M150 170 C150 135 190 135 190 170 C190 215 150 215 150 170 Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 360px 360px;
+      transform: rotate(-8deg);
+      opacity: 1;
+      mix-blend-mode: multiply;
+    }
 
     /* ✅ Ширина 1100–1200 */
-   .page{
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
+    .page{
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-.heroInner{ max-width: 920px; }  /* было 860 */
-.section p{ max-width: 820px; }  /* чтобы текст не растягивался */
+    .heroInner{ max-width: 920px; margin: 0 auto; position: relative; z-index: 2; }
+    .section p{ max-width: 820px; }
 
     /* ===== HERO контейнер ===== */
-    .container {
+    .heroWrap{
       background: var(--heroBg);
       border: 1px solid var(--heroBorder);
       width: 100%;
@@ -182,8 +96,7 @@
       position: relative;
       overflow: hidden;
     }
-
-    .container:before {
+    .heroWrap:before{
       content: "";
       position: absolute;
       inset: -2px;
@@ -195,17 +108,11 @@
       z-index: 0;
     }
 
-    /* ===== HERO (облегчённый) ===== */
+    /* ===== HERO ===== */
     .hero{
       position: relative;
       padding: clamp(28px, 5vw, 58px) clamp(18px, 4vw, 40px);
       text-align: center;
-    }
-
-    .heroInner{
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
     }
 
     .badge{
@@ -229,25 +136,23 @@
     }
 
     .heroTitle{
-    
-  margin-top: 16px;
-  font-size: clamp(34px, 5.6vw, 58px);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-  font-weight: 900;
+      margin-top: 16px;
+      font-size: clamp(34px, 5.6vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-weight: 900;
+      /* градиентный текст включаем корректно */
+      background: linear-gradient(90deg, #ff5fa2, #ffd1e8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-  /.heroTitle {
-  background: linear-gradient(90deg, #ff5fa2, #ffd1e8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  }
 
     .heroSub{
       margin-top: 12px;
       font-size: clamp(15px, 2.2vw, 18px);
       line-height: 1.65;
-      color: rgba(23,23,23,.70);
-      max-width: 60ch;
+      color: rgba(23,23,23,.72);
+      max-width: 62ch;
       margin-left:auto;
       margin-right:auto;
     }
@@ -270,10 +175,11 @@
       border-radius: 16px;
       font-weight: 900;
       text-decoration:none;
-      transition: transform .15s ease, box-shadow .15s ease;
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
       user-select:none;
       font-size: 15px;
       border: 0;
+      cursor: pointer;
     }
     .btn:active{ transform: translateY(1px); }
 
@@ -285,11 +191,12 @@
     .btnPrimary:hover{
       transform: translateY(-1px);
       box-shadow: 0 22px 50px rgba(255,117,140,.42);
+      filter: brightness(1.02);
     }
 
     .btnGhost{
-      color: rgba(23,23,23,.82);
-      background: rgba(255,255,255,.70);
+      color: rgba(23,23,23,.86);
+      background: rgba(255,255,255,.76);
       border: 1px solid rgba(34,34,34,.08);
       box-shadow: 0 12px 26px rgba(34,34,34,.06);
       backdrop-filter: blur(10px);
@@ -299,7 +206,7 @@
       box-shadow: 0 16px 34px rgba(34,34,34,.08);
     }
 
-    /* ===== Навигация-иконки (видно что кликабельно) ===== */
+    /* ===== Навигация-иконки ===== */
     .navIcons{
       margin-top: 18px;
       display:flex;
@@ -307,7 +214,6 @@
       justify-content:center;
       flex-wrap: wrap;
     }
-
     .navIcon{
       text-decoration:none;
       display:flex;
@@ -315,11 +221,12 @@
       gap: 10px;
       padding: 10px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.80);
+      background: rgba(255,255,255,0.84);
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 12px 26px rgba(0,0,0,0.06);
       font-weight: 900;
       font-size: 13px;
+      color: rgba(23,23,23,.86);
       transition: transform .15s ease, box-shadow .15s ease;
     }
     .navIcon:hover{ transform: translateY(-1px); box-shadow: 0 16px 34px rgba(0,0,0,0.08); }
@@ -337,22 +244,21 @@
 
     .heroNote{
       margin-top: 14px;
-      color: rgba(23,23,23,.60);
+      color: rgba(23,23,23,.64);
       font-weight: 700;
       font-size: 13px;
     }
 
-    /* ===== “Коротко” под героем ===== */
+    /* ===== “Коротко” ===== */
     .quick{
       margin-top: 18px;
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 12px;
     }
-
     .qItem{
       grid-column: span 3;
-      background: rgba(255,255,255,0.78);
+      background: rgba(255,255,255,0.82);
       border: 1px solid rgba(0,0,0,0.06);
       border-radius: 18px;
       padding: 14px 12px;
@@ -360,7 +266,6 @@
       display:flex;
       align-items:center;
       gap: 10px;
-      justify-content:flex-start;
       text-align:left;
     }
     .qIcon{
@@ -373,117 +278,111 @@
       background: linear-gradient(135deg, rgba(255,126,179,.16), rgba(111,198,255,.12));
     }
     .qText strong{ display:block; font-weight: 900; font-size: 13px; color:#222; }
-    .qText span{ display:block; font-weight: 700; font-size: 12px; color: rgba(34,34,34,.60); margin-top: 2px; }
+    .qText span{ display:block; font-weight: 700; font-size: 12px; color: rgba(34,34,34,.62); margin-top: 2px; }
 
     .footer {
       margin-top: 16px;
       font-size: 13px;
-      color: #777;
+      color: rgba(34,34,34,.62);
       text-align:center;
       padding-bottom: 2px;
     }
 
     /* ===== SECTIONS ===== */
-    .section {
+    .section{
       margin-top: 22px;
       padding: 30px 20px;
       border-radius: 26px;
       text-align: center;
-      background: rgba(255,255,255,0.78);
+      background: rgba(255,255,255,0.82);
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 18px 45px rgba(0, 0, 0, 0.07);
       backdrop-filter: blur(8px);
+      position: relative;
     }
-
-    .section.soft {
+    .section.soft{
       background:
         radial-gradient(700px 250px at 20% 0%, rgba(255, 126, 179, 0.16), transparent 60%),
         radial-gradient(700px 250px at 80% 10%, rgba(111, 198, 255, 0.14), transparent 60%),
-        rgba(255,255,255,0.78);
+        rgba(255,255,255,0.82);
     }
 
-    .kicker {
+    .kicker{
       display: inline-block;
       padding: 8px 12px;
       border-radius: 999px;
       font-size: 13px;
       font-weight: 900;
-      color: #c84a7a;
-      background: rgba(255, 228, 239, 0.80);
-      border: 1px solid rgba(255, 126, 179, 0.18);
+      color: var(--accent);
+      background: rgba(231, 182, 200, 0.38);
+      border: 1px solid rgba(90, 46, 58, 0.18);
       margin-bottom: 12px;
     }
 
-    .section h2 {
+    .section h2{
       font-size: 26px;
       margin-bottom: 10px;
       letter-spacing: -0.2px;
       font-weight: 900;
+      color: #2F2A2C;
     }
 
-    .section p {
+    .section p{
       font-size: 15px;
       line-height: 1.7;
-      color: #444;
-      max-width: 820px;
+      color: rgba(47,42,44,.82);
       margin: 0 auto 10px;
     }
 
-    /* ===== Cards ===== */
-    .grid {
+    /* ===== Cards general ===== */
+    .grid{
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 14px;
       margin-top: 18px;
       text-align: left;
     }
-
-    .card {
+    .card{
       grid-column: span 6;
-      background: rgba(255,255,255,0.90);
-      border: 1px solid rgba(255, 126, 179, 0.14);
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(90,46,58,0.16);
       border-radius: 22px;
       padding: 18px 18px 16px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.07);
+      box-shadow: 0 16px 40px rgba(90,46,58,0.12);
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
     }
-
-    .card:hover {
+    .card:hover{
       transform: translateY(-3px);
-      box-shadow: 0 22px 55px rgba(0,0,0,0.10);
-      border-color: rgba(255, 126, 179, 0.28);
+      box-shadow: 0 22px 55px rgba(90,46,58,0.16);
+      border-color: rgba(90,46,58,0.24);
     }
-
-    .card.accent {
+    .card.accent{
       grid-column: span 12;
-      background: linear-gradient(135deg, rgba(255, 126, 179, 0.18), rgba(111, 198, 255, 0.14));
-      border-color: rgba(255, 126, 179, 0.22);
+      background: linear-gradient(135deg, rgba(231, 182, 200, 0.26), rgba(111, 198, 255, 0.12));
+      border-color: rgba(90,46,58,0.18);
     }
-
-    .icon {
+    .icon{
       width: 48px;
       height: 48px;
       display: grid;
       place-items: center;
       border-radius: 16px;
-      background: linear-gradient(135deg, rgba(255, 126, 179, 0.24), rgba(111, 198, 255, 0.20));
+      background: linear-gradient(135deg, rgba(231, 182, 200, 0.32), rgba(111, 198, 255, 0.18));
       border: 1px solid rgba(0,0,0,0.04);
       font-size: 22px;
       margin-bottom: 12px;
     }
-
-    .card h3 { font-size: 16px; margin-bottom: 6px; font-weight: 900; }
-    .card p { margin: 0; color: #555; font-size: 14px; line-height: 1.6; max-width: none; }
+    .card h3 { font-size: 16px; margin-bottom: 6px; font-weight: 900; color: #2F2A2C; }
+    .card p { margin: 0; color: rgba(47,42,44,.78); font-size: 14px; line-height: 1.6; max-width: none; }
 
     /* ===== Gallery ===== */
-    .gallery {
+    .gallery{
       margin-top: 18px;
       display: grid;
       grid-template-columns: repeat(12, 1fr);
       gap: 14px;
     }
-
-    .shot {
+    .shot{
       grid-column: span 6;
       border-radius: 22px;
       overflow: hidden;
@@ -491,15 +390,9 @@
       box-shadow: 0 18px 45px rgba(0,0,0,0.08);
       background: rgba(255,255,255,0.85);
       position: relative;
-      transform: translateZ(0);
       aspect-ratio: 4 / 3;
     }
-
-    .shot.big {
-      grid-column: span 12;
-      aspect-ratio: 16 / 9;
-    }
-
+    .shot.big{ grid-column: span 12; aspect-ratio: 16 / 9; }
     .shot img{
       width: 100%;
       height: 100%;
@@ -507,9 +400,8 @@
       object-fit: cover;
       transition: transform 0.25s ease;
       filter: saturate(1.08) contrast(1.03);
-      background: linear-gradient(135deg, rgba(255,126,179,0.08), rgba(111,198,255,0.08));
+      background: linear-gradient(135deg, rgba(231,182,200,0.10), rgba(111,198,255,0.08));
     }
-
     .shot:hover img{ transform: scale(1.03); }
 
     .cap{
@@ -519,7 +411,7 @@
       bottom: 14px;
       padding: 12px 14px;
       border-radius: 16px;
-      background: rgba(255,255,255,0.86);
+      background: rgba(255,255,255,0.90);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(0,0,0,0.06);
       font-weight: 900;
@@ -529,107 +421,205 @@
       align-items:center;
       justify-content: space-between;
     }
-    .cap small{ font-weight: 800; color:#666; }
+    .cap small{ font-weight: 800; color: rgba(47,42,44,.68); }
 
     /* ===== Steps ===== */
     .steps { margin-top: 18px; display: grid; gap: 12px; text-align: left; }
-    .step {
+    .step{
       display: flex;
       gap: 12px;
       padding: 16px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.90);
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: 0 14px 30px rgba(0,0,0,0.06);
     }
-    .num {
+    .num{
       min-width: 40px;
       height: 40px;
       border-radius: 14px;
       display: grid;
       place-items: center;
       font-weight: 900;
-      color: #c84a7a;
-      background: rgba(255, 228, 239, 0.86);
-      border: 1px solid rgba(255, 126, 179, 0.18);
+      color: var(--accent);
+      background: rgba(231, 182, 200, 0.38);
+      border: 1px solid rgba(90, 46, 58, 0.18);
     }
-    .step strong { display: block; margin-bottom: 4px; font-weight: 900; }
-    .step span { color: #555; font-size: 14px; line-height: 1.6; }
+    .step strong { display: block; margin-bottom: 4px; font-weight: 900; color:#2F2A2C; }
+    .step span { color: rgba(47,42,44,.78); font-size: 14px; line-height: 1.6; }
 
-    /* ===== Contact box ===== */
-    .contact { margin-top: 18px; display: grid; gap: 12px; }
-    .contact .box {
-      background: linear-gradient(135deg, rgba(255, 126, 179, 0.16), rgba(111, 198, 255, 0.14));
-      border: 1px solid rgba(255, 126, 179, 0.20);
+    /* ===== Contact ===== */
+    .contact { margin-top: 18px; display: grid; gap: 12px; text-align: left; }
+    .contact .box{
+      background: linear-gradient(135deg, rgba(231, 182, 200, 0.28), rgba(111, 198, 255, 0.12));
+      border: 1px solid rgba(90,46,58,0.18);
       border-radius: 22px;
       padding: 18px;
-      text-align: left;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.07);
+      box-shadow: 0 18px 45px rgba(90,46,58,0.10);
     }
-    .contact small { color: #666; display: block; margin-top: 6px; font-weight: 700; }
+    .contact small { color: rgba(47,42,44,.70); display: block; margin-top: 6px; font-weight: 700; }
 
-    /* ===== Партнёры ===== */
-    .partnerGrid{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-      text-align:left;
-    }
-    .partnerCard{
-      grid-column: span 6;
-      background: rgba(255,255,255,0.90);
-      border: 1px solid rgba(0,0,0,0.06);
-      border-radius: 22px;
-      padding: 18px 18px 16px;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.07);
-    }
-    .partnerCard h3{ font-size: 16px; font-weight: 900; margin-bottom: 8px; }
-    .partnerCard ul{ padding-left: 18px; color:#555; font-size: 14px; line-height: 1.6; }
-    .partnerCard li{ margin: 6px 0; }
-    .partnerCard .hint{ margin-top: 10px; font-weight: 800; color: rgba(23,23,23,.65); font-size: 13px; }
-
-    .actions {
+    .actions{
       display: flex;
       gap: 12px;
-      justify-content: center;
+      justify-content: flex-start;
       flex-wrap: wrap;
       margin-top: 8px;
     }
-    .button {
+    .button{
       display: inline-block;
-      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      background: var(--accent);
       color: #fff;
       text-decoration: none;
       padding: 14px 22px;
       border-radius: 999px;
       font-weight: 900;
       font-size: 15px;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      box-shadow: 0 14px 30px rgba(255, 117, 140, 0.32);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter .15s ease;
+      box-shadow: 0 14px 30px rgba(90,46,58,0.22);
     }
-    .button:hover {
+    .button:hover{
       transform: translateY(-2px);
-      box-shadow: 0 18px 42px rgba(255, 117, 140, 0.42);
+      box-shadow: 0 18px 42px rgba(90,46,58,0.28);
+      filter: brightness(1.03);
     }
-    .button.secondary {
+    .button.secondary{
       background: rgba(255,255,255,0.95);
-      color: #c84a7a;
-      border: 1px solid rgba(255, 126, 179, 0.26);
+      color: var(--accent);
+      border: 1px solid rgba(90,46,58,0.22);
       box-shadow: 0 14px 30px rgba(0,0,0,0.06);
     }
+
+    /* ===== БЕГУЩАЯ ЛЕНТА ===== */
+    .ticker{
+      margin: 18px 0 0;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(90,46,58,0.16);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.07);
+      background: linear-gradient(90deg,
+        rgba(231,182,200,0.95),
+        rgba(255,117,140,0.90),
+        rgba(255,180,220,0.92),
+        rgba(231,182,200,0.95)
+      );
+    }
+    .ticker__viewport{ overflow: hidden; }
+    .ticker__track{
+      display: flex;
+      width: max-content;
+      gap: 18px;
+      padding: 14px 0;
+      will-change: transform;
+      transform: translate3d(0,0,0);
+      animation: tickerMove 12s linear infinite;
+    }
+    .ticker__item{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(255,255,255,0.28);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: rgba(23,23,23,0.88);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .pup{
+      display:inline-grid;
+      place-items:center;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+      font-size: 18px;
+    }
+    @keyframes tickerMove{
+      from { transform: translate3d(0,0,0); }
+      to   { transform: translate3d(-50%,0,0); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .ticker__track{ animation: none; }
+    }
+
+    /* ===== ПАРТНЁРЫ (усиление, чтобы НЕ было бледно) ===== */
+    #partners .lead{
+      margin: 0 auto 14px;
+      color: rgba(47,42,44,.82);
+      font-weight: 700;
+    }
+    #partners .cards{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+      text-align: left;
+    }
+    #partners .cards .card{
+      grid-column: auto;
+      background: #fff;
+      border: 1px solid rgba(90,46,58,0.18);
+      box-shadow: 0 12px 30px rgba(90,46,58,0.14);
+      padding: 22px;
+    }
+    #partners .cards .card h3{
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    #partners ul{
+      padding-left: 18px;
+      color: rgba(47,42,44,.82);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    #partners li{ margin: 8px 0; }
+    #partners .note{
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(47,42,44,.70);
+    }
+    .card-label{
+      display:inline-block;
+      background: var(--accent);
+      color:#fff;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      letter-spacing: .04em;
+    }
+    .contact-box{
+      margin-top: 14px;
+      background: linear-gradient(135deg, rgba(231,182,200,.34), rgba(255,255,255,.92));
+      border: 1px solid rgba(90,46,58,0.18);
+      border-radius: 22px;
+      padding: 18px;
+      text-align: left;
+      box-shadow: 0 12px 30px rgba(90,46,58,0.10);
+    }
+    .contact-line{ margin: 8px 0; color: rgba(47,42,44,.82); }
+    .contact-box a{ color: var(--accent); font-weight: 900; text-decoration: none; }
+    .contact-box a:hover{ text-decoration: underline; }
+    .muted{ margin-top: 12px; color: rgba(47,42,44,.62); font-weight: 700; font-size: 13px; }
 
     /* Responsive */
     @media (max-width: 900px){
       .qItem{ grid-column: span 6; }
-      .partnerCard{ grid-column: span 12; }
+      #partners .cards{ grid-template-columns: 1fr; }
     }
-    @media (max-width: 760px) {
-      body { padding: 16px; }
-      .section h2 { font-size: 22px; }
-      .card { grid-column: span 12; }
-      .shot { grid-column: span 12; }
-      .gallery { gap: 12px; }
+    @media (max-width: 760px){
+      body{ padding: 16px; }
+      .section h2{ font-size: 22px; }
+      .card{ grid-column: span 12; }
+      .shot{ grid-column: span 12; }
+      .gallery{ gap: 12px; }
       .qItem{ grid-column: span 12; }
     }
   </style>
@@ -639,7 +629,7 @@
   <main class="page">
 
     <!-- HERO -->
-    <section class="container" aria-label="Первый экран">
+    <section class="heroWrap" aria-label="Первый экран">
       <header class="hero">
         <div class="heroInner">
           <div class="badge">
@@ -649,7 +639,7 @@
 
           <h1 class="heroTitle">DOGA SPACE VRN</h1>
           <p class="heroSub">
-            Йога с собаками в Воронеже — уютная практика + щенки рядом, чтобы выдохнуть и расслабиться 💗
+            Йога с собаками в Воронеже — уютная практика и живой контакт, чтобы выдохнуть и расслабиться 💗
           </p>
 
           <!-- ВИДНАЯ навигация -->
@@ -680,7 +670,7 @@
             </div>
             <div class="qItem">
               <div class="qIcon">🐶</div>
-              <div class="qText"><strong>щенки рядом</strong><span>тепло и контакт</span></div>
+              <div class="qText"><strong>собаки рядом</strong><span>тепло и контакт</span></div>
             </div>
             <div class="qItem">
               <div class="qIcon">🌿</div>
@@ -693,32 +683,32 @@
       </header>
     </section>
 
-    <!-- ✅ ЛЕНТА СРАЗУ ПОД ШАПКОЙ (правильно по структуре) -->
+    <!-- ЛЕНТА -->
     <section class="ticker" aria-label="Бегущая строка">
-  <div class="ticker__viewport">
-    <div class="ticker__track">
-      <!-- 1-я половина -->
-      <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
+      <div class="ticker__viewport">
+        <div class="ticker__track">
+          <!-- 1-я половина -->
+          <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
 
-      <!-- 2-я половина (дубликат) -->
-      <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
-      <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
-    </div>
-  </div>
-</section>
+          <!-- 2-я половина (дубликат) -->
+          <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
+          <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
+        </div>
+      </div>
+    </section>
 
     <!-- ABOUT -->
     <section class="section soft" id="about">
@@ -729,7 +719,7 @@
         расслабиться естественно — без усилий и напряжения.
       </p>
       <p>
-        Когда рядом щенок, ты перестаёшь контролировать, сравнивать и торопиться.
+        Когда рядом хвостик, ты перестаёшь контролировать, сравнивать и торопиться.
         Ты просто есть.
       </p>
     </section>
@@ -795,7 +785,7 @@
         <article class="card">
           <div class="icon">😄🐶</div>
           <h3>Хочется радости и живых эмоций</h3>
-          <p>Щенки делают практику тёплой и настоящей.</p>
+          <p>Собаки делают практику тёплой и настоящей.</p>
         </article>
 
         <article class="card accent">
@@ -833,73 +823,58 @@
           <div class="num">3</div>
           <div>
             <strong>Расслабление</strong>
-            <span>Финальная шавасана — и да, щенок может лечь рядом 🐾</span>
+            <span>Финальная шавасана — и да, собака может лечь рядом 🐾</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PARTNERS -->
+    <!-- PARTNERS (один раз, без вложений) -->
     <section class="section" id="partners">
-     <div class="card-label">Для специалистов</div>
-      .card-label {
-  display: inline-block;
-  background: #5A2E3A;
-  color: #fff;
-  font-size: 13px;
-  padding: 6px 14px;
-  border-radius: 999px;
-  margin-bottom: 16px;
-  letter-spacing: 0.04em;
-       }
-
+      <div class="kicker">Сотрудничество</div>
       <h2>Партнёрам</h2>
-    <section id="partners" class="section">
-  <div class="container">
-    <p class="kicker">Сотрудничество</p>
-    <h2>Партнёрам</h2>
 
-    <p class="lead">
-      <b>DOGA SPACE VRN</b> — пространство практик и осознанного взаимодействия человека и собаки.
-      Мы делаем регулярные мероприятия и открыты к <b>долгосрочному партнёрству</b>.
-    </p>
+      <p class="lead">
+        <b>DOGA SPACE VRN</b> — пространство практик и осознанного взаимодействия человека и собаки.
+        Мы делаем регулярные мероприятия и открыты к <b>долгосрочному партнёрству</b>.
+      </p>
 
-    <div class="cards">
-      <article class="card">
-        <h3>Кинологам, специалистам, питомникам</h3>
-        <ul>
-          <li>Экологичный формат: комфорт и безопасность собак — в приоритете</li>
-          <li>Мягкая социализация и контакт в спокойной среде</li>
-          <li>Упоминания в соцсетях и на сайте проекта</li>
-          <li>Фото/видео-контент с мероприятий (по договорённости)</li>
-          <li>Возможность познакомиться с “своей” аудиторией</li>
-        </ul>
-        <p class="note">Работаем только с ответственными партнёрами и прозрачными условиями.</p>
-      </article>
+      <div class="cards">
+        <article class="card">
+          <div class="card-label">Для специалистов</div>
+          <h3>Кинологам, специалистам, питомникам</h3>
+          <ul>
+            <li>Экологичный формат: комфорт и безопасность собак — в приоритете</li>
+            <li>Мягкая социализация и контакт в спокойной среде</li>
+            <li>Упоминания в соцсетях и на сайте проекта</li>
+            <li>Фото/видео-контент с мероприятий (по договорённости)</li>
+            <li>Возможность познакомиться с “своей” аудиторией</li>
+          </ul>
+          <p class="note">Работаем только с ответственными партнёрами и прозрачными условиями.</p>
+        </article>
 
-      <article class="card">
-        <div class="card-label">Для брендов</div>
-        <h3>Брендам и компаниям</h3>
-        <ul>
-          <li>Интеграции в контент (фото/видео), product placement</li>
-          <li>Подарки/промо для участников</li>
-          <li>Партнёрские мероприятия и спец-форматы</li>
-          <li>Коллаборации и совместные инициативы</li>
-        </ul>
-        <p class="note">Ищем “своих” по ценностям: спокойно, красиво, качественно.</p>
-      </article>
-    </div>
+        <article class="card">
+          <div class="card-label">Для брендов</div>
+          <h3>Брендам и компаниям</h3>
+          <ul>
+            <li>Интеграции в контент (фото/видео), product placement</li>
+            <li>Подарки/промо для участников</li>
+            <li>Партнёрские мероприятия и спец-форматы</li>
+            <li>Коллаборации и совместные инициативы</li>
+          </ul>
+          <p class="note">Ищем “своих” по ценностям: спокойно, красиво, качественно.</p>
+        </article>
+      </div>
 
-    <div class="contact-box">
-      <h3>Контакт для партнёров</h3>
-      <p class="contact-line"><b>Почта:</b> <a href="mailto:partner@yourdomain.ru">partner@yourdomain.ru</a></p>
-      <p class="contact-line"><b>Telegram:</b> <a href="https://t.me/yourname" target="_blank" rel="noreferrer">@yourname</a></p>
-      <p class="contact-line"><b>Город:</b> Воронеж</p>
-    </div>
+      <div class="contact-box">
+        <h3 style="margin-bottom:10px;">Контакт для партнёров</h3>
+        <p class="contact-line"><b>Почта:</b> <a href="mailto:partner@yourdomain.ru">partner@yourdomain.ru</a></p>
+        <p class="contact-line"><b>Telegram:</b> <a href="https://t.me/yourname" target="_blank" rel="noreferrer">@yourname</a></p>
+        <p class="contact-line"><b>Город:</b> Воронеж</p>
+      </div>
 
-    <p class="muted">*Здесь скоро появятся логотипы и проекты наших партнёров.*</p>
-  </div>
-</section>
+      <p class="muted">Здесь скоро появятся логотипы и проекты партнёров.</p>
+    </section>
 
     <!-- SIGNUP -->
     <section class="section soft" id="signup">
@@ -915,7 +890,7 @@
           <small>Город: Воронеж</small>
         </div>
 
-        <div class="actions" style="justify-content: flex-start;">
+        <div class="actions">
           <a class="button" href="#">Написать в Telegram</a>
           <a class="button secondary" href="#gallery">Смотреть фото</a>
         </div>
