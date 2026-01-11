@@ -36,7 +36,61 @@
         linear-gradient(135deg, #fdf1f7, #f7fbff);
       position: relative;
       overflow-x: hidden;
-    }
+    /* ===== БЕГУЩАЯ ЛЕНТА (как у puppy-yoga) ===== */
+.ticker{
+  margin: 18px 0 0;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.07);
+  background: linear-gradient(90deg, #EFFF6A, #D7FF77, #EFFF6A); /* желто-зеленая */
+}
+
+.ticker__track{
+  display: flex;
+  width: max-content;
+  gap: 26px;
+  padding: 14px 0;
+  animation: tickerMove 14s linear infinite;
+  will-change: transform;
+}
+
+.ticker__item{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.06);
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: rgba(23,23,23,0.85);
+  white-space: nowrap;
+}
+
+.pup{
+  display:inline-grid;
+  place-items:center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.70);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.06);
+  font-size: 18px;
+}
+
+@keyframes tickerMove{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* важно: у нас трек продублирован */
+}
+
+/* Если у человека отключены анимации */
+@media (prefers-reduced-motion: reduce){
+  .ticker__track{ animation: none; }
+}
+
 
     /* ДВА СЛОЯ КОНТУРНЫХ ЛАПОК */
     body::before{
@@ -550,7 +604,10 @@
             Скоро открытие
           </div>
 
-          <h1 class="heroTitle">Йога с собаками</h1>
+        <h1 class="heroTitle">DOGA SPACE VRN</h1>
+<p class="heroSub">
+  Йога с собаками в Воронеже — уютная практика + щенки рядом, чтобы выдохнуть и расслабиться 💗
+</p>
 
           <p class="heroSub">
             Уютная практика + щенки рядом — чтобы выдохнуть, расслабиться и просто почувствовать себя живой.
@@ -597,10 +654,33 @@
         </div>
       </header>
     </section>
+       <!-- ABOUT -->
+<section class="section soft" id="about">
+  <!-- TICKER / БЕГУЩАЯ ЛЕНТА -->
+<section class="ticker" aria-label="Бегущая строка">
+  <div class="ticker__track">
+    <!-- 1-я половина -->
+    <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
 
-    <!-- ABOUT -->
-    <section class="section soft" id="about">
-      <div class="kicker">Тёплая практика</div>
+    <!-- 2-я половина (дубликат для бесшовной прокрутки) -->
+    <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐶</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐾</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🐕</span> DOGA SPACE VRN</div>
+    <div class="ticker__item"><span class="pup">🦴</span> DOGA SPACE VRN</div>
+  </div>
+</section>
+  <div class="kicker">Тёплая практика</div>
       <h2>Почему именно с собаками</h2>
       <p>
         Собаки создают ощущение безопасности и принятия. Их присутствие помогает телу
