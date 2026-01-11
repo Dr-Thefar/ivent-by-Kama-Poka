@@ -105,98 +105,6 @@
       .pupRun{ animation: none; }
     }
 
-    /* ДВА СЛОЯ КОНТУРНЫХ ЛАПОК */
-    body::before{
-      content:"";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ff2f8d' stroke-opacity='0.45' stroke-width='2.4'%3E%3Ccircle cx='52' cy='50' r='7'/%3E%3Ccircle cx='74' cy='42' r='7'/%3E%3Ccircle cx='96' cy='50' r='7'/%3E%3Cpath d='M66 74 C66 60 84 60 84 74 C84 92 66 92 66 74 Z'/%3E%3C/g%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 150px 150px;
-      opacity: 0.85;
-      mix-blend-mode: multiply;
-      filter: saturate(1.10);
-    }
-
-    body::after{
-      /* ===== FLOATING DECOR ===== */
-.floatDecor{
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0; /* важно: под .page (у тебя у .page z-index:1) */
-  overflow: hidden;
-}
-
-.floatEl{
-  position: absolute;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-
-  /* пузырёк-стекло */
-  background: rgba(255,255,255,0.35);
-  border: 1px solid rgba(255, 126, 179, 0.18);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.06);
-  backdrop-filter: blur(10px);
-
-  font-size: 18px;
-  opacity: 0.55;
-  transform: translate3d(0,0,0);
-  animation: floatUp var(--dur) linear infinite;
-  will-change: transform;
-}
-
-/* чуть разный стиль для лапок/сердец, чтобы было “дороже” */
-.floatEl:where(.paw){
-  border-color: rgba(111,198,255,0.20);
-}
-
-/* движение снизу вверх + лёгкое покачивание */
-@keyframes floatUp{
-  0%   { transform: translate3d(0, 120px, 0) rotate(0deg); opacity: 0; }
-  10%  { opacity: 0.55; }
-  50%  { transform: translate3d(18px, -40vh, 0) rotate(6deg); opacity: 0.55; }
-  100% { transform: translate3d(-12px, -120vh, 0) rotate(12deg); opacity: 0; }
-}
-
-/* позиции и скорости (чуть-чуть, без хаоса) */
-.f1{ left: 6%;  bottom: -10%; --dur: 18s; }
-.f2{ left: 16%; bottom: -18%; --dur: 24s; width:56px; height:56px; opacity:0.45; font-size:20px; }
-.f3{ left: 30%; bottom: -14%; --dur: 22s; }
-.f4{ left: 52%; bottom: -22%; --dur: 28s; width:62px; height:62px; opacity:0.40; font-size:20px; }
-.f5{ left: 68%; bottom: -12%; --dur: 20s; }
-.f6{ left: 78%; bottom: -18%; --dur: 26s; width:54px; height:54px; opacity:0.42; }
-.f7{ left: 88%; bottom: -16%; --dur: 23s; }
-.f8{ left: 95%; bottom: -24%; --dur: 30s; width:60px; height:60px; opacity:0.38; }
-
-/* На мобилке убираем часть, чтобы не было шумно */
-@media (max-width: 760px){
-  .f4, .f8 { display: none; }
-}
-
-/* Если у человека отключены анимации — выключаем */
-@media (prefers-reduced-motion: reduce){
-  .floatEl{ animation: none; display:none; }
-}
-
-      content:"";
-      position: fixed;
-      inset: -10%;
-      pointer-events: none;
-      z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='340' height='340' viewBox='0 0 340 340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%233aa9ff' stroke-opacity='0.30' stroke-width='3'%3E%3Ccircle cx='120' cy='110' r='14'/%3E%3Ccircle cx='170' cy='96' r='14'/%3E%3Ccircle cx='220' cy='110' r='14'/%3E%3Cpath d='M150 170 C150 135 190 135 190 170 C190 215 150 215 150 170 Z'/%3E%3C/g%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 360px 360px;
-      transform: rotate(-8deg);
-      opacity: 1;
-      mix-blend-mode: multiply;
-    }
-
     a { color: inherit; }
 
     /* ✅ Ширина 1100–1200 */
@@ -671,17 +579,6 @@
 </head>
 
 <body>
-  <!-- FLOATING DECOR (мягкие пузырьки/сердечки) -->
-<div class="floatDecor" aria-hidden="true">
-  <span class="floatEl f1">💗</span>
-  <span class="floatEl f2">🫧</span>
-  <span class="floatEl f3">💗</span>
-  <span class="floatEl f4">🫧</span>
-  <span class="floatEl f5">🐾</span>
-  <span class="floatEl f6">🫧</span>
-  <span class="floatEl f7">💗</span>
-  <span class="floatEl f8">🐾</span>
-</div>
   <main class="page">
 
     <!-- HERO -->
