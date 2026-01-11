@@ -66,7 +66,33 @@
   opacity: 1;
   mix-blend-mode: multiply;
 }
+    body{
+  background: var(--bg);
+  color: var(--text);
+}
 
+.section{ padding: 80px 0; }
+.container{ width: min(1100px, 92%); margin: 0 auto; }
+
+.cards{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card{
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid var(--border);
+}
+
+.contact-box{
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #E7B6C8, #FFF8F6);
+}
    /* ===== БЕГУЩАЯ ЛЕНТА (РОЗОВАЯ, ПЛАВНАЯ) ===== */
 .ticker{
   margin: 18px 0 0;
@@ -885,31 +911,5 @@
     </section>
 
   </main>
-</body> body{
-  background: var(--bg);
-  color: var(--text);
-}
-
-.section{ padding: 80px 0; }
-.container{ width: min(1100px, 92%); margin: 0 auto; }
-
-.cards{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.card{
-  background: var(--surface);
-  border-radius: 20px;
-  padding: 20px;
-  border: 1px solid var(--border);
-}
-
-.contact-box{
-  margin-top: 20px;
-  padding: 16px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #E7B6C8, #FFF8F6);
-}
+</body>
 </html>
