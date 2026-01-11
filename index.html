@@ -36,12 +36,36 @@
     linear-gradient(135deg, #fdf1f7, #f7fbff);
   position: relative;
   overflow-x: hidden;
-} 
-    body::before{ ... } 
-    body::after{ ... }
+   } 
 
+   body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ff2f8d' stroke-opacity='0.45' stroke-width='2.4'%3E%3Ccircle cx='52' cy='50' r='7'/%3E%3Ccircle cx='74' cy='42' r='7'/%3E%3Ccircle cx='96' cy='50' r='7'/%3E%3Cpath d='M66 74 C66 60 84 60 84 74 C84 92 66 92 66 74 Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 150px 150px;
+  opacity: 0.85;
+  mix-blend-mode: multiply;
+  filter: saturate(1.10);
+  }
 
-    /* ===== БЕГУЩАЯ ЛЕНТА (как у puppy-yoga) ===== */
+  body::after{
+  content:"";
+  position: fixed;
+  inset: -10%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='340' height='340' viewBox='0 0 340 340' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%233aa9ff' stroke-opacity='0.30' stroke-width='3'%3E%3Ccircle cx='120' cy='110' r='14'/%3E%3Ccircle cx='170' cy='96' r='14'/%3E%3Ccircle cx='220' cy='110' r='14'/%3E%3Cpath d='M150 170 C150 135 190 135 190 170 C190 215 150 215 150 170 Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 360px 360px;
+  transform: rotate(-8deg);
+  opacity: 1;
+  mix-blend-mode: multiply;
+}
+
    /* ===== БЕГУЩАЯ ЛЕНТА (РОЗОВАЯ, ПЛАВНАЯ) ===== */
 .ticker{
   margin: 18px 0 0;
