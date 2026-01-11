@@ -622,6 +622,19 @@
       .gallery{ gap: 12px; }
       .qItem{ grid-column: span 12; }
     }
+    .heroCTA{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ctaNote{
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(47,42,44,.65);
+  letter-spacing: 0.02em;
+}
   </style>
 </head>
 
@@ -651,10 +664,17 @@
             <a class="navIcon" href="#partners"><span class="navIcon__i">🤝</span>Партнёрам</a>
           </nav>
 
-          <div class="heroActions">
-            <a class="btn btnPrimary" href="#signup">Хочу на первую запись</a>
-            <a class="btn btnGhost" href="#about">Узнать формат</a>
-          </div>
+        <div class="heroActions">
+        <div class="heroCTA">
+
+        <a class="btn btnPrimary" href="https://t.me/dogaspacevoronezh" target="_blank" rel="noreferrer">
+      Хочу на первую запись
+      </a>
+      <div class="ctaNote">Ответим в Telegram 💬</div>
+   </div>
+
+  <a class="btn btnGhost" href="#about">Узнать формат</a>
+</div>
 
           <div class="heroNote">Стартуем скоро — оставь контакт, и мы напишем первой.</div>
 
