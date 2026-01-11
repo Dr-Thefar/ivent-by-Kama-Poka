@@ -27,6 +27,11 @@
       /* для HERO */
       --heroBg: rgba(255,255,255,0.78);
       --heroBorder: rgba(0,0,0,0.06);
+
+      /* ✅ общий розовый контур для фигур */
+      --shapeStroke: #ff8fb3;
+      --shapeFill: rgba(255,255,255,0.82);
+      --shapeShadow: 0 14px 26px rgba(0,0,0,.10);
     }
 
     /* === BODY === */
@@ -603,145 +608,122 @@
     .muted{ margin-top: 12px; color: rgba(47,42,44,.62); font-weight: 700; font-size: 13px; }
 
     /* =========================
-       ✅ ВОТ ТВОЁ: ЛАПКИ + СЕРДЕЧКИ (РАБОТАЕТ ВЕЗДЕ)
+       ✅ ЛАПКИ + СЕРДЕЧКИ (ИСПРАВЛЕНО, БЕЗ ОШИБОК)
        ========================= */
 
     /* NAV = ЛАПКИ */
     .navIcon.paw{
-      width: 132px;
-      height: 96px;
+      width: 150px;
+      height: 120px;
       padding: 0;
       border: 0;
       background: transparent !important;
       box-shadow: none !important;
       border-radius: 0 !important;
       position: relative;
+      display: grid;
+      place-items: center;
     }
+
     .navIcon.paw::before{
       content:"";
       position:absolute;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25'%3E%3Cstop offset='0%25' stop-color='%23FFE1EE'/%3E%3Cstop offset='100%25' stop-color='%23FFFFFF'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' stroke='%23E7B6C8' stroke-opacity='.85' stroke-width='2.2' d='M34 45c6 0 11-6 11-14S40 17 34 17 23 23 23 31s5 14 11 14Zm52 0c6 0 11-6 11-14S92 17 86 17 75 23 75 31s5 14 11 14ZM22 68c6 0 11-6 11-14s-5-14-11-14S11 46 11 54s5 14 11 14Zm76 0c6 0 11-6 11-14s-5-14-11-14-11 6-11 14 5 14 11 14ZM60 106c20 0 36-14 36-31 0-17-16-28-36-28S24 58 24 75c0 17 16 31 36 31Z'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='20%25'%3E%3Cstop offset='0%25' stop-color='%23FFE1EE'/%3E%3Cstop offset='100%25' stop-color='%23FFFFFF'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' stroke='%23ff8fb3' stroke-opacity='0.95' stroke-width='3.2' d='M34 45c6 0 11-6 11-14S40 17 34 17 23 23 23 31s5 14 11 14Zm52 0c6 0 11-6 11-14S92 17 86 17 75 23 75 31s5 14 11 14ZM22 68c6 0 11-6 11-14s-5-14-11-14S11 46 11 54s5 14 11 14Zm76 0c6 0 11-6 11-14s-5-14-11-14-11 6-11 14 5 14 11 14ZM60 110c22 0 40-15 40-34 0-18-18-30-40-30S20 58 20 76c0 19 18 34 40 34Z'/%3E%3C/svg%3E");
       background-repeat:no-repeat;
       background-position:center;
       background-size: contain;
-      filter: drop-shadow(0 14px 26px rgba(0,0,0,.10));
+      filter: drop-shadow(var(--shapeShadow));
       z-index: 0;
     }
-    .navIcon.paw .navText
-   .paw {
-  position: relative;
-  width: 150px;
-  height: 135px;
-  margin: 0 auto;
-}
 
-.paw-center {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 110px;
-  height: 85px;
-  background: #fff;
-  border: 2px solid #ff8fb3;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.paw-toe {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background: #fff;
-  border: 2px solid #ff8fb3;
-  border-radius: 50%;
-}
-
-.paw-toe.t1 { top: 5px; left: 25px; }
-.paw-toe.t2 { top: -2px; left: 60px; }
-.paw-toe.t3 { top: 5px; right: 25px; }
-.paw-toe.t4 { top: 20px; right: 5px; }
-
+    .navIcon.paw .navText{
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 78%;
+      padding: 0;
+      line-height: 1.05;
+      font-size: 13px;
+      font-weight: 900;
+      color: rgba(23,23,23,.86);
+      transform: translateY(10px); /* опускаем в “подушечку” */
+      text-wrap: balance;
+    }
 
     .navIcon.paw:hover{ transform: translateY(-2px); filter: brightness(1.02); }
 
     /* QUICK = СЕРДЕЧКИ */
     .qItem.heart{
-     .heart {
-  position: relative;
-  width: 170px;
-  height: 140px;
-  margin: 0 auto;
-  filter: drop-shadow(0 10px 22px rgba(255, 143, 179, 0.20));
-}
+      position: relative;
+      width: 170px;
+      height: 140px;
+      margin: 0 auto;
+      filter: drop-shadow(0 10px 22px rgba(255, 143, 179, 0.20));
+    }
 
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  top: 20px;
-  width: 85px;
-  height: 120px;
-  background: rgba(255, 255, 255, 0.80); /* лёгкая заливка */
-  border: 2px solid #ff8fb3;            /* нормальный контур */
-  border-bottom: 0;
-  border-left: 0;
-  border-radius: 50px 50px 0 0;
-}
+    .qItem.heart::before,
+    .qItem.heart::after{
+      content: "";
+      position: absolute;
+      top: 20px;
+      width: 85px;
+      height: 120px;
+      background: var(--shapeFill);
+      border: 2px solid var(--shapeStroke);
+      border-bottom: 0;
+      border-left: 0;
+      border-radius: 50px 50px 0 0;
+    }
 
-.heart::before {
-  left: 85px;
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
+    .qItem.heart::before{
+      left: 85px;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
 
-.heart::after {
-  left: 0;
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
+    .qItem.heart::after{
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
 
-.heart-content{
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 26px 18px 18px;
-  text-align: center;
-  z-index: 2;
-}
+    .qItem.heart .qText2{
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      padding: 26px 18px 18px;
+      text-align: center;
+    }
 
-.heart-title{
-  font-weight: 800;
-  font-size: 16px;
-  line-height: 1.1;
-  color: #2d2d2d;
-}
+    .qItem.heart .qText2 strong{
+      font-weight: 900;
+      font-size: 15px;
+      line-height: 1.1;
+      color: #2d2d2d;
+    }
 
-.heart-sub{
-  margin-top: 6px;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 1.25;
-  color: rgba(45,45,45,.75);
-}
-
+    .qItem.heart .qText2 span{
+      margin-top: 6px;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 1.25;
+      color: rgba(45,45,45,.75);
+    }
 
     /* Responsive */
-@media (max-width: 560px){
-  .heart{ width: 145px; height: 125px; }
-  .heart::before, .heart::after{ width: 72px; height: 110px; }
-  .heart-content{ padding: 22px 14px 14px; }
-  .heart-title{ font-size: 14px; }
-  .heart-sub{ font-size: 12px; }
-}
+    @media (max-width: 560px){
+      .navIcon.paw{ width: 138px; height: 112px; }
+      .navIcon.paw .navText{ width: 80%; font-size: 12.5px; transform: translateY(9px); }
+
+      .qItem.heart{ width: 145px; height: 125px; }
+      .qItem.heart::before, .qItem.heart::after{ width: 72px; height: 110px; }
+      .qItem.heart .qText2{ padding: 22px 14px 14px; }
+      .qItem.heart .qText2 strong{ font-size: 14px; }
+      .qItem.heart .qText2 span{ font-size: 12px; }
+    }
   </style>
 </head>
 <body>
