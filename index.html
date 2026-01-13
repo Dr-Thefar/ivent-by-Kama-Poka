@@ -681,6 +681,69 @@
     .contact-box a{ color: var(--accent); font-weight: 900; text-decoration: none; }
     .contact-box a:hover{ text-decoration: underline; }
     .muted{ margin-top: 12px; color: rgba(47,42,44,.62); font-weight: 700; font-size: 13px; }
+/* =========================
+   ✅ MOBILE FIX (нормальный вид на телефоне)
+   вставь в САМЫЙ КОНЕЦ CSS
+   ========================= */
+@media (max-width: 760px){
+
+  /* общий воздух */
+  body{ padding: 14px; }
+  .hero{ padding: 26px 14px; }
+  .heroSub{ line-height: 1.55; }
+
+  /* заголовок не огромный */
+  .heroTitle{ font-size: 38px; }
+
+  /* кнопки CTA — ровно одна под другой, красивый размер */
+  .heroActions{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .heroCTA{ width: 100%; }
+  .btn{ width: 100%; border-radius: 18px; }
+  .ctaNote{ margin-top: 6px; }
+
+  /* NAV лапки — сеткой 2 в ряд */
+  .navIcons{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    justify-items: center;
+    margin-top: 16px;
+  }
+  .navIcon.paw{
+    width: 100%;
+    max-width: 170px;
+    height: 96px;
+  }
+  /* 5-я лапка (Партнёрам) — по центру внизу */
+  .navIcons .navIcon.paw:nth-child(5){
+    grid-column: 1 / -1;
+    max-width: 190px;
+  }
+
+  /* “Коротко” сердечки — 2 в ряд */
+  .quick{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .qItem.heart{
+    grid-column: auto;
+    min-height: 110px;
+  }
+
+  /* текст внутри фигур — компактнее */
+  .navText{ font-size: 13px; }
+  .qText2 strong{ font-size: 13px; }
+  .qText2 span{ font-size: 12px; }
+
+  /* секции: меньше паддинги */
+  .section{ padding: 26px 16px; }
+}  
   </style>
 </head>
 <body>
