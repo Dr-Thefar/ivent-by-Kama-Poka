@@ -2,108 +2,25 @@
 <html lang="ru">
 <head>
   <style>
-  .sbp-main-btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:100%;
-    max-width:340px;
-    margin:18px auto 0;
-    padding:18px 22px;
-    font-size:18px;
-    font-weight:800;
-    border-radius:999px;
-    background:linear-gradient(135deg,#ff5fa2,#ff8fc7);
-    color:#fff;
-    text-decoration:none;
-    box-shadow:0 12px 30px rgba(255,95,162,.45);
-    animation:pulse 2s infinite;
-  }
-
-  @keyframes pulse{
-    0%{ box-shadow:0 0 0 0 rgba(255,95,162,.6); }
-    70%{ box-shadow:0 0 0 18px rgba(255,95,162,0); }
-    100%{ box-shadow:0 0 0 0 rgba(255,95,162,0); }
-  }
-</style>
-
-  .pay-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:14px 20px;
-    border-radius:14px;
-    border:none;
-    cursor:pointer;
-    font-weight:800;
-    background:#E7B6C8;
-    color:#2F2A2C;
-    text-decoration:none;
-  }
-
-  .pay-backdrop{
+  .sbp-fixed-btn{
     position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.45);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
-  }
-
-  .pay-modal{
-    background:#FFF8F6;
-    border-radius:18px;
-    width:100%;
+    bottom:16px;
+    left:50%;
+    transform:translateX(-50%);
+    width:calc(100% - 32px);
     max-width:420px;
     padding:18px;
-    box-shadow:0 10px 35px rgba(0,0,0,.25);
-  }
-
-  .pay-close{
-    background:none;
-    border:none;
-    font-size:22px;
-    cursor:pointer;
-  }
-
-  .pay-qr{
-    width:240px;
-    height:240px;
-    border-radius:14px;
-    overflow:hidden;
-    background:#fff;
-    border:1px solid rgba(0,0,0,.1);
-  }
-
-  .pay-actions{
-    display:flex;
-    gap:10px;
-    margin-top:14px;
-  }
-
-  .pay-main{
-    flex:1;
-    padding:12px;
-    border-radius:14px;
-    background:#5A2E3A;
+    border-radius:999px;
+    background:#ff5fa2;
     color:#fff;
+    font-size:17px;
+    font-weight:900;
     text-align:center;
     text-decoration:none;
-    font-weight:800;
+    box-shadow:0 14px 35px rgba(255,95,162,.55);
+    z-index:9999;
   }
-
-  .pay-secondary{
-    flex:1;
-    padding:12px;
-    border-radius:14px;
-    background:#eee;
-    color:#333;
-    text-align:center;
-    text-decoration:none;
-    font-weight:800;
-  }
-</style>
+  </style>
   <meta charset="UTF-8" />
   <title>Doggy Yoga — йога с собаками в Воронеже</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -921,8 +838,8 @@
         </div>
       </div>
     </section>
-
   </main>
+  
   <script>
   const PAY_URL = "https://www.tinkoff.ru/rm/r_jPZXJUujIW.QlVYfMypxm/LWHjQ90751";
   const QR_URL = "https://chart.googleapis.com/chart?cht=qr&chs=700x700&chl=" + encodeURIComponent(PAY_URL);
@@ -966,25 +883,7 @@
    class="sbp-fixed-btn"
    target="_blank">
   💗 Оплатить по СБП
-    <style>
-  .sbp-fixed-btn{
-    position:fixed;
-    bottom:16px;
-    left:50%;
-    transform:translateX(-50%);
-    width:calc(100% - 32px);
-    max-width:420px;
-    padding:18px;
-    border-radius:999px;
-    background:#ff5fa2;
-    color:#fff;
-    font-size:17px;
-    font-weight:900;
-    text-align:center;
-    text-decoration:none;
-    box-shadow:0 14px 35px rgba(255,95,162,.55);
-    z-index:9999;
-  }
+  </a>
 </style>
 </a>
 </body>
