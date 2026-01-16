@@ -1,6 +1,84 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <style>
+  .pay-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 20px;
+    border-radius:14px;
+    border:none;
+    cursor:pointer;
+    font-weight:800;
+    background:#E7B6C8;
+    color:#2F2A2C;
+    text-decoration:none;
+  }
+
+  .pay-backdrop{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+  }
+
+  .pay-modal{
+    background:#FFF8F6;
+    border-radius:18px;
+    width:100%;
+    max-width:420px;
+    padding:18px;
+    box-shadow:0 10px 35px rgba(0,0,0,.25);
+  }
+
+  .pay-close{
+    background:none;
+    border:none;
+    font-size:22px;
+    cursor:pointer;
+  }
+
+  .pay-qr{
+    width:240px;
+    height:240px;
+    border-radius:14px;
+    overflow:hidden;
+    background:#fff;
+    border:1px solid rgba(0,0,0,.1);
+  }
+
+  .pay-actions{
+    display:flex;
+    gap:10px;
+    margin-top:14px;
+  }
+
+  .pay-main{
+    flex:1;
+    padding:12px;
+    border-radius:14px;
+    background:#5A2E3A;
+    color:#fff;
+    text-align:center;
+    text-decoration:none;
+    font-weight:800;
+  }
+
+  .pay-secondary{
+    flex:1;
+    padding:12px;
+    border-radius:14px;
+    background:#eee;
+    color:#333;
+    text-align:center;
+    text-decoration:none;
+    font-weight:800;
+  }
+</style>
   <meta charset="UTF-8" />
   <title>Doggy Yoga — йога с собаками в Воронеже</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -590,6 +668,32 @@
 </head>
 
 <body>
+  <button class="pay-btn" id="payOpen">Оплатить по СБП</button>
+
+<div class="pay-backdrop" id="payBackdrop">
+  <div class="pay-modal">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <strong>Оплата по СБП</strong><br>
+        <small>Сканируй QR или нажми кнопку</small>
+      </div>
+      <button class="pay-close" id="payClose">×</button>
+    </div>
+
+    <div style="display:flex;justify-content:center;margin:16px 0;">
+      <a id="payQrLink" target="_blank">
+        <div class="pay-qr">
+          <img id="payQr" style="width:100%;height:100%;">
+        </div>
+      </a>
+    </div>
+    <div class="pay-actions">
+      <a class="pay-main" id="payGo" target="_blank">Перейти к оплате</a>
+      <a class="pay-secondary" id="payCopy">Скопировать</a>
+    </div>
+  </div>
+</div>
+
   <main class="page">
 
     <!-- HERO -->
@@ -790,5 +894,44 @@
     </section>
 
   </main>
+  <script>
+  const PAY_URL = "https://www.tinkoff.ru/rm/r_jPZXJUujIW.QlVYfMypxm/LWHjQ90751";
+  const QR_URL = "https://chart.googleapis.com/chart?cht=qr&chs=700x700&chl=" + encodeURIComponent(PAY_URL);
+
+  const openBtn = document.getElementById("payOpen");
+  const closeBtn = document.getElementById("payClose");
+  const backdrop = document.getElementById("payBackdrop");
+
+  const qrImg = document.getElementById("payQr");
+  const qrLink = document.getElementById("payQrLink");
+  const goBtn  = document.getElementById("payGo");
+  const copyBtn= document.getElementById("payCopy");
+
+  function isMobile(){
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+      || (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
+  }
+
+  openBtn.onclick = () => {
+    if (isMobile()) {
+      window.open(PAY_URL, "_blank");
+      return;
+    }
+
+    qrImg.src = QR_URL;
+    qrLink.href = PAY_URL;
+    goBtn.href = PAY_URL;
+    backdrop.style.display = "flex";
+  };
+
+  closeBtn.onclick = () => backdrop.style.display = "none";
+  backdrop.onclick = e => e.target === backdrop && (backdrop.style.display = "none");
+
+  copyBtn.onclick = () => {
+    navigator.clipboard.writeText(PAY_URL);
+    copyBtn.textContent = "Скопировано";
+    setTimeout(() => copyBtn.textContent = "Скопировать", 1200);
+  };
+</script>
 </body>
 </html>
