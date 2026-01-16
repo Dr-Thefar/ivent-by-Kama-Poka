@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <style>
-  .sbp-fixed-btn{
-    position:fixed;
-    bottom:16px;
-    left:50%;
-    transform:translateX(-50%);
-    width:calc(100% - 32px);
-    max-width:420px;
-    padding:18px;
-    border-radius:999px;
-    background:#ff5fa2;
-    color:#fff;
-    font-size:17px;
-    font-weight:900;
-    text-align:center;
-    text-decoration:none;
-    box-shadow:0 14px 35px rgba(255,95,162,.55);
-    z-index:9999;
-  }
-  </style>
   <meta charset="UTF-8" />
   <title>Doggy Yoga — йога с собаками в Воронеже</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,6 +40,7 @@
       color: var(--text);
       min-height: 100vh;
       padding: 24px;
+      padding-bottom: 98px; /* чтобы фикс-кнопка не перекрывала контент */
       position: relative;
       overflow-x: hidden;
       background:
@@ -206,6 +187,8 @@
       color: #fff;
       background: linear-gradient(135deg, #ff7eb3, #ff758c);
       box-shadow: 0 18px 40px rgba(255,117,140,.35);
+      flex-direction: column; /* чтобы note была ниже */
+      gap: 6px;
     }
     .btnGhost{
       color: rgba(23,23,23,.86);
@@ -216,7 +199,7 @@
     }
 
     .heroCTA{ display:flex; flex-direction: column; align-items:center; }
-    .ctaNote{ margin-top: 8px; font-size: 12px; font-weight: 700; color: rgba(47,42,44,.62); line-height: 1.2; }
+    .ctaNote{ font-size: 12px; font-weight: 700; color: rgba(255,255,255,.92); line-height: 1.2; }
     .heroNote{ margin-top: 14px; color: rgba(23,23,23,.64); font-weight: 700; font-size: 13px; }
 
     /* NAV */
@@ -553,15 +536,14 @@
     .contact-box a:hover{ text-decoration: underline; }
     .muted{ margin-top: 12px; color: rgba(47,42,44,.62); font-weight: 700; font-size: 13px; }
 
-    /* ===== MOBILE FIX (ТОЛЬКО МОБИЛА) ===== */
+    /* ===== MOBILE FIX ===== */
     @media (max-width: 820px){
-      body{ padding: 14px; }
+      body{ padding: 14px; padding-bottom: 98px; }
       .hero{ padding: 26px 14px; }
       .heroSub{ line-height: 1.55; }
       .heroActions{ flex-direction: column; gap: 10px; }
       .btn{ width: 100%; }
 
-      /* партнёры: строго одна колонка */
       #partners .cards{
         grid-template-columns: 1fr !important;
         gap: 12px;
@@ -572,42 +554,53 @@
       }
 
       .section{ padding: 26px 16px; }
-      /* ===== FIX: ГАЛЕРЕЯ НА МОБИЛЕ (ФОТО КРУПНО И ВИДНО) ===== */
-@media (max-width: 600px){
+    }
 
-  /* все фото — по 1 в ряд */
-  .gallery{
-    grid-template-columns: 1fr !important;
-    gap: 12px;
-  }
+    /* ===== FIX: ГАЛЕРЕЯ НА МОБИЛЕ ===== */
+    @media (max-width: 600px){
+      .gallery{
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+      }
+      .shot,
+      .shot.big{
+        grid-column: 1 / -1 !important;
+      }
+      .shot{ aspect-ratio: 4 / 3; }
+      .shot.big{ aspect-ratio: 16 / 10; }
+      .cap{
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 8px 10px;
+        border-radius: 14px;
+        font-size: 13px;
+      }
+      .cap small{ font-size: 12px; }
+    }
 
-  .shot,
-  .shot.big{
-    grid-column: 1 / -1 !important;
-  }
-
-  /* делаем фото выше */
-  .shot{
-    aspect-ratio: 4 / 3;
-  }
-  .shot.big{
-    aspect-ratio: 16 / 10;
-  }
-
-  /* подпись компактнее, не съедает кадр */
-  .cap{
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    padding: 8px 10px;
-    border-radius: 14px;
-    font-size: 13px;
-  }
-  .cap small{
-    font-size: 12px;
+    /* ===== FIXED PAY BUTTON ===== */
+    .sbp-fixed-btn{
+      position:fixed;
+      bottom:16px;
+      left:50%;
+      transform:translateX(-50%);
+      width:calc(100% - 32px);
+      max-width:420px;
+      padding:18px;
+      border-radius:999px;
+      background:#ff5fa2;
+      color:#fff;
+      font-size:17px;
+      font-weight:900;
+      text-align:center;
+      text-decoration:none;
+      box-shadow:0 14px 35px rgba(255,95,162,.55);
+      z-index:9999;
     }
   </style>
 </head>
+
 <body>
   <main class="page">
 
@@ -619,7 +612,6 @@
             <span class="badge__dot"></span>
             Скоро открытие
           </div>
-
           <h1 class="heroTitle">DOGGY YOGA</h1>
           <p class="heroSub">
             Йога с собаками в Воронеже — уютная практика и живой контакт, чтобы выдохнуть и расслабиться 💗
@@ -633,16 +625,19 @@
             <a class="navIcon" href="#partners"><span class="navDot">🤝</span><span class="navText">Партнёрам</span></a>
           </nav>
 
+          <!-- ✅ FIXED HERO CTA -->
           <div class="heroActions">
             <div class="heroCTA">
               <a class="btn btnPrimary" href="https://t.me/dogaspacevoronezh" target="_blank" rel="noreferrer">
-                Хочу на первую запись 
-             <div class="ctaNote">Ответим в Telegram 💬</div>
-            </div>
-            <a class="btn btnGhost" href="#about">Узнать формат</a>
-          </div>
+                Хочу на первую запись
+                <span class="ctaNote">Ответим в Telegram 💬</span>
+              </a>
 
-          <div class="heroNote">Стартуем скоро — оставь контакт, и мы напишем первой.</div>
+              <a class="btn btnGhost" href="#about">Узнать формат</a>
+            </div>
+
+            <div class="heroNote">Стартуем скоро — оставь контакт, и мы напишем первой.</div>
+          </div>
 
           <div class="quick" aria-label="Коротко о формате">
             <div class="qItem">
@@ -794,9 +789,9 @@
 
       <div class="contact">
         <div class="box">
-          <strong>Контакты:</strong>
-          <small>Telegram: @doggy_yoga_vrn</small>
-          <small>Instagram: @yourname</small>
+          <strong>Контакты:</strong><br>
+          <small>Telegram: @doggy_yoga_vrn</small><br>
+          <small>Instagram: @yourname</small><br>
           <small>Город: Воронеж</small>
         </div>
 
@@ -806,53 +801,15 @@
         </div>
       </div>
     </section>
+
   </main>
-  
-  <script>
-  const PAY_URL = "https://www.tinkoff.ru/rm/r_jPZXJUujIW.QlVYfMypxm/LWHjQ90751";
-  const QR_URL = "https://chart.googleapis.com/chart?cht=qr&chs=700x700&chl=" + encodeURIComponent(PAY_URL);
 
-  const openBtn = document.getElementById("payOpen");
-  const closeBtn = document.getElementById("payClose");
-  const backdrop = document.getElementById("payBackdrop");
-
-  const qrImg = document.getElementById("payQr");
-  const qrLink = document.getElementById("payQrLink");
-  const goBtn  = document.getElementById("payGo");
-  const copyBtn= document.getElementById("payCopy");
-
-  function isMobile(){
-    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
-      || (navigator.maxTouchPoints && navigator.maxTouchPoints > 1);
-  }
-
-  openBtn.onclick = () => {
-    if (isMobile()) {
-      window.open(PAY_URL, "_blank");
-      return;
-    }
-
-    qrImg.src = QR_URL;
-    qrLink.href = PAY_URL;
-    goBtn.href = PAY_URL;
-    backdrop.style.display = "flex";
-  };
-
-  closeBtn.onclick = () => backdrop.style.display = "none";
-  backdrop.onclick = e => e.target === backdrop && (backdrop.style.display = "none");
-
-  copyBtn.onclick = () => {
-    navigator.clipboard.writeText(PAY_URL);
-    copyBtn.textContent = "Скопировано";
-    setTimeout(() => copyBtn.textContent = "Скопировать", 1200);
-  };
-</script>
+  <!-- ✅ FIXED PAY BUTTON -->
   <a href="https://www.tinkoff.ru/rm/r_jPZXJUujIW.QlVYfMypxm/LWHjQ90751"
-   class="sbp-fixed-btn"
-   target="_blank">
-  💗 Оплатить по СБП
+     class="sbp-fixed-btn"
+     target="_blank"
+     rel="noreferrer">
+    💗 Оплатить по СБП
   </a>
-</style>
-</a>
 </body>
 </html>
