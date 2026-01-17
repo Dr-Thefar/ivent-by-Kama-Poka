@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOGGY YOGGY — сторис 25</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:#000;
+    }
+
+    /* ===== STORY 9:16 ===== */
+    .story{
+      width:min(420px, 100%);
+      aspect-ratio:9/16;
+      position:relative;
+      overflow:hidden;
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,.04) 0%,
+          rgba(0,0,0,.18) 55%,
+          rgba(0,0,0,.32) 100%
+        ),
+        url("https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/yoga-corgi-1.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .story::before{
+      content:"";
+      position:absolute; inset:-20%;
+      background:
+        radial-gradient(520px 360px at 15% 6%, rgba(255,96,170,.4), transparent 60%),
+        radial-gradient(520px 360px at 85% 8%, rgba(90,200,255,.32), transparent 60%);
+      mix-blend-mode: screen;
+      opacity:.55;
+      pointer-events:none;
+    }
+
+    .content{
+      position:absolute; inset:0;
+      padding:18px;
+    }
+
+    /* ===== TOP ===== */
+    .safeTop{
+      padding-top:6px;
+      padding-left:10px;
+    }
+
+    .badge{
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.06em;
+      color:#fff;
+      margin-bottom:4px;
+      text-shadow:0 8px 30px rgba(0,0,0,.45);
+    }
+
+    .title{
+      font-weight:900;
+      font-size:46px;
+      line-height:.98;
+      color:#fff;
+      text-shadow:0 10px 34px rgba(0,0,0,.55);
+    }
+
+    .title span{
+      display:block;
+      background: linear-gradient(90deg, #ff5fa2, #ffd1e8);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .by{
+      margin-top:6px;
+      font-weight:800;
+      font-size:12.5px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.75);
+      text-shadow:0 6px 18px rgba(0,0,0,.45);
+    }
+
+    /* ===== CTA ZONE ===== */
+    .cta{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:120px;
+      width:100%;
+      max-width:360px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+    }
+
+    .btnFake{
+      width:100%;
+      padding:14px 18px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:15px;
+      text-align:center;
+      color:#fff;
+      background: rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(8px);
+      box-shadow:0 12px 28px rgba(0,0,0,.25);
+      pointer-events:none;
+      text-shadow:0 6px 18px rgba(0,0,0,.55);
+    }
+
+    .btn{
+      width:100%;
+      padding:18px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:16px;
+      color:#fff;
+      text-align:center;
+      background: linear-gradient(135deg,#ff7eb3,#ff758c);
+      box-shadow:0 18px 40px rgba(255,117,140,.45);
+      text-decoration:none;
+    }
+
+    .hint{
+      font-size:12.5px;
+      font-weight:900;
+      color:rgba(255,255,255,.95);
+      text-align:center;
+      text-shadow:0 10px 30px rgba(0,0,0,.55);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:28px; /* самый низ, но безопасно */
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.55);
+      text-shadow:0 4px 14px rgba(0,0,0,.45);
+      pointer-events:none;
+    }
+
+    @media (max-width:360px){
+      .cta{ bottom:105px; }
+      .footer{ bottom:24px; }
+      .title{ font-size:40px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="story">
+    <div class="content">
+
+      <!-- TOP -->
+      <div class="safeTop">
+        <div class="badge">25 ЯНВАРЯ • АНОНС</div>
+        <div class="title">
+          DOGGY
+          <span>YOGGY</span>
+        </div>
+        <div class="by">by Kama Poka</div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta">
+        <div class="btnFake">
+          ⏱ 60 минут · йога с собаками 🐾
+        </div>
+
+        <a class="btn" href="https://t.me/doggy_yoggy_vrn" target="_blank">
+          Записаться в Telegram
+        </a>
+
+        <div class="hint">
+          Нажми кнопку — подтвердим время и адрес
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer">elvium group project</div>
+
+    </div>
+  </div>
+</body>
+</html>
