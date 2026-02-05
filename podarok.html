@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -11,6 +11,7 @@
 
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
+
     body{
       font-family:'Montserrat',sans-serif;
       min-height:100vh;
@@ -20,37 +21,31 @@
     }
 
     /* ===== STORY 9:16 ===== */
-   .story{
-  width:min(420px, 100%);
-  aspect-ratio:9/16;
-  position:relative;
-  overflow:hidden;
+    .story{
+      width:min(420px, 100%);
+      aspect-ratio:9/16;
+      position:relative;
+      overflow:hidden;
 
-  /* премиальный золотой фон */
-  background:
-    radial-gradient(900px 600px at 15% 10%, rgba(255,230,180,.55), transparent 60%),
-    radial-gradient(900px 700px at 85% 20%, rgba(255,210,140,.35), transparent 60%),
-    radial-gradient(800px 600px at 50% 100%, rgba(210,170,100,.30), transparent 65%),
-    linear-gradient(
-      180deg,
-      #f8f1e6 0%,
-      #f1e4cc 35%,
-      #e8d2aa 65%,
-      #d6b57a 100%
-    );
-}
-    
+      /* премиальный "шампань" фон (без желтизны) */
+      background:
+        radial-gradient(900px 600px at 18% 8%, rgba(255,236,204,.55), transparent 60%),
+        radial-gradient(900px 700px at 85% 22%, rgba(240,205,145,.32), transparent 62%),
+        radial-gradient(800px 600px at 55% 105%, rgba(196,156,92,.26), transparent 65%),
+        linear-gradient(180deg, #fbf6ed 0%, #f2e4c8 40%, #ead3a4 72%, #d4b070 100%);
+    }
+
     /* мягкая текстура */
     .story::before{
       content:"";
       position:absolute; inset:-25%;
       background:
-        radial-gradient(1px 1px at 10% 15%, rgba(35,25,15,.14) 0 1px, transparent 2px),
+        radial-gradient(1px 1px at 10% 15%, rgba(35,25,15,.12) 0 1px, transparent 2px),
         radial-gradient(1px 1px at 55% 35%, rgba(35,25,15,.10) 0 1px, transparent 2px),
         radial-gradient(1px 1px at 80% 70%, rgba(35,25,15,.10) 0 1px, transparent 2px),
         radial-gradient(1px 1px at 30% 75%, rgba(35,25,15,.08) 0 1px, transparent 2px);
       background-size: 180px 180px;
-      opacity:.55;
+      opacity:.45;
       pointer-events:none;
       transform: rotate(-8deg);
     }
@@ -62,9 +57,9 @@
       background:
         linear-gradient(120deg,
           transparent 0%,
-          rgba(255,255,255,.28) 22%,
+          rgba(255,255,255,.22) 22%,
           transparent 48%,
-          rgba(255,255,255,.16) 70%,
+          rgba(255,255,255,.12) 70%,
           transparent 100%);
       opacity:.35;
       pointer-events:none;
@@ -74,29 +69,19 @@
 
     .content{
       position:absolute; inset:0;
-      padding:20px;
+      padding:18px;                 /* чуть плотнее */
       display:flex;
       flex-direction:column;
-      gap:16px;
+      gap:12px;                     /* меньше “разъезда” */
     }
 
     /* ===== TOP ===== */
     .top{
-.top{
-  padding-top:0;
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-.title{
-  margin-top:-8px;
-  font-family:'Playfair Display', serif;
-  font-weight:700;
-  font-size:34px;
-  line-height:1.02;
-  color:#1d1711;
-}
+      padding-top:0;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
 
     .brandRow{
       display:flex;
@@ -109,15 +94,14 @@
     .logo{
       display:flex;
       align-items:center;
-      gap:10px;
     }
 
-.logo svg{
-  height:86px;          /* крупнее */
-  width:auto;
-  filter: drop-shadow(0 10px 22px rgba(0,0,0,.14)); /* чтобы читался на золоте */
-  opacity:1;
-}
+    .logo svg{
+      height:86px;                  /* крупнее */
+      width:auto;
+      filter: drop-shadow(0 10px 22px rgba(0,0,0,.14));
+      opacity:1;
+    }
 
     .seal{
       display:flex;
@@ -125,43 +109,43 @@
       gap:8px;
       padding:8px 12px;
       border-radius:999px;
-      background: rgba(255,255,255,.55);
-      border: 1px solid rgba(120,90,40,.22);
+      background: rgba(255,255,255,.52);
+      border: 1px solid rgba(120,90,40,.18);
       box-shadow: 0 14px 30px rgba(25,20,15,.08);
       backdrop-filter: blur(8px);
       font-size:11px;
       font-weight:900;
       letter-spacing:.12em;
       text-transform:uppercase;
-      color: rgba(65,50,25,.78);
+      color: rgba(55,40,18,.78);
       white-space:nowrap;
     }
 
-  .title{
-      margin-top:-6px;
+    .title{
+      margin-top:-8px;
       font-family:'Playfair Display', serif;
       font-weight:700;
-      font-size:38px;
+      font-size:34px;
       line-height:1.02;
       color:#1d1711;
     }
 
     .title .accent{
       display:inline-block;
-      background: linear-gradient(90deg, #8a6b2a, #d8b36a, #8a6b2a);
+      background: linear-gradient(90deg, #7a5b22, #d8b36a, #6b4f1d);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
 
     /* ===== CARD ===== */
     .card{
-      margin-top:6px;
+      margin-top:4px;
       flex:1;
       position:relative;
       border-radius:26px;
       padding:18px 18px 16px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid rgba(120,90,40,.18);
+      background: rgba(255,255,255,.60);
+      border: 1px solid rgba(120,90,40,.16);
       box-shadow: 0 24px 60px rgba(25,20,15,.12);
       backdrop-filter: blur(10px);
       overflow:hidden;
@@ -171,10 +155,10 @@
       content:"";
       position:absolute; inset:-40%;
       background:
-        radial-gradient(520px 360px at 15% 20%, rgba(216,179,106,.28), transparent 60%),
-        radial-gradient(520px 360px at 85% 10%, rgba(255,160,185,.22), transparent 60%),
-        radial-gradient(520px 360px at 60% 85%, rgba(120,190,255,.18), transparent 60%);
-      opacity:.65;
+        radial-gradient(520px 360px at 15% 20%, rgba(216,179,106,.22), transparent 60%),
+        radial-gradient(520px 360px at 85% 10%, rgba(255,160,185,.14), transparent 60%),
+        radial-gradient(520px 360px at 60% 85%, rgba(120,190,255,.12), transparent 60%);
+      opacity:.60;
       pointer-events:none;
     }
 
@@ -184,13 +168,6 @@
       display:flex;
       flex-direction:column;
       gap:14px;
-    }
-
-    .metaRow{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      justify-content:space-between;
     }
 
     .meta{
@@ -205,27 +182,6 @@
       letter-spacing:.18em;
       text-transform:uppercase;
       color: rgba(60,45,20,.55);
-    }
-
-    .metaValue{
-      font-size:13px;
-      font-weight:800;
-      color:#1c1610;
-      letter-spacing:.02em;
-    }
-
-    .chip{
-      padding:10px 12px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:11px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:#1c1610;
-      background: rgba(255,255,255,.70);
-      border: 1px solid rgba(120,90,40,.18);
-      box-shadow: 0 12px 26px rgba(25,20,15,.08);
-      white-space:nowrap;
     }
 
     .to{
@@ -246,8 +202,28 @@
     .line{
       height:1px;
       width:100%;
-      background: linear-gradient(90deg, transparent, rgba(120,90,40,.25), transparent);
+      background: linear-gradient(90deg, transparent, rgba(120,90,40,.22), transparent);
       margin:4px 0;
+    }
+
+    /* ===== PHOTO (без рамки, “вплавлено”) ===== */
+    .photoWrap{
+      margin:10px -18px 8px;        /* edge-to-edge */
+      position:relative;
+    }
+
+    .photoWrap img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+      display:block;
+      border-radius:0;              /* без рамки */
+      box-shadow:none;              /* без фоторамки */
+      filter: contrast(1.05) saturate(.95);
+
+      /* мягкое растворение по краям (дорогой эффект) */
+      -webkit-mask-image: radial-gradient(120% 95% at 50% 40%, #000 60%, transparent 100%);
+              mask-image: radial-gradient(120% 95% at 50% 40%, #000 60%, transparent 100%);
     }
 
     .wish{
@@ -265,22 +241,13 @@
       gap:10px;
     }
 
-    .noteBox{
-      padding:12px 14px;
-      border-radius:18px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(120,90,40,.16);
-      color: rgba(35,28,20,.78);
-      font-size:12px;
-      line-height:1.35;
-      font-weight:700;
-    }
-
+    /* Убрали “пустой” блок: noteBox не нужен — оставим только кнопку */
     .actions{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:12px;
+      padding-top:2px;
     }
 
     .contact{
@@ -302,15 +269,15 @@
       font-size:12px;
       letter-spacing:.08em;
       color:#fff;
-      background: linear-gradient(135deg, #9b7a2f, #d8b36a);
-      box-shadow: 0 18px 38px rgba(155,122,47,.25);
-      border: 1px solid rgba(120,90,40,.18);
+      background: linear-gradient(135deg, #7f5f21, #d8b36a);
+      box-shadow:0 18px 38px rgba(155,122,47,.22);
+      border:1px solid rgba(120,90,40,.16);
       white-space:nowrap;
     }
 
     /* ===== FOOTER ===== */
     .footer{
-      margin-top:2px;
+      margin-top:0;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -320,6 +287,7 @@
       letter-spacing:.16em;
       text-transform:uppercase;
       font-size:10.5px;
+      padding:0 2px;
     }
 
     .mini{
@@ -331,52 +299,12 @@
     }
 
     @media (max-width:360px){
-      .title{ font-size:34px; }
+      .title{ font-size:30px; }
       .toName{ font-size:27px; }
       .card{ border-radius:22px; }
-      .logo svg{ height:38px; }
+      .logo svg{ height:76px; }
+      .photoWrap img{ height:220px; }
     }
-  .photoWrap{
-  margin:12px 0 6px;
-  width:100%;
-  display:flex;
-  justify-content:center;
-}
-
-.photoWrap img{
-  width:100%;
-  max-height:220px;
-  object-fit:cover;
-  border-radius:20px;
-  box-shadow:0 14px 35px rgba(0,0,0,.18);
-}
-
-  /* мягкое растворение снизу */
-  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-}
-      /* Фото "без рамки" — во всю ширину карточки + мягкие края */
-.photoWrap{
-  margin:12px -18px 10px;  /* -18px = padding карточки, фото становится edge-to-edge */
-  position:relative;
-}
-
-.photoWrap img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
-  display:block;
-  border-radius:0;          /* КЛЮЧ: убираем рамочное скругление */
-  box-shadow:none;          /* КЛЮЧ: не надо "фоторамку" */
-
-  /* мягкое растворение по краям (дорогой эффект) */
-  -webkit-mask-image:
-    radial-gradient(120% 95% at 50% 40%, #000 60%, transparent 100%);
-          mask-image:
-    radial-gradient(120% 95% at 50% 40%, #000 60%, transparent 100%);
-
-  filter: contrast(1.05) saturate(.95);
-}
   </style>
 </head>
 
@@ -390,13 +318,13 @@
 
           <!-- LOGO (SVG) -->
           <div class="logo" aria-label="Doggy Yoggy logo">
-            <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" role="img">
+            <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Doggy Yoggy">
               <defs>
-              <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-               <stop offset="0%" stop-color="#8a6b2a"/>
-               <stop offset="50%" stop-color="#d8b36a"/>
-               <stop offset="100%" stop-color="#6f5420"/>
-               </linearGradient>
+                <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#8a6b2a"/>
+                  <stop offset="50%" stop-color="#d8b36a"/>
+                  <stop offset="100%" stop-color="#6f5420"/>
+                </linearGradient>
               </defs>
 
               <text x="50%" y="42%"
@@ -430,16 +358,16 @@
       <div class="card">
         <div class="cardInner">
 
-       <div class="to">
-  <div class="metaLabel">Получатель</div>
-  <div class="toName">Екатерина</div>
-  <div class="line"></div>
+          <div class="to">
+            <div class="metaLabel">Получатель</div>
+            <div class="toName">Екатерина</div>
+            <div class="line"></div>
 
-  <div class="photoWrap">
-    <img src="katya.jpg" alt="Екатерина">
-  </div>
+            <div class="photoWrap">
+              <img src="katya.jpg" alt="Екатерина">
+            </div>
+          </div>
 
-</div>
           <div class="meta">
             <div class="metaLabel">Пожелание</div>
             <div class="wish">
@@ -448,10 +376,6 @@
           </div>
 
           <div class="note">
-            <div class="noteBox">
-              <br>Можно подарить другому человеку — просто сообщите имя при бронировании.
-            </div>
-
             <div class="actions">
               <div class="contact">Запись в Telegram</div>
               <a class="link" href="https://t.me/doggy_yoggy_vrn" target="_blank" rel="noreferrer">
