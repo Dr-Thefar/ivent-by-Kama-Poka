@@ -20,20 +20,26 @@
     }
 
     /* ===== STORY 9:16 ===== */
-    .story{
-      width:min(420px, 100%);
-      aspect-ratio:9/16;
-      position:relative;
-      overflow:hidden;
+   .story{
+  width:min(420px, 100%);
+  aspect-ratio:9/16;
+  position:relative;
+  overflow:hidden;
 
-      /* премиальный светлый фон + тёплый зол.акцент */
-      background:
-        radial-gradient(1200px 900px at 10% 10%, rgba(255, 224, 170, .30), transparent 55%),
-        radial-gradient(900px 700px at 90% 20%, rgba(255, 190, 210, .24), transparent 55%),
-        radial-gradient(900px 700px at 40% 95%, rgba(160, 210, 255, .18), transparent 55%),
-        linear-gradient(180deg, #fbf7f2 0%, #f6efe7 45%, #f3e9e0 100%);
-    }
-
+  /* премиальный золотой фон */
+  background:
+    radial-gradient(900px 600px at 15% 10%, rgba(255,230,180,.55), transparent 60%),
+    radial-gradient(900px 700px at 85% 20%, rgba(255,210,140,.35), transparent 60%),
+    radial-gradient(800px 600px at 50% 100%, rgba(210,170,100,.30), transparent 65%),
+    linear-gradient(
+      180deg,
+      #f8f1e6 0%,
+      #f1e4cc 35%,
+      #e8d2aa 65%,
+      #d6b57a 100%
+    );
+}
+    
     /* мягкая текстура */
     .story::before{
       content:"";
@@ -96,10 +102,10 @@
       gap:10px;
     }
 
-    .logo svg{
-      display:block;
-      height:42px;
-      width:auto;
+   .logo svg{
+  display:block;
+  height:110px;
+  width:auto;
     }
 
     .seal{
@@ -372,15 +378,6 @@
       <div class="card">
         <div class="cardInner">
 
-          <div class="metaRow">
-            <div class="meta">
-              <div class="metaLabel">Номер</div>
-              <div class="metaValue">DY-2026-ЕК-01</div>
-            </div>
-
-            <div class="chip">Dog-friendly experience 🐾</div>
-          </div>
-
           <div class="to">
             <div class="metaLabel">Получатель</div>
             <div class="toName">Екатерина</div>
@@ -396,7 +393,6 @@
 
           <div class="note">
             <div class="noteBox">
-              Сертификат можно использовать на мероприятие Doggy Yoggy (формат и дату согласуем при записи).
               <br>Можно подарить другому человеку — просто сообщите имя при бронировании.
             </div>
 
