@@ -89,12 +89,17 @@
       gap:12px;
     }
 
+    /* контейнер под svg-логотип */
     .logo{
-      font-weight:900;
-      letter-spacing:.08em;
-      font-size:12px;
-      color:rgba(25,20,15,.78);
-      text-transform:uppercase;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .logo svg{
+      display:block;
+      height:42px;
+      width:auto;
     }
 
     .seal{
@@ -112,6 +117,7 @@
       letter-spacing:.12em;
       text-transform:uppercase;
       color: rgba(65,50,25,.78);
+      white-space:nowrap;
     }
 
     .title{
@@ -311,6 +317,7 @@
       .title{ font-size:34px; }
       .toName{ font-size:27px; }
       .card{ border-radius:22px; }
+      .logo svg{ height:38px; }
     }
   </style>
 </head>
@@ -322,7 +329,37 @@
       <!-- TOP -->
       <div class="top">
         <div class="brandRow">
-          <div class="logo">DOGGY YOGGY</div>
+
+          <!-- LOGO (SVG) -->
+          <div class="logo" aria-label="Doggy Yoggy logo">
+            <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" role="img">
+              <defs>
+                <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#d9bf8b"/>
+                  <stop offset="50%" stop-color="#f1dbad"/>
+                  <stop offset="100%" stop-color="#b9995a"/>
+                </linearGradient>
+              </defs>
+
+              <text x="50%" y="42%"
+                    text-anchor="middle"
+                    fill="url(#gold)"
+                    font-size="150"
+                    font-family="Playfair Display, serif"
+                    letter-spacing="3">DY</text>
+
+              <text x="50%" y="60%"
+                    text-anchor="middle"
+                    fill="url(#gold)"
+                    font-size="46"
+                    font-family="Playfair Display, serif"
+                    letter-spacing="1">Doggy Yoggy</text>
+
+              <line x1="230" y1="340" x2="470" y2="340"
+                    stroke="url(#gold)" stroke-width="1" opacity="0.6"/>
+            </svg>
+          </div>
+
           <div class="seal">Подарочный сертификат</div>
         </div>
 
@@ -350,6 +387,8 @@
             <div class="line"></div>
           </div>
 
+          <div class="meta">
+            <div class="metaLabel">Пожелание</div>
             <div class="wish">
               Пусть каждый день приносит тебе спокойствие, улыбки и ощущение, что всё на своём месте 🤍
             </div>
@@ -357,7 +396,7 @@
 
           <div class="note">
             <div class="noteBox">
-              
+              Сертификат можно использовать на мероприятие Doggy Yoggy (формат и дату согласуем при записи).
               <br>Можно подарить другому человеку — просто сообщите имя при бронировании.
             </div>
 
