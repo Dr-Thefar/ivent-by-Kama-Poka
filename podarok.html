@@ -82,10 +82,20 @@
 
     /* ===== TOP ===== */
     .top{
+.top{
   padding-top:0;
   display:flex;
   flex-direction:column;
-  gap:4px;
+  gap:6px;
+}
+
+.title{
+  margin-top:-8px;
+  font-family:'Playfair Display', serif;
+  font-weight:700;
+  font-size:34px;
+  line-height:1.02;
+  color:#1d1711;
 }
 
     .brandRow{
@@ -102,11 +112,12 @@
       gap:10px;
     }
 
-   .logo svg{
-  display:block;
-  height:110px;
+.logo svg{
+  height:86px;          /* крупнее */
   width:auto;
-    }
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,.14)); /* чтобы читался на золоте */
+  opacity:1;
+}
 
     .seal{
       display:flex;
@@ -344,6 +355,28 @@
   -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
 }
+      /* Фото "без рамки" — во всю ширину карточки + мягкие края */
+.photoWrap{
+  margin:12px -18px 10px;  /* -18px = padding карточки, фото становится edge-to-edge */
+  position:relative;
+}
+
+.photoWrap img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  display:block;
+  border-radius:0;          /* КЛЮЧ: убираем рамочное скругление */
+  box-shadow:none;          /* КЛЮЧ: не надо "фоторамку" */
+
+  /* мягкое растворение по краям (дорогой эффект) */
+  -webkit-mask-image:
+    radial-gradient(120% 95% at 50% 40%, #000 60%, transparent 100%);
+          mask-image:
+    radial-gradient(120% 95% at 50% 40%, #000 60%, transparent 100%);
+
+  filter: contrast(1.05) saturate(.95);
+}
   </style>
 </head>
 
@@ -359,11 +392,11 @@
           <div class="logo" aria-label="Doggy Yoggy logo">
             <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg" role="img">
               <defs>
-                <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#d9bf8b"/>
-                  <stop offset="50%" stop-color="#f1dbad"/>
-                  <stop offset="100%" stop-color="#b9995a"/>
-                </linearGradient>
+              <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+               <stop offset="0%" stop-color="#8a6b2a"/>
+               <stop offset="50%" stop-color="#d8b36a"/>
+               <stop offset="100%" stop-color="#6f5420"/>
+               </linearGradient>
               </defs>
 
               <text x="50%" y="42%"
