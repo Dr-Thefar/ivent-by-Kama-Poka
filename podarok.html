@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -325,6 +325,24 @@
       .card{ border-radius:22px; }
       .logo svg{ height:38px; }
     }
+    .photoWrap{
+  margin:12px 0 6px;
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+.photoWrap img{
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  border-radius:20px;
+  box-shadow:0 14px 35px rgba(0,0,0,.18);
+
+  /* мягкое растворение снизу */
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+}
   </style>
 </head>
 
@@ -378,12 +396,16 @@
       <div class="card">
         <div class="cardInner">
 
-          <div class="to">
-            <div class="metaLabel">Получатель</div>
-            <div class="toName">Екатерина</div>
-            <div class="line"></div>
-          </div>
+        <div class="to">
+  <div class="metaLabel">Получатель</div>
+  <div class="toName">Екатерина</div>
+  <div class="line"></div>
 
+  <div class="photoWrap">
+    <img src="katya.jpg" alt="Екатерина">
+  </div>
+
+</div>
           <div class="meta">
             <div class="metaLabel">Пожелание</div>
             <div class="wish">
