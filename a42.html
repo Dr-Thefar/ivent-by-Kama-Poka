@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOGGY YOGGY — обложка A5</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:#111;
+      position:relative;
+      width:100vw;
+      height:100vh;
+    }
+
+    /* ===== FLYER A5 ===== */
+    .flyer{
+      position:absolute;
+      top:0;
+      left:0;
+
+      width:148mm;
+      height:210mm;
+      overflow:hidden;
+
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,.35) 0%,
+          rgba(0,0,0,.45) 55%,
+          rgba(0,0,0,.55) 100%
+        ),
+        url("https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/Gemini_Generated_Image_ob0r8qob0r8qob0r.png");
+
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+
+    /* сильный blur + цветовые блики */
+    .flyer::before{
+      content:"";
+      position:absolute;
+      inset:-30%;
+      backdrop-filter: blur(1px);
+      background:
+        radial-gradient(520px 360px at 20% 15%, rgba(255,96,170,.35), transparent 60%),
+        radial-gradient(520px 360px at 80% 85%, rgba(90,200,255,.30), transparent 60%);
+      mix-blend-mode:screen;
+      opacity:.75;
+      pointer-events:none;
+    }
+
+    /* ===== LOGO ===== */
+    .logo{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .logo h1{
+      font-weight:900;
+      font-size:58px;
+      line-height:.95;
+      letter-spacing:.04em;
+      text-shadow:0 20px 60px rgba(0,0,0,.65);
+      color:#fff;
+    }
+
+    .logo h1 span{
+      display:block;
+      background:linear-gradient(90deg,#ff5fa2,#ffd1e8);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    @media print{
+      body{background:#fff}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="flyer" data-render="flyer">
+    <div class="logo">
+      <h1>
+        DOGGY
+        <span>YOGGY</span>
+      </h1>
+    </div>
+  </div>
+</body>
+</html>
