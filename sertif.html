@@ -1,217 +1,202 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOGGY YOGGY — подарочный сертификат A5</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:#111;
+      position:relative;
+      width:100vw;
+      height:100vh;
+    }
+
+    /* ===== FLYER A5 ===== */
+    .flyer{
+      position:absolute;
+      top:0;
+      left:0;
+
+      width:148mm;
+      height:210mm;
+      overflow:hidden;
+
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,.05) 0%,
+          rgba(0,0,0,.20) 60%,
+          rgba(0,0,0,.35) 100%
+        ),
+        url("https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/Gemini_Generated_Image_ob0r8qob0r8qob0r.png");
+
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+    }
+
+    .flyer::before{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background:
+        radial-gradient(520px 360px at 15% 6%, rgba(255,96,170,.40), transparent 60%),
+        radial-gradient(520px 360px at 85% 8%, rgba(90,200,255,.30), transparent 60%);
+      mix-blend-mode:screen;
+      opacity:.55;
+      pointer-events:none;
+    }
+
+    .content{
+      position:absolute;
+      inset:0;
+      padding:18px;
+      color:#fff;
+    }
+
+    /* ===== HEADER ===== */
+    .badge{
+      font-weight:900;
+      font-size:13px;
+      letter-spacing:.06em;
+      margin-bottom:6px;
+      text-shadow:0 8px 30px rgba(0,0,0,.45);
+    }
+
+    .title{
+      font-weight:900;
+      font-size:46px;
+      line-height:.98;
+      text-shadow:0 10px 34px rgba(0,0,0,.55);
+    }
+
+    .title span{
+      display:block;
+      background:linear-gradient(90deg,#ff5fa2,#ffd1e8);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .by{
+      margin-top:6px;
+      font-weight:800;
+      font-size:12.5px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.75);
+    }
+
+    /* ===== PERSONAL ===== */
+    .personal{
+      margin-top:18px;
+      max-width:320px;
+      text-shadow:0 10px 28px rgba(0,0,0,.55);
+    }
+
+    .to{
+      font-weight:900;
+      font-size:18px;
+      margin-bottom:6px;
+    }
+
+    .wish{
+      font-weight:700;
+      font-size:13.5px;
+      line-height:1.35;
+      color:rgba(255,255,255,.95);
+    }
+
+    .from{
+      margin-top:6px;
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.08em;
+      color:rgba(255,255,255,.75);
+    }
+
+    /* ===== QR ===== */
+    .qr{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:52px;
+      text-align:center;
+    }
+
+    .qr img{
+      width:110px;
+      height:110px;
+      object-fit:contain;
+    }
+
+    .qr-text{
+      margin-top:6px;
+      font-size:11.5px;
+      font-weight:900;
+      color:rgba(255,255,255,.95);
+      text-shadow:0 6px 18px rgba(0,0,0,.55);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:22px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.55);
+      text-shadow:0 4px 14px rgba(0,0,0,.45);
+    }
+
+    @media print{
+      body{ background:#fff; }
+    }
   </style>
 </head>
+
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="ru"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;DOGGY YOGGY — подарочный сертификат A5&lt;/title&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;display=swap" rel="stylesheet"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>*{box-sizing:border-box;margin:0;padding:0}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>body{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family:'Montserrat',sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>min-height:100vh;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display:grid;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>place-items:center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background:#111;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* ===== FLYER A5 ===== */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.flyer{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width:148mm;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height:210mm;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position:relative;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow:hidden;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-image:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>linear-gradient(</p>
-<p class="p1"><span class="Apple-converted-space">          </span>180deg,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>rgba(0,0,0,.05) 0%,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>rgba(0,0,0,.20) 60%,</p>
-<p class="p1"><span class="Apple-converted-space">          </span>rgba(0,0,0,.35) 100%</p>
-<p class="p1"><span class="Apple-converted-space">        </span>),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>url("https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/Gemini_Generated_Image_ob0r8qob0r8qob0r.png");</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-size:cover;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-position:center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-repeat:no-repeat;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.flyer::before{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>content:"";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position:absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>inset:-20%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background:</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(520px 360px at 15% 6%, rgba(255,96,170,.40), transparent 60%),</p>
-<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(520px 360px at 85% 8%, rgba(90,200,255,.30), transparent 60%);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>mix-blend-mode:screen;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>opacity:.55;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>pointer-events:none;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.content{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position:absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>inset:0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding:18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color:#fff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* ===== HEADER ===== */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.badge{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight:900;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size:13px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing:.06em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom:6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-shadow:0 8px 30px rgba(0,0,0,.45);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.title{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight:900;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size:46px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height:.98;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-shadow:0 10px 34px rgba(0,0,0,.55);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.title span{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display:block;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background:linear-gradient(90deg,#ff5fa2,#ffd1e8);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>-webkit-background-clip:text;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>-webkit-text-fill-color:transparent;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.by{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top:6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight:800;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size:12.5px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing:.12em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-transform:uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color:rgba(255,255,255,.75);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* ===== PERSONAL ===== */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.personal{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top:18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width:320px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-shadow:0 10px 28px rgba(0,0,0,.55);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.to{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight:900;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size:18px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom:6px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.wish{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight:700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size:13.5px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height:1.35;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color:rgba(255,255,255,.95);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.from{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top:6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight:800;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size:12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing:.08em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color:rgba(255,255,255,.75);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* ===== QR ===== */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.qr{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position:absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left:50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform:translateX(-50%);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>bottom:52px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align:center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.qr img{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width:110px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height:110px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>object-fit:contain;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.qr-text{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top:6px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size:11.5px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight:900;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color:rgba(255,255,255,.95);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-shadow:0 6px 18px rgba(0,0,0,.55);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>/* ===== FOOTER ===== */</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.footer{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position:absolute;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left:50%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>transform:translateX(-50%);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>bottom:22px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size:11px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight:800;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing:.18em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-transform:uppercase;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color:rgba(255,255,255,.55);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-shadow:0 4px 14px rgba(0,0,0,.45);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media print{</p>
-<p class="p1"><span class="Apple-converted-space">      </span>body{background:#fff}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="flyer"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="content"&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="badge"&gt;ПОДАРОЧНЫЙ СЕРТИФИКАТ • DOGGY YOGGY&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="title"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>DOGGY</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;YOGGY&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="by"&gt;by Kama Poka&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="personal"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="to"&gt;Для Екатерины &lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="wish"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>Пусть каждый день приносит тебе спокойствие, улыбки и ощущение,<span class="Apple-converted-space"> </span></p>
-<p class="p2"><span class="Apple-converted-space">          </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="wish"&gt;</p>
-<p class="p2"><span class="Apple-converted-space">          </span></p>
-<p class="p1"><span class="Apple-converted-space">          </span>что всё на своём месте<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="from"&gt;С любовью, Кристина&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="qr"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;img src="https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/qr-code.png" alt="QR код Doggy Yoggy"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="qr-text"&gt;Наведи камеру, чтобы активировать подарок&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="footer"&gt;elvium group project&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <div class="flyer" data-render="flyer">
+    <div class="content">
+
+      <div class="badge">ПОДАРОЧНЫЙ СЕРТИФИКАТ • DOGGY YOGGY</div>
+
+      <div class="title">
+        DOGGY
+        <span>YOGGY</span>
+      </div>
+      <div class="by">by Kama Poka</div>
+
+      <div class="personal">
+        <div class="to">Для Екатерины</div>
+        <div class="wish">
+          Пусть каждый день приносит тебе спокойствие, улыбки и ощущение,
+        </div>
+        <div class="wish">
+          что всё на своём месте
+        </div>
+        <div class="from">С любовью, Кристина</div>
+      </div>
+
+      <div class="qr">
+        <img src="https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/qr-code.png" alt="QR код Doggy Yoggy">
+        <div class="qr-text">Наведи камеру, чтобы активировать подарок</div>
+      </div>
+
+      <div class="footer">elvium group project</div>
+
+    </div>
+  </div>
 </body>
 </html>
