@@ -23,156 +23,146 @@
             --orange: #FF6535;
             --orange-dark: #E84B1F;
             --white: #FFFFFF;
-            --dark: #2C2C2C;
             --text: #1A1A1A;
-            --light-bg: #FBF9F6;
-            --cream: #FAF6F0;
+            --cream: #FBF9F6;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, var(--light-bg) 0%, var(--cream) 100%);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* ======== БОКОВАЯ ПЛАНКА ======== */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 50px;
-            height: 100vh;
-            background: linear-gradient(180deg, var(--orange) 0%, var(--orange-dark) 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem 0;
-            z-index: 1000;
-            box-shadow: 3px 0 15px rgba(255, 101, 53, 0.2);
-        }
-
-        .sidebar-title {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            font-family: 'Detstvo', serif;
-            font-size: 0.9rem;
-            color: var(--white);
-            transform: rotate(180deg);
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-btn {
-            width: 36px;
-            height: 36px;
-            background: var(--white);
-            color: var(--orange);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: 700;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-            margin: 1rem 0;
-        }
-
-        .sidebar-btn:hover {
-            transform: scale(1.15);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        /* ======== ОСНОВНОЙ КОНТЕНТ ======== */
-        main {
-            margin-left: 50px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 920px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* ======== HERO ======== */
-        .hero {
-            padding: 6rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
-            min-height: 75vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+        html, body {
+            width: 100%;
+            height: 100%;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 101, 53, 0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            top: 20%;
-            right: 10%;
-            z-index: 0;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, rgba(255, 101, 53, 0.06) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: 10%;
-            left: 5%;
-            z-index: 0;
-        }
-
-        .hero h1 {
-            font-family: 'Detstvo', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            position: relative;
-            z-index: 1;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #000;
             color: var(--text);
-            animation: fadeInDown 0.8s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        @keyframes fadeInDown {
+        /* ======== ОСНОВНОЙ КОНТЕЙНЕР ======== */
+        .book-viewport {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .book-carousel {
+            display: flex;
+            height: 100%;
+            transition: transform 0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+
+        .book-carousel.is-dragging {
+            transition: none;
+        }
+
+        .book-carousel.is-animating {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ======== СТРАНИЦА ======== */
+        .page-wrapper {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+        }
+
+        .page {
+            background: linear-gradient(135deg, var(--cream) 0%, #FDFCFA 100%);
+            padding: 3.5rem;
+            border-radius: 24px;
+            box-shadow: 
+                0 40px 100px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(255, 101, 53, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            animation: pageAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes pageAppear {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: scale(0.95);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: scale(1);
             }
         }
 
-        .hero-subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.85;
-            position: relative;
-            z-index: 1;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-            max-width: 650px;
-            line-height: 1.7;
-            color: var(--dark);
+        .page::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(255, 101, 53, 0.15) 50%, transparent 100%);
+            pointer-events: none;
         }
 
-        @keyframes fadeInUp {
+        .page::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 101, 53, 0.02) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 101, 53, 0.01) 0%, transparent 50%);
+            pointer-events: none;
+            opacity: 0;
+            animation: pageShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes pageShimmer {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            font-size: 0.9rem;
+            color: rgba(0, 0, 0, 0.3);
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+        }
+
+        .page:hover .page-number {
+            color: rgba(255, 101, 53, 0.5);
+        }
+
+        .page h1 {
+            font-family: 'Detstvo', serif;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+            line-height: 1.15;
+            animation: titleSlide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+            letter-spacing: -1px;
+        }
+
+        @keyframes titleSlide {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -183,132 +173,219 @@
             }
         }
 
-        .genre {
-            display: inline-block;
-            background: var(--orange);
-            color: var(--white);
-            padding: 0.6rem 1.5rem;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            z-index: 1;
-            border-radius: 30px;
-            animation: fadeInUp 0.8s ease-out 0.3s both;
-        }
-
-        .cta-main {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-            color: var(--white);
-            border: none;
-            padding: 1rem 2.5rem;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            border-radius: 4px;
-            box-shadow: 0 8px 24px rgba(255, 101, 53, 0.25);
-            position: relative;
-            z-index: 1;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .cta-main:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 36px rgba(255, 101, 53, 0.35);
-        }
-
-        .cta-main:active {
-            transform: translateY(-2px);
-        }
-
-        /* ======== СЕКЦИИ ======== */
-        .section {
-            padding: 5rem 2rem;
-            margin: 0;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .section:nth-child(odd) {
-            background: var(--white);
-        }
-
-        .section:nth-child(even) {
-            background: var(--cream);
-        }
-
-        .section h2 {
+        .page h2 {
             font-family: 'Detstvo', serif;
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            margin-bottom: 2rem;
-            color: var(--text);
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 60px;
-            height: 4px;
+            font-size: 2.2rem;
+            margin-bottom: 1.8rem;
             background: linear-gradient(90deg, var(--orange) 0%, var(--orange-dark) 100%);
-            border-radius: 2px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-bottom: 2px solid rgba(255, 101, 53, 0.2);
+            padding-bottom: 1.2rem;
+            animation: titleSlide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+            letter-spacing: -0.5px;
         }
 
-        /* ======== ОБЛОЖКА ======== */
-        .cover-section {
-            text-align: center;
-            padding: 4rem 2rem;
+        .page p {
+            margin-bottom: 1.3rem;
+            line-height: 1.85;
+            color: var(--text);
+            font-size: 1.05rem;
+            animation: textFadeIn 0.8s ease-out 0.2s both;
         }
 
-        .cover-image {
-            max-width: 380px;
-            width: 100%;
-            height: auto;
-            box-shadow: 0 12px 40px rgba(255, 101, 53, 0.2);
-            margin: 2rem 0;
-            border-radius: 8px;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            animation: zoomIn 0.8s ease-out;
-            border: 2px solid var(--orange);
-        }
-
-        @keyframes zoomIn {
+        @keyframes textFadeIn {
             from {
                 opacity: 0;
-                transform: scale(0.9);
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: translateY(0);
             }
         }
 
-        .cover-image:hover {
-            transform: scale(1.05) translateY(-8px);
-            box-shadow: 0 20px 50px rgba(255, 101, 53, 0.3);
+        .page strong {
+            color: var(--orange);
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
 
-        /* ======== О КНИГЕ ======== */
-        .synopsis {
-            background: rgba(255, 101, 53, 0.05);
-            padding: 2.5rem;
-            border-left: 4px solid var(--orange);
-            margin: 2rem 0;
-            border-radius: 8px;
-            animation: slideInLeft 0.8s ease-out;
+        .page strong:hover {
+            text-shadow: 0 0 10px rgba(255, 101, 53, 0.3);
         }
 
-        @keyframes slideInLeft {
+        .page em {
+            color: var(--orange-dark);
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        /* ======== ОБЛОЖКА ======== */
+        .cover-page {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -80px;
+            right: -80px;
+            animation: floatGently 4s ease-in-out infinite;
+        }
+
+        @keyframes floatGently {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); }
+        }
+
+        .cover-page::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -60px;
+            left: -60px;
+            animation: floatGently 5s ease-in-out infinite reverse;
+        }
+
+        .cover-image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: imageZoom 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes imageZoom {
             from {
                 opacity: 0;
-                transform: translateX(-30px);
+                transform: scale(0.85) rotateY(-20deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateY(0deg);
+            }
+        }
+
+        .cover-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .cover-image:hover {
+            transform: scale(1.02);
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.4),
+                0 0 40px rgba(255, 255, 255, 0.15);
+        }
+
+        .cover-page h1 {
+            font-size: 3.2rem;
+            color: var(--white);
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1.5rem;
+            animation: coverTitleAnim 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: -1px;
+        }
+
+        @keyframes coverTitleAnim {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .cover-page p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 3rem;
+            animation: textFadeIn 0.8s ease-out 0.2s both;
+            line-height: 1.7;
+        }
+
+        .cover-page .author {
+            font-family: 'Detstvo', serif;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 2;
+            animation: textFadeIn 0.8s ease-out 0.3s both;
+            margin-top: 2rem;
+        }
+
+        .cover-page .genre {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 0.7rem 2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 2rem;
+            animation: textFadeIn 0.8s ease-out 0.25s both;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .cover-page .genre:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* ======== ПЕРСОНАЖИ ======== */
+        .characters-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .character {
+            background: linear-gradient(135deg, rgba(255, 101, 53, 0.08) 0%, rgba(255, 101, 53, 0.03) 100%);
+            padding: 1.8rem;
+            border-left: 4px solid var(--orange);
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: characterSlide 0.6s ease-out;
+            border: 1px solid rgba(255, 101, 53, 0.15);
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes characterSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
             }
             to {
                 opacity: 1;
@@ -316,377 +393,591 @@
             }
         }
 
-        .synopsis p {
-            margin-bottom: 1.3rem;
-            line-height: 1.8;
-            color: var(--dark);
-            font-size: 1rem;
-        }
-
-        .synopsis strong {
-            color: var(--orange);
-            font-weight: 700;
-        }
-
-        .synopsis em {
-            color: var(--orange-dark);
-            font-style: italic;
-        }
-
-        /* ======== ПЕРСОНАЖИ ======== */
-        .characters {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .character {
-            background: linear-gradient(135deg, var(--white) 0%, rgba(255, 101, 53, 0.03) 100%);
-            color: var(--text);
-            padding: 2rem;
-            border: 2px solid rgba(255, 101, 53, 0.2);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .character::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--orange) 0%, var(--orange-dark) 100%);
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: transform 0.3s ease;
-        }
-
-        .character:hover::before {
-            transform: scaleY(1);
-        }
-
         .character:hover {
-            border-color: var(--orange);
-            box-shadow: 0 8px 24px rgba(255, 101, 53, 0.15);
-            transform: translateY(-4px);
+            background: linear-gradient(135deg, rgba(255, 101, 53, 0.15) 0%, rgba(255, 101, 53, 0.08) 100%);
+            border-left-color: var(--orange-dark);
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(255, 101, 53, 0.12);
         }
 
         .character h3 {
-            font-family: 'Detstvo', serif;
-            font-size: 1.5rem;
             color: var(--orange);
-            margin-bottom: 0.8rem;
+            font-family: 'Detstvo', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.6rem;
+            transition: all 0.3s ease;
+        }
+
+        .character:hover h3 {
+            color: var(--orange-dark);
+            text-shadow: 0 0 10px rgba(255, 101, 53, 0.2);
         }
 
         .character p {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--dark);
-            opacity: 0.9;
+            font-size: 1rem;
+            color: var(--text);
+            opacity: 0.85;
+            line-height: 1.6;
         }
 
         /* ======== ЦИТАТЫ ======== */
-        .quotes-section {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-            color: var(--white);
-            padding: 4rem 2rem;
-            margin: 0;
-        }
-
-        .quotes {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.5rem;
-            max-width: 920px;
-            margin: 0 auto;
-        }
-
         .quote {
-            padding: 2rem;
-            border-left: 4px solid var(--white);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            animation: fadeInUp 0.8s ease-out;
+            background: linear-gradient(135deg, rgba(255, 101, 53, 0.1) 0%, rgba(255, 101, 53, 0.05) 100%);
+            padding: 1.8rem;
+            border-left: 4px solid var(--orange);
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            font-style: italic;
+            line-height: 1.8;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: quoteSlide 0.6s ease-out;
+            border: 1px solid rgba(255, 101, 53, 0.1);
+            backdrop-filter: blur(5px);
+            position: relative;
+        }
+
+        @keyframes quoteSlide {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quote::before {
+            content: '"';
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.05;
+            top: -20px;
+            left: 10px;
+            font-family: 'Detstvo', serif;
         }
 
         .quote:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .quote p {
-            margin-bottom: 1rem;
-            font-style: italic;
-            font-weight: 500;
-            line-height: 1.7;
+            background: linear-gradient(135deg, rgba(255, 101, 53, 0.15) 0%, rgba(255, 101, 53, 0.1) 100%);
+            border-left-color: var(--orange-dark);
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(255, 101, 53, 0.12);
         }
 
         .quote-author {
-            font-size: 0.8rem;
-            opacity: 0.95;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ======== CTA РАЗДЕЛ ======== */
-        .cta-final {
-            padding: 5rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
-        }
-
-        .cta-final h2 {
-            font-family: 'Detstvo', serif;
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            margin-bottom: 1.5rem;
-            color: var(--text);
-        }
-
-        .cta-final p {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.85;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-            color: var(--dark);
-        }
-
-        /* ======== FOOTER ======== */
-        footer {
-            background: var(--white);
-            color: var(--dark);
-            padding: 2rem;
-            text-align: center;
-            border-top: 2px solid rgba(255, 101, 53, 0.2);
-            font-size: 0.9rem;
-            margin-left: 50px;
-        }
-
-        footer a {
+            text-align: right;
+            font-weight: 600;
             color: var(--orange);
-            text-decoration: none;
+            font-style: normal;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
         }
 
-        footer a:hover {
+        .quote:hover .quote-author {
             color: var(--orange-dark);
-            text-decoration: underline;
+        }
+
+        /* ======== ИНДИКАТОР СТРАНИЦ ======== */
+        .page-dots {
+            position: fixed;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.8rem;
+            z-index: 100;
+            animation: dotsSlideUp 0.6s ease-out 0.5s both;
+        }
+
+        @keyframes dotsSlideUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid rgba(255, 255, 255, 0);
+        }
+
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.3);
+        }
+
+        .dot.active {
+            background: var(--orange);
+            width: 28px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255, 101, 53, 0.6);
+        }
+
+        /* ======== HINT TEXT ======== */
+        .swipe-hint {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            animation: hintFade 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes hintFade {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
         }
 
         /* ======== МОБИЛЬНЫЙ ДИЗАЙН ======== */
+        @media (max-width: 1024px) {
+            .page {
+                padding: 2.5rem;
+                border-radius: 20px;
+            }
+
+            .page h1 {
+                font-size: 2.2rem;
+            }
+
+            .page h2 {
+                font-size: 1.8rem;
+            }
+        }
+
         @media (max-width: 768px) {
-            .sidebar {
-                width: 45px;
+            .page-wrapper {
+                padding: 1.5rem;
             }
 
-            main {
-                margin-left: 45px;
+            .page {
+                padding: 2rem 1.5rem;
+                border-radius: 16px;
             }
 
-            .hero h1 {
+            .page h1 {
                 font-size: 2rem;
             }
 
-            .section h2 {
-                font-size: 1.8rem;
+            .page h2 {
+                font-size: 1.6rem;
             }
 
-            .container {
-                padding: 0 1.5rem;
+            .page p {
+                font-size: 1rem;
             }
 
-            .characters {
-                grid-template-columns: 1fr;
+            .cover-page h1 {
+                font-size: 2.5rem;
             }
 
-            .quotes {
-                grid-template-columns: 1fr;
+            .cover-image {
+                max-height: 380px;
             }
 
-            footer {
-                margin-left: 45px;
-                padding: 1.5rem 1rem;
+            .page-dots {
+                bottom: 2rem;
             }
 
-            .sidebar-title {
-                font-size: 0.7rem;
-                margin-bottom: 1rem;
-            }
-
-            .sidebar-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 0.7rem;
+            .swipe-hint {
+                bottom: 0.5rem;
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 480px) {
-            .sidebar {
-                width: 40px;
-                padding: 1rem 0;
+            .page-wrapper {
+                padding: 1rem;
             }
 
-            main {
-                margin-left: 40px;
+            .page {
+                padding: 1.5rem 1rem;
+                border-radius: 12px;
             }
 
-            .hero {
-                padding: 4rem 1rem;
-                min-height: 60vh;
-            }
-
-            .hero h1 {
+            .page h1 {
                 font-size: 1.6rem;
+                margin-bottom: 1rem;
             }
 
-            .hero-subtitle {
+            .page h2 {
+                font-size: 1.4rem;
+            }
+
+            .page p {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+
+            .cover-page h1 {
+                font-size: 2rem;
+            }
+
+            .cover-page p {
                 font-size: 1rem;
             }
 
-            .section {
-                padding: 3rem 1rem;
+            .cover-image {
+                max-height: 320px;
             }
 
-            .section h2 {
-                font-size: 1.5rem;
+            .character {
+                padding: 1.3rem;
             }
 
-            footer {
-                margin-left: 40px;
+            .character h3 {
+                font-size: 1.2rem;
             }
 
-            .sidebar-btn {
-                width: 28px;
-                height: 28px;
-                font-size: 0.65rem;
-                margin: 0.8rem 0;
+            .page-dots {
+                bottom: 1.5rem;
+                gap: 0.6rem;
+            }
+
+            .dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            .dot.active {
+                width: 24px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- БОКОВАЯ ПЛАНКА -->
-    <aside class="sidebar">
-        <div class="sidebar-title">Лия Моррейн</div>
-        <button class="sidebar-btn" onclick="document.querySelector('.cover-section').scrollIntoView({behavior:'smooth'})">📖</button>
-        <button class="sidebar-btn" onclick="document.querySelector('.synopsis-section').scrollIntoView({behavior:'smooth'})">📝</button>
-        <button class="sidebar-btn" onclick="document.querySelector('.characters-section').scrollIntoView({behavior:'smooth'})">👥</button>
-        <button class="sidebar-btn" onclick="document.querySelector('.quotes-section').scrollIntoView({behavior:'smooth'})">💭</button>
-        <button class="sidebar-btn" onclick="document.querySelector('.cta-final').scrollIntoView({behavior:'smooth'})">🛒</button>
-    </aside>
-
-    <!-- ОСНОВНОЙ КОНТЕНТ -->
-    <main>
-        <!-- HERO -->
-        <section class="hero">
-            <h1>Ты ушла, зная...</h1>
-            <p class="hero-subtitle">Она оставила его с вопросом, на который нет ответа.<br>История о любви, которая спасает и убивает одновременно.</p>
-            <div class="genre">Психологический роман</div>
-            <button class="cta-main">Начать читать</button>
-        </section>
-
-        <!-- ОБЛОЖКА -->
-        <section class="section cover-section">
-            <div class="container">
-                <h2>Обложка</h2>
-                <img src="https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/ты_ушла.png" 
-                     alt="Обложка книги Ты ушла, зная..." 
-                     class="cover-image">
-            </div>
-        </section>
-
-        <!-- О КНИГЕ -->
-        <section class="section synopsis-section">
-            <div class="container">
-                <h2>История</h2>
-                <div class="synopsis">
-                    <p>
-                        <strong>Адам</strong> держится за <strong>Анну</strong> как утопающий за доску. Его депрессия — не болезнь, а способ существования. Единственное, что его спасает — это она. Единственное, что его убивает — это тоже она.
-                    </p>
-                    <p>
-                        Их отношения — это не любовь. Это <em>выживание</em>. Это танец на грани безумия, где каждый шаг может быть последним. Терапия. Кризисы. Ночи, когда кажется, что вот сейчас всё закончится.
-                    </p>
-                    <p>
-                        Но что происходит, когда даже любовь становится недостаточной? Когда спасение превращается в тюрьму? Когда нужно выбрать между чувством и жизнью?
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ПЕРСОНАЖИ -->
-        <section class="section characters-section">
-            <div class="container">
-                <h2>На грани</h2>
-                <div class="characters">
-                    <div class="character">
-                        <h3>Адам</h3>
-                        <p>26 лет. Борется не с депрессией, а с самим собой. Видит спасение только в одном человеке. И это опасно.</p>
-                    </div>
-                    <div class="character">
-                        <h3>Анна</h3>
-                        <p>24 года. Хотела спасти его. Вместо этого медленно тонет в его мире. Каждый день дальше от спасения.</p>
-                    </div>
-                    <div class="character">
-                        <h3>Их история</h3>
-                        <p>Не роман. Не трагедия. Это паутина, в которой оба уже запутаны. И выхода нет.</p>
+    <div class="book-viewport">
+        <div class="book-carousel" id="carousel">
+            <!-- СТРАНИЦА 1: ОБЛОЖКА -->
+            <div class="page-wrapper">
+                <div class="page cover-page">
+                    <div class="cover-image-container">
+                        <img src="https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/ты_ушла.png" 
+                             alt="Обложка книги" 
+                             class="cover-image">
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- ЦИТАТЫ -->
-        <section class="section quotes-section">
-            <div class="container">
-                <h2 style="color: var(--white); margin-bottom: 2rem;">Из книги</h2>
-                <div class="quotes">
-                    <div class="quote">
-                        <p>"Я полюбил её потому, что не знал, как не умереть"</p>
-                        <div class="quote-author">Адам</div>
-                    </div>
-                    <div class="quote">
-                        <p>"Можно ли выжить, если любовь — это единственный способ не падать?"</p>
-                        <div class="quote-author">Центральный вопрос</div>
-                    </div>
-                    <div class="quote">
-                        <p>"Она ушла, потому что спасти его невозможно. Спасать он может только сам"</p>
-                        <div class="quote-author">О конце</div>
-                    </div>
+            <!-- СТРАНИЦА 2: ТИТУЛЬНАЯ -->
+            <div class="page-wrapper">
+                <div class="page">
+                    <h1>Ты ушла, зная...</h1>
+                    <p style="margin-bottom: 3rem; font-size: 1.15rem; opacity: 0.85;">История о любви, которая спасает и убивает одновременно.</p>
+                    <div class="genre">Психологический роман</div>
+                    <p style="margin-top: auto; text-align: center; font-weight: 600; letter-spacing: 0.5px;">Лия Моррейн</p>
+                    <div class="page-number">2</div>
                 </div>
             </div>
-        </section>
 
-        <!-- ФИНАЛЬНЫЙ CTA -->
-        <section class="cta-final">
-            <div class="container">
-                <h2>Готовы столкнуться с этой историей?</h2>
-                <p>Она не даст вам спать. Она не даст вам забыть. Она заставит пересмотреть всё, что вы знаете о любви, о спасении, о себе.</p>
-                <button class="cta-main">Заказать прямо сейчас</button>
+            <!-- СТРАНИЦА 3: О КНИГЕ (ЧАСТЬ 1) -->
+            <div class="page-wrapper">
+                <div class="page">
+                    <h2>История</h2>
+                    <p>
+                        <strong>Адам</strong> держится за <strong>Анну</strong> как утопающий за доску. Его депрессия — не болезнь, а способ существования.
+                    </p>
+                    <p>
+                        Единственное, что его спасает — это она. Единственное, что его убивает — это тоже она.
+                    </p>
+                    <p>
+                        Их отношения — это не любовь. Это <em>выживание</em>.
+                    </p>
+                    <div class="page-number">3</div>
+                </div>
             </div>
-        </section>
 
-        <!-- FOOTER -->
-        <footer>
-            <p>&copy; 2024 "Ты ушла, зная..." Лия Моррейн | Психологический роман</p>
-            <p><a href="mailto:info@example.com">Связаться с автором</a></p>
-        </footer>
-    </main>
+            <!-- СТРАНИЦА 4: О КНИГЕ (ЧАСТЬ 2) -->
+            <div class="page-wrapper">
+                <div class="page">
+                    <p>
+                        Это танец на грани безумия, где каждый шаг может быть последним. Терапия. Кризисы. Ночи, когда кажется, что вот сейчас всё закончится.
+                    </p>
+                    <p style="margin-top: 2rem;">
+                        Но что происходит, когда даже любовь становится недостаточной? Когда спасение превращается в тюрьму?
+                    </p>
+                    <p style="margin-top: 2rem;">
+                        Когда нужно выбрать между чувством и жизнью?
+                    </p>
+                    <div class="page-number">4</div>
+                </div>
+            </div>
+
+            <!-- СТРАНИЦА 5: ПЕРСОНАЖИ (ЧАСТЬ 1) -->
+            <div class="page-wrapper">
+                <div class="page">
+                    <h2>На грани</h2>
+                    <div class="characters-grid">
+                        <div class="character">
+                            <h3>Адам</h3>
+                            <p>26 лет. Борется не с депрессией, а с самим собой. Видит спасение только в одном человеке. И это опасно.</p>
+                        </div>
+                        <div class="character">
+                            <h3>Анна</h3>
+                            <p>24 года. Хотела спасти его. Вместо этого медленно тонет в его мире. Каждый день дальше от спасения.</p>
+                        </div>
+                    </div>
+                    <div class="page-number">5</div>
+                </div>
+            </div>
+
+            <!-- СТРАНИЦА 6: ПЕРСОНАЖИ (ЧАСТЬ 2) -->
+            <div class="page-wrapper">
+                <div class="page">
+                    <div style="margin-bottom: 2rem;">
+                        <div class="character">
+                            <h3>Их история</h3>
+                            <p>Не роман. Не трагедия. Это паутина, в которой оба уже запутаны. И выхода нет.</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(0, 0, 0, 0.08);">
+                        <p style="font-style: italic; color: var(--orange); font-weight: 600; font-size: 1.1rem;">
+                            "Страницы этой книги хранят больше истины, чем слова когда-либо смогут передать."
+                        </p>
+                    </div>
+                    <div class="page-number">6</div>
+                </div>
+            </div>
+
+            <!-- СТРАНИЦА 7: ЦИТАТЫ (ЧАСТЬ 1) -->
+            <div class="page-wrapper">
+                <div class="page">
+                    <h2>Из книги</h2>
+                    <div class="quote">
+                        "Я полюбил её потому, что не знал, как не умереть"
+                        <div class="quote-author">— Адам</div>
+                    </div>
+                    <div class="quote">
+                        "Можно ли выжить, если любовь — это единственный способ не падать?"
+                        <div class="quote-author">— Центральный вопрос</div>
+                    </div>
+                    <div class="page-number">7</div>
+                </div>
+            </div>
+
+            <!-- СТРАНИЦА 8: ЦИТАТЫ (ЧАСТЬ 2) -->
+            <div class="page-wrapper">
+                <div class="page">
+                    <div class="quote">
+                        "Она ушла, потому что спасти его невозможно. Спасать он может только сам"
+                        <div class="quote-author">— О конце</div>
+                    </div>
+                    <div class="quote" style="margin-top: 3rem;">
+                        "Эта история не имеет хэппи-энда. Она имеет истину"
+                        <div class="quote-author">— Лия Моррейн</div>
+                    </div>
+                    <div class="page-number">8</div>
+                </div>
+            </div>
+
+            <!-- СТРАНИЦА 9: ФИНАЛ (ЧАСТЬ 1) -->
+            <div class="page-wrapper">
+                <div class="page">
+                    <h2>Готовы?</h2>
+                    <p style="margin-bottom: 2rem;">
+                        Эта книга не даст вам спать. Не даст вам забыть. Не даст вам отвернуться.
+                    </p>
+                    <p style="margin-bottom: 2rem;">
+                        Она заставит пересмотреть всё, что вы знаете о любви, о спасении, о себе.
+                    </p>
+                    <p style="color: var(--orange); font-weight: 600; font-style: italic; font-size: 1.1rem;">
+                        "Ты ушла, зная..." — это не просто роман. Это зеркало.
+                    </p>
+                    <div class="page-number">9</div>
+                </div>
+            </div>
+
+            <!-- СТРАНИЦА 10: ФИНАЛ (ЧАСТЬ 2) -->
+            <div class="page-wrapper">
+                <div class="page" style="background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%); color: var(--white); box-shadow: 0 30px 80px rgba(255, 101, 53, 0.3), 0 0 60px rgba(255, 101, 53, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);">
+                    <h1 style="color: var(--white); font-size: 2.6rem; margin-bottom: 2rem;">
+                        Заказать сейчас
+                    </h1>
+                    <p style="color: rgba(255, 255, 255, 0.95); font-size: 1.15rem; line-height: 1.8;">
+                        Присоединитесь к тысячам читателей, которые уже столкнулись с этой историей.
+                    </p>
+                    <p style="color: rgba(255, 255, 255, 0.95); font-size: 1.15rem; margin-top: 2rem;">
+                        Психологический роман, который изменит вас.
+                    </p>
+                    <div class="page-number" style="color: rgba(255, 255, 255, 0.6);">10</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ИНДИКАТОРЫ СТРАНИЦ (DOTS) -->
+    <div class="page-dots" id="dots"></div>
+
+    <!-- ПОДСКАЗКА -->
+    <div class="swipe-hint">Свайпните или используйте стрелки</div>
 
     <script>
-        // Функции кнопок
-        document.querySelectorAll('.cta-main').forEach(btn => {
-            btn.addEventListener('click', function() {
-                alert('⚠️ Вы находитесь на пути к книге, которая изменит вас.\n\nПродолжить?');
+        const carousel = document.getElementById('carousel');
+        const dotsContainer = document.getElementById('dots');
+        const pages = document.querySelectorAll('.page-wrapper');
+        const totalPages = pages.length;
+
+        let currentPage = 0;
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let velocity = 0;
+        let lastX = 0;
+        let lastTime = 0;
+
+        // Создание индикаторов
+        function createDots() {
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < totalPages; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goToPage(i));
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentPage);
             });
+        }
+
+        function goToPage(pageIndex) {
+            currentPage = Math.max(0, Math.min(pageIndex, totalPages - 1));
+            carousel.classList.add('is-animating');
+            carousel.style.transform = `translateX(${-currentPage * 100}%)`;
+            updateDots();
+            setTimeout(() => {
+                carousel.classList.remove('is-animating');
+            }, 600);
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                goToPage(currentPage + 1);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                goToPage(currentPage - 1);
+            }
+        }
+
+        // Touch события
+        carousel.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            currentX = startX;
+            lastX = startX;
+            lastTime = Date.now();
+            carousel.classList.add('is-dragging');
         });
+
+        carousel.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+            const diff = currentX - startX;
+            const offset = -currentPage * 100;
+            const movePercent = (diff / window.innerWidth) * 100;
+            carousel.style.transform = `translateX(${offset + movePercent}%)`;
+
+            // Вычисляем скорость
+            const now = Date.now();
+            const deltaTime = now - lastTime;
+            if (deltaTime > 0) {
+                velocity = (currentX - lastX) / deltaTime;
+            }
+            lastX = currentX;
+            lastTime = now;
+        });
+
+        carousel.addEventListener('touchend', () => {
+            isDragging = false;
+            carousel.classList.remove('is-dragging');
+            const diff = currentX - startX;
+            const threshold = window.innerWidth * 0.2; // 20% от ширины экрана
+            const fastSwipe = Math.abs(velocity) > 0.5; // Быстрый свайп
+
+            if (Math.abs(diff) > threshold || fastSwipe) {
+                if (diff < 0) {
+                    nextPage();
+                } else {
+                    prevPage();
+                }
+            } else {
+                goToPage(currentPage);
+            }
+        });
+
+        // Mouse события для десктопа
+        carousel.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            currentX = startX;
+            lastX = startX;
+            lastTime = Date.now();
+            carousel.classList.add('is-dragging');
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            currentX = e.clientX;
+            const diff = currentX - startX;
+            const offset = -currentPage * 100;
+            const movePercent = (diff / window.innerWidth) * 100;
+            carousel.style.transform = `translateX(${offset + movePercent}%)`;
+
+            const now = Date.now();
+            const deltaTime = now - lastTime;
+            if (deltaTime > 0) {
+                velocity = (currentX - lastX) / deltaTime;
+            }
+            lastX = currentX;
+            lastTime = now;
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            carousel.classList.remove('is-dragging');
+            const diff = currentX - startX;
+            const threshold = window.innerWidth * 0.2;
+            const fastSwipe = Math.abs(velocity) > 0.5;
+
+            if (Math.abs(diff) > threshold || fastSwipe) {
+                if (diff < 0) {
+                    nextPage();
+                } else {
+                    prevPage();
+                }
+            } else {
+                goToPage(currentPage);
+            }
+        });
+
+        // Клавиатура
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowLeft') prevPage();
+        });
+
+        // Инициализация
+        createDots();
+        goToPage(0);
     </script>
 </body>
 </html>
