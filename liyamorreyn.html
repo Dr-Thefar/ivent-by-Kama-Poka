@@ -3,105 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ты ушла, зная... | Лия Моррейн</title>
+    <title>Ты ушла, зная... — Лия Моррейн</title>
     
     <style>
-        @font-face {
-            font-family: 'Detstvo';
-            src: url('https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/Detstvo.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         :root {
             --orange: #FF6535;
             --orange-dark: #E84B1F;
             --white: #FFFFFF;
-            --text: #1A1A1A;
             --cream: #FBF9F6;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            --text: #1A1A1A;
+            --gray: #666;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: #000;
+            background: var(--white);
             color: var(--text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            line-height: 1.5;
+            letter-spacing: -0.3px;
         }
 
-        /* ======== ОСНОВНОЙ КОНТЕЙНЕР ======== */
-        .book-viewport {
+        /* ======== HEADER ======== */
+        header {
+            position: fixed;
+            top: 0;
             width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .book-carousel {
+            height: 50px;
             display: flex;
-            height: 100%;
-            transition: transform 0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: transform;
-        }
-
-        .book-carousel.is-dragging {
-            transition: none;
-        }
-
-        .book-carousel.is-animating {
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        /* ======== СТРАНИЦА ======== */
-        .page-wrapper {
-            width: 100%;
-            height: 100%;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 2rem;
-            position: relative;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+            align-items: center;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 101, 53, 0.1);
         }
 
-        .page {
-            background: linear-gradient(135deg, var(--cream) 0%, #FDFCFA 100%);
-            padding: 3.5rem;
-            border-radius: 24px;
-            box-shadow: 
-                0 40px 100px rgba(0, 0, 0, 0.5),
-                0 0 60px rgba(255, 101, 53, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            position: relative;
-            overflow: hidden;
+        .header-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.4px;
+            color: var(--orange);
+        }
+
+        /* ======== HERO ======== */
+        .hero {
+            width: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            max-width: 500px;
-            width: 100%;
-            height: auto;
-            max-height: 90vh;
-            animation: pageAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            align-items: center;
+            padding: 0 2rem;
+            margin-top: 50px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+            position: relative;
         }
 
-        @keyframes pageAppear {
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: scale(0.95);
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease-out 0.1s both;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 800;
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            letter-spacing: -2.5px;
+            animation: fadeInUp 1.2s ease-out 0.2s both;
+        }
+
+        .hero h1 span {
+            color: var(--orange);
+        }
+
+        .hero-description {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-weight: 400;
+            color: var(--gray);
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            letter-spacing: -0.2px;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            border: none;
+            padding: 14px 40px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 980px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            letter-spacing: 0.2px;
+            animation: fadeInUp 1.2s ease-out 0.4s both;
+            box-shadow: 0 12px 30px rgba(255, 101, 53, 0.25);
+        }
+
+        .cta-primary:hover {
+            background: linear-gradient(135deg, var(--orange-dark) 0%, #D63A15 100%);
+            transform: scale(1.06);
+            box-shadow: 0 16px 40px rgba(255, 101, 53, 0.35);
+        }
+
+        .cta-primary:active {
+            transform: scale(0.96);
+        }
+
+        /* ======== SPACER ======== */
+        .spacer {
+            height: 80px;
+        }
+
+        .spacer-lg {
+            height: 140px;
+        }
+
+        /* ======== IMAGE SECTION ======== */
+        .image-section {
+            width: 100%;
+            padding: 0 2rem 0 2rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--cream) 100%);
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-wrapper {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 24px;
+            box-shadow: 0 30px 80px rgba(255, 101, 53, 0.2);
+            animation: scaleUp 1.3s ease-out;
+            border: 2px solid rgba(255, 101, 53, 0.1);
+        }
+
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
             }
             to {
                 opacity: 1;
@@ -109,875 +198,663 @@
             }
         }
 
-        .page::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent 0%, rgba(255, 101, 53, 0.15) 50%, transparent 100%);
-            pointer-events: none;
-        }
-
-        .page::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255, 101, 53, 0.02) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 101, 53, 0.01) 0%, transparent 50%);
-            pointer-events: none;
-            opacity: 0;
-            animation: pageShimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes pageShimmer {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        .page-number {
-            position: absolute;
-            bottom: 2rem;
-            right: 2rem;
-            font-size: 0.9rem;
-            color: rgba(0, 0, 0, 0.3);
-            font-weight: 500;
-            letter-spacing: 1px;
-            transition: all 0.4s ease;
-        }
-
-        .page:hover .page-number {
-            color: rgba(255, 101, 53, 0.5);
-        }
-
-        .page h1 {
-            font-family: 'Detstvo', serif;
-            font-size: 2.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--text);
-            line-height: 1.15;
-            animation: titleSlide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
-            letter-spacing: -1px;
-        }
-
-        @keyframes titleSlide {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .page h2 {
-            font-family: 'Detstvo', serif;
-            font-size: 2.2rem;
-            margin-bottom: 1.8rem;
-            background: linear-gradient(90deg, var(--orange) 0%, var(--orange-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            border-bottom: 2px solid rgba(255, 101, 53, 0.2);
-            padding-bottom: 1.2rem;
-            animation: titleSlide 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
-            letter-spacing: -0.5px;
-        }
-
-        .page p {
-            margin-bottom: 1.3rem;
-            line-height: 1.85;
-            color: var(--text);
-            font-size: 1.05rem;
-            animation: textFadeIn 0.8s ease-out 0.2s both;
-        }
-
-        @keyframes textFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .page strong {
-            color: var(--orange);
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .page strong:hover {
-            text-shadow: 0 0 10px rgba(255, 101, 53, 0.3);
-        }
-
-        .page em {
-            color: var(--orange-dark);
-            font-style: italic;
-            font-weight: 500;
-        }
-
-        /* ======== ОБЛОЖКА ======== */
-        .cover-page {
-            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
-            color: var(--white);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cover-page::before {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -80px;
-            right: -80px;
-            animation: floatGently 4s ease-in-out infinite;
-        }
-
-        @keyframes floatGently {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(30px, -30px); }
-        }
-
-        .cover-page::after {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -60px;
-            left: -60px;
-            animation: floatGently 5s ease-in-out infinite reverse;
-        }
-
-        .cover-image-container {
+        /* ======== TEXT SECTION ======== */
+        .text-section {
+            width: 100%;
+            padding: 120px 2rem;
+            background: var(--white);
             display: flex;
             justify-content: center;
-            align-items: center;
-            animation: imageZoom 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        @keyframes imageZoom {
-            from {
-                opacity: 0;
-                transform: scale(0.85) rotateY(-20deg);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) rotateY(0deg);
-            }
+        .text-wrapper {
+            max-width: 750px;
+            width: 100%;
         }
 
-        .cover-image {
-            max-width: 100%;
-            height: auto;
-            max-height: 450px;
-            object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.3),
-                0 0 30px rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
+        .section-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 2.5rem;
+            letter-spacing: -2px;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .cover-image:hover {
-            transform: scale(1.02);
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.4),
-                0 0 40px rgba(255, 255, 255, 0.15);
-        }
-
-        .cover-page h1 {
-            font-size: 3.2rem;
-            color: var(--white);
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            margin-bottom: 1.5rem;
-            animation: coverTitleAnim 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-            letter-spacing: -1px;
-        }
-
-        @keyframes coverTitleAnim {
-            0% {
-                opacity: 0;
-                transform: scale(0.9) translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .cover-page p {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.2rem;
-            position: relative;
-            z-index: 2;
-            margin-bottom: 3rem;
-            animation: textFadeIn 0.8s ease-out 0.2s both;
-            line-height: 1.7;
-        }
-
-        .cover-page .author {
-            font-family: 'Detstvo', serif;
-            font-size: 1.4rem;
-            position: relative;
-            z-index: 2;
-            animation: textFadeIn 0.8s ease-out 0.3s both;
-            margin-top: 2rem;
-        }
-
-        .cover-page .genre {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            padding: 0.7rem 2rem;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            position: relative;
-            z-index: 2;
-            margin-bottom: 2rem;
-            animation: textFadeIn 0.8s ease-out 0.25s both;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .cover-page .genre:hover {
-            background: rgba(255, 255, 255, 0.3);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
-        /* ======== ПЕРСОНАЖИ ======== */
-        .characters-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin: 1rem 0;
-        }
-
-        .character {
-            background: linear-gradient(135deg, rgba(255, 101, 53, 0.08) 0%, rgba(255, 101, 53, 0.03) 100%);
-            padding: 1.8rem;
-            border-left: 4px solid var(--orange);
-            border-radius: 8px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            animation: characterSlide 0.6s ease-out;
-            border: 1px solid rgba(255, 101, 53, 0.15);
-            backdrop-filter: blur(5px);
-        }
-
-        @keyframes characterSlide {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .character:hover {
-            background: linear-gradient(135deg, rgba(255, 101, 53, 0.15) 0%, rgba(255, 101, 53, 0.08) 100%);
-            border-left-color: var(--orange-dark);
-            transform: translateX(8px);
-            box-shadow: 0 8px 24px rgba(255, 101, 53, 0.12);
-        }
-
-        .character h3 {
-            color: var(--orange);
-            font-family: 'Detstvo', serif;
-            font-size: 1.4rem;
-            margin-bottom: 0.6rem;
-            transition: all 0.3s ease;
-        }
-
-        .character:hover h3 {
-            color: var(--orange-dark);
-            text-shadow: 0 0 10px rgba(255, 101, 53, 0.2);
-        }
-
-        .character p {
-            font-size: 1rem;
-            color: var(--text);
-            opacity: 0.85;
-            line-height: 1.6;
-        }
-
-        /* ======== ЦИТАТЫ ======== */
-        .quote {
-            background: linear-gradient(135deg, rgba(255, 101, 53, 0.1) 0%, rgba(255, 101, 53, 0.05) 100%);
-            padding: 1.8rem;
-            border-left: 4px solid var(--orange);
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
+        .section-headline em {
+            font-family: 'Playfair Display', serif;
             font-style: italic;
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .section-copy {
+            font-size: 18px;
             line-height: 1.8;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            animation: quoteSlide 0.6s ease-out;
-            border: 1px solid rgba(255, 101, 53, 0.1);
-            backdrop-filter: blur(5px);
-            position: relative;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            letter-spacing: -0.2px;
+            animation: fadeInUp 1s ease-out 0.1s both;
         }
 
-        @keyframes quoteSlide {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .section-copy strong {
+            color: var(--text);
+            font-weight: 600;
         }
 
-        .quote::before {
-            content: '"';
-            position: absolute;
-            font-size: 4rem;
-            opacity: 0.05;
-            top: -20px;
-            left: 10px;
-            font-family: 'Detstvo', serif;
+        /* ======== CHARACTER GRID ======== */
+        .character-section {
+            width: 100%;
+            padding: 120px 2rem;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
+            display: flex;
+            justify-content: center;
         }
 
-        .quote:hover {
-            background: linear-gradient(135deg, rgba(255, 101, 53, 0.15) 0%, rgba(255, 101, 53, 0.1) 100%);
-            border-left-color: var(--orange-dark);
-            transform: translateX(8px);
-            box-shadow: 0 8px 24px rgba(255, 101, 53, 0.12);
+        .character-wrapper {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .character-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 4rem;
+            letter-spacing: -2px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+        }
+
+        .character-item {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 101, 53, 0.1);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: fadeInUp 1s ease-out;
+            cursor: pointer;
+        }
+
+        .character-item:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .character-item:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .character-item:hover {
+            transform: translateY(-12px);
+            border-color: var(--orange);
+            box-shadow: 0 40px 100px rgba(255, 101, 53, 0.15);
+        }
+
+        .character-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            color: var(--orange);
+        }
+
+        .character-age {
+            font-size: 14px;
+            color: var(--orange);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .character-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray);
+            letter-spacing: -0.2px;
+        }
+
+        /* ======== QUOTE SECTION ======== */
+        .quote-section {
+            width: 100%;
+            padding: 140px 2rem;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .quote-wrapper {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .quote-line {
+            width: 60px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 0 auto 2rem;
+            border-radius: 2px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+            letter-spacing: -0.8px;
+            animation: fadeInUp 1s ease-out 0.1s both;
         }
 
         .quote-author {
-            text-align: right;
-            font-weight: 600;
-            color: var(--orange);
-            font-style: normal;
-            margin-top: 0.8rem;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
-        .quote:hover .quote-author {
-            color: var(--orange-dark);
-        }
-
-        /* ======== ИНДИКАТОР СТРАНИЦ ======== */
-        .page-dots {
-            position: fixed;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
+        /* ======== FEATURES SECTION ======== */
+        .features-section {
+            width: 100%;
+            padding: 120px 2rem;
+            background: var(--white);
             display: flex;
-            gap: 0.8rem;
-            z-index: 100;
-            animation: dotsSlideUp 0.6s ease-out 0.5s both;
+            justify-content: center;
         }
 
-        @keyframes dotsSlideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
+        .features-wrapper {
+            max-width: 900px;
+            width: 100%;
         }
 
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+        .features-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 4rem;
+            letter-spacing: -2px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+            padding-left: 0;
+        }
+
+        .feature-item:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .feature-item:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-marker {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(255, 101, 53, 0.15) 0%, rgba(255, 101, 53, 0.08) 100%);
+            border: 2px solid var(--orange);
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--orange);
+            flex-shrink: 0;
+        }
+
+        .feature-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            color: var(--orange);
+        }
+
+        .feature-text {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--gray);
+            letter-spacing: -0.2px;
+        }
+
+        /* ======== CTA FINAL SECTION ======== */
+        .cta-final-section {
+            width: 100%;
+            min-height: 100vh;
+            padding: 60px 2rem;
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cta-final-wrapper {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .cta-final-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -1.5px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .cta-final-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 3rem;
+            letter-spacing: -0.2px;
+            animation: fadeInUp 1s ease-out 0.1s both;
+        }
+
+        .cta-final-button {
+            background: var(--white);
+            color: var(--orange);
+            border: none;
+            padding: 16px 48px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
+            border-radius: 980px;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 2px solid rgba(255, 255, 255, 0);
+            letter-spacing: 0.2px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .dot:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(1.3);
+        .cta-final-button:hover {
+            background: var(--cream);
+            transform: scale(1.06);
+            color: var(--orange-dark);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
         }
 
-        .dot.active {
-            background: var(--orange);
-            width: 28px;
-            border-radius: 5px;
-            box-shadow: 0 0 20px rgba(255, 101, 53, 0.6);
+        /* ======== FOOTER ======== */
+        footer {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 80px 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        /* ======== HINT TEXT ======== */
-        .swipe-hint {
+        .footer-copy {
+            font-size: 13px;
+            line-height: 1.6;
+            letter-spacing: 0;
+        }
+
+        .footer-copy a {
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-copy a:hover {
+            color: var(--white);
+        }
+
+        /* ======== SCROLL INDICATOR ======== */
+        .scroll-hint {
             position: fixed;
-            bottom: 1rem;
+            bottom: 50px;
             left: 50%;
             transform: translateX(-50%);
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            animation: hintFade 2s ease-in-out infinite;
-            pointer-events: none;
+            font-size: 12px;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: float 2s ease-in-out infinite;
+            z-index: 100;
+            font-weight: 600;
         }
 
-        @keyframes hintFade {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.7; }
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
         }
 
-        /* ======== МОБИЛЬНЫЙ ДИЗАЙН ======== */
-        @media (max-width: 1024px) {
-            .page {
-                padding: 2.5rem;
-                border-radius: 20px;
-            }
-
-            .page h1 {
-                font-size: 2.2rem;
-            }
-
-            .page h2 {
-                font-size: 1.8rem;
-            }
+        /* ======== FADE IN ======== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
         }
 
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ======== RESPONSIVE ======== */
         @media (max-width: 768px) {
-            .page-wrapper {
-                padding: 1.5rem;
+            header {
+                height: 44px;
             }
 
-            .page {
-                padding: 2rem 1.5rem;
-                border-radius: 16px;
+            .hero {
+                margin-top: 44px;
+                padding: 0 1.5rem;
             }
 
-            .page h1 {
+            .hero h1 {
+                font-size: 2.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .spacer {
+                height: 60px;
+            }
+
+            .spacer-lg {
+                height: 100px;
+            }
+
+            .text-section,
+            .character-section,
+            .features-section,
+            .cta-final-section {
+                padding: 80px 1.5rem;
+            }
+
+            .section-headline,
+            .character-headline,
+            .features-headline,
+            .cta-final-headline {
                 font-size: 2rem;
             }
 
-            .page h2 {
-                font-size: 1.6rem;
+            .character-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .page p {
-                font-size: 1rem;
+            .features-grid {
+                gap: 3rem;
             }
 
-            .cover-page h1 {
-                font-size: 2.5rem;
-            }
-
-            .cover-image {
-                max-height: 380px;
-            }
-
-            .page-dots {
-                bottom: 2rem;
-            }
-
-            .swipe-hint {
-                bottom: 0.5rem;
-                font-size: 0.8rem;
+            .scroll-hint {
+                bottom: 30px;
             }
         }
 
         @media (max-width: 480px) {
-            .page-wrapper {
-                padding: 1rem;
+            .hero-tag {
+                font-size: 12px;
+                margin-bottom: 1.5rem;
             }
 
-            .page {
-                padding: 1.5rem 1rem;
-                border-radius: 12px;
-            }
-
-            .page h1 {
-                font-size: 1.6rem;
+            .hero h1 {
+                font-size: 1.8rem;
                 margin-bottom: 1rem;
+                letter-spacing: -1.5px;
             }
 
-            .page h2 {
-                font-size: 1.4rem;
-            }
-
-            .page p {
+            .hero-description {
                 font-size: 0.95rem;
-                margin-bottom: 1rem;
+                margin-bottom: 2rem;
             }
 
-            .cover-page h1 {
-                font-size: 2rem;
+            .cta-primary {
+                padding: 12px 32px;
+                font-size: 15px;
             }
 
-            .cover-page p {
-                font-size: 1rem;
+            .text-section,
+            .character-section,
+            .features-section,
+            .cta-final-section {
+                padding: 60px 1.5rem;
             }
 
-            .cover-image {
-                max-height: 320px;
+            .section-headline,
+            .character-headline,
+            .features-headline {
+                font-size: 1.6rem;
             }
 
-            .character {
-                padding: 1.3rem;
+            .cta-final-headline {
+                font-size: 1.8rem;
             }
 
-            .character h3 {
-                font-size: 1.2rem;
+            .section-copy,
+            .character-text,
+            .feature-text,
+            .cta-final-text {
+                font-size: 16px;
             }
 
-            .page-dots {
-                bottom: 1.5rem;
-                gap: 0.6rem;
+            .character-item {
+                padding: 2rem 1.5rem;
             }
 
-            .dot {
-                width: 8px;
-                height: 8px;
+            .cta-final-button {
+                padding: 12px 36px;
+                font-size: 15px;
             }
 
-            .dot.active {
-                width: 24px;
+            footer {
+                padding: 60px 1.5rem;
+            }
+
+            .feature-marker {
+                width: 36px;
+                height: 36px;
+                font-size: 18px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="book-viewport">
-        <div class="book-carousel" id="carousel">
-            <!-- СТРАНИЦА 1: ОБЛОЖКА -->
-            <div class="page-wrapper">
-                <div class="page cover-page">
-                    <div class="cover-image-container">
-                        <img src="https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/ты_ушла.png" 
-                             alt="Обложка книги" 
-                             class="cover-image">
-                    </div>
-                </div>
-            </div>
+    <!-- HEADER -->
+    <header>
+        <div class="header-text">Ты ушла, зная...</div>
+    </header>
 
-            <!-- СТРАНИЦА 2: ТИТУЛЬНАЯ -->
-            <div class="page-wrapper">
-                <div class="page">
-                    <h1>Ты ушла, зная...</h1>
-                    <p style="margin-bottom: 3rem; font-size: 1.15rem; opacity: 0.85;">История о любви, которая спасает и убивает одновременно.</p>
-                    <div class="genre">Психологический роман</div>
-                    <p style="margin-top: auto; text-align: center; font-weight: 600; letter-spacing: 0.5px;">Лия Моррейн</p>
-                    <div class="page-number">2</div>
-                </div>
-            </div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">Лия Моррейн</div>
+            <h1>Ты <span>ушла</span>,<br>зная.</h1>
+            <p class="hero-description">История о любви, которая не спасает. О двух людях на грани. О том, что происходит, когда остаётся только вопрос.</p>
+            <button class="cta-primary" onclick="document.querySelector('.image-section').scrollIntoView({behavior:'smooth'})">
+                Узнать больше
+            </button>
+        </div>
+    </section>
 
-            <!-- СТРАНИЦА 3: О КНИГЕ (ЧАСТЬ 1) -->
-            <div class="page-wrapper">
-                <div class="page">
-                    <h2>История</h2>
-                    <p>
-                        <strong>Адам</strong> держится за <strong>Анну</strong> как утопающий за доску. Его депрессия — не болезнь, а способ существования.
-                    </p>
-                    <p>
-                        Единственное, что его спасает — это она. Единственное, что его убивает — это тоже она.
-                    </p>
-                    <p>
-                        Их отношения — это не любовь. Это <em>выживание</em>.
-                    </p>
-                    <div class="page-number">3</div>
-                </div>
-            </div>
+    <!-- SPACER -->
+    <div class="spacer"></div>
 
-            <!-- СТРАНИЦА 4: О КНИГЕ (ЧАСТЬ 2) -->
-            <div class="page-wrapper">
-                <div class="page">
-                    <p>
-                        Это танец на грани безумия, где каждый шаг может быть последним. Терапия. Кризисы. Ночи, когда кажется, что вот сейчас всё закончится.
-                    </p>
-                    <p style="margin-top: 2rem;">
-                        Но что происходит, когда даже любовь становится недостаточной? Когда спасение превращается в тюрьму?
-                    </p>
-                    <p style="margin-top: 2rem;">
-                        Когда нужно выбрать между чувством и жизнью?
-                    </p>
-                    <div class="page-number">4</div>
-                </div>
-            </div>
+    <!-- IMAGE SECTION -->
+    <section class="image-section">
+        <div class="image-wrapper">
+            <img src="https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/ты_ушла.png" 
+                 alt="Ты ушла, зная" 
+                 class="featured-image">
+        </div>
+    </section>
 
-            <!-- СТРАНИЦА 5: ПЕРСОНАЖИ (ЧАСТЬ 1) -->
-            <div class="page-wrapper">
-                <div class="page">
-                    <h2>На грани</h2>
-                    <div class="characters-grid">
-                        <div class="character">
-                            <h3>Адам</h3>
-                            <p>26 лет. Борется не с депрессией, а с самим собой. Видит спасение только в одном человеке. И это опасно.</p>
-                        </div>
-                        <div class="character">
-                            <h3>Анна</h3>
-                            <p>24 года. Хотела спасти его. Вместо этого медленно тонет в его мире. Каждый день дальше от спасения.</p>
-                        </div>
-                    </div>
-                    <div class="page-number">5</div>
-                </div>
-            </div>
+    <!-- SPACER -->
+    <div class="spacer-lg"></div>
 
-            <!-- СТРАНИЦА 6: ПЕРСОНАЖИ (ЧАСТЬ 2) -->
-            <div class="page-wrapper">
-                <div class="page">
-                    <div style="margin-bottom: 2rem;">
-                        <div class="character">
-                            <h3>Их история</h3>
-                            <p>Не роман. Не трагедия. Это паутина, в которой оба уже запутаны. И выхода нет.</p>
-                        </div>
-                    </div>
-                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(0, 0, 0, 0.08);">
-                        <p style="font-style: italic; color: var(--orange); font-weight: 600; font-size: 1.1rem;">
-                            "Страницы этой книги хранят больше истины, чем слова когда-либо смогут передать."
-                        </p>
-                    </div>
-                    <div class="page-number">6</div>
-                </div>
-            </div>
+    <!-- STORY SECTION -->
+    <section class="text-section">
+        <div class="text-wrapper fade-in">
+            <h2 class="section-headline">История, которая <em>остаётся</em> с вами.</h2>
+            <p class="section-copy">
+                <strong>Адам</strong> держится за <strong>Анну</strong> как за жизнь. Её присутствие — его лекарство. Её отсутствие — его болезнь. Но что если лекарство становится ядом?
+            </p>
+            <p class="section-copy">
+                Депрессия не отпускает. Любовь не спасает. Остаётся только замерзающий танец на грани. Каждое слово — раны. Каждая ночь — испытание. Каждый день — выбор между жизнью и ней.
+            </p>
+        </div>
+    </section>
 
-            <!-- СТРАНИЦА 7: ЦИТАТЫ (ЧАСТЬ 1) -->
-            <div class="page-wrapper">
-                <div class="page">
-                    <h2>Из книги</h2>
-                    <div class="quote">
-                        "Я полюбил её потому, что не знал, как не умереть"
-                        <div class="quote-author">— Адам</div>
-                    </div>
-                    <div class="quote">
-                        "Можно ли выжить, если любовь — это единственный способ не падать?"
-                        <div class="quote-author">— Центральный вопрос</div>
-                    </div>
-                    <div class="page-number">7</div>
-                </div>
-            </div>
+    <!-- SPACER -->
+    <div class="spacer-lg"></div>
 
-            <!-- СТРАНИЦА 8: ЦИТАТЫ (ЧАСТЬ 2) -->
-            <div class="page-wrapper">
-                <div class="page">
-                    <div class="quote">
-                        "Она ушла, потому что спасти его невозможно. Спасать он может только сам"
-                        <div class="quote-author">— О конце</div>
-                    </div>
-                    <div class="quote" style="margin-top: 3rem;">
-                        "Эта история не имеет хэппи-энда. Она имеет истину"
-                        <div class="quote-author">— Лия Моррейн</div>
-                    </div>
-                    <div class="page-number">8</div>
+    <!-- CHARACTER SECTION -->
+    <section class="character-section">
+        <div class="character-wrapper fade-in">
+            <h2 class="character-headline">Они держались друг за друга, пока не упали вместе.</h2>
+            <div class="character-grid">
+                <div class="character-item">
+                    <h3 class="character-name">Адам</h3>
+                    <p class="character-age">26</p>
+                    <p class="character-text">Парень, который забыл, как жить сам. Её любовь — его единственная граница между землёй и небом. Но границы легко пересечь.</p>
                 </div>
-            </div>
-
-            <!-- СТРАНИЦА 9: ФИНАЛ (ЧАСТЬ 1) -->
-            <div class="page-wrapper">
-                <div class="page">
-                    <h2>Готовы?</h2>
-                    <p style="margin-bottom: 2rem;">
-                        Эта книга не даст вам спать. Не даст вам забыть. Не даст вам отвернуться.
-                    </p>
-                    <p style="margin-bottom: 2rem;">
-                        Она заставит пересмотреть всё, что вы знаете о любви, о спасении, о себе.
-                    </p>
-                    <p style="color: var(--orange); font-weight: 600; font-style: italic; font-size: 1.1rem;">
-                        "Ты ушла, зная..." — это не просто роман. Это зеркало.
-                    </p>
-                    <div class="page-number">9</div>
+                <div class="character-item">
+                    <h3 class="character-name">Анна</h3>
+                    <p class="character-age">24</p>
+                    <p class="character-text">Девушка, которая хотела спасти. Вместо этого она медленно тонула в его миру. Каждый день — шаг дальше от берега.</p>
                 </div>
-            </div>
-
-            <!-- СТРАНИЦА 10: ФИНАЛ (ЧАСТЬ 2) -->
-            <div class="page-wrapper">
-                <div class="page" style="background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%); color: var(--white); box-shadow: 0 30px 80px rgba(255, 101, 53, 0.3), 0 0 60px rgba(255, 101, 53, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);">
-                    <h1 style="color: var(--white); font-size: 2.6rem; margin-bottom: 2rem;">
-                        Заказать сейчас
-                    </h1>
-                    <p style="color: rgba(255, 255, 255, 0.95); font-size: 1.15rem; line-height: 1.8;">
-                        Присоединитесь к тысячам читателей, которые уже столкнулись с этой историей.
-                    </p>
-                    <p style="color: rgba(255, 255, 255, 0.95); font-size: 1.15rem; margin-top: 2rem;">
-                        Психологический роман, который изменит вас.
-                    </p>
-                    <div class="page-number" style="color: rgba(255, 255, 255, 0.6);">10</div>
+                <div class="character-item">
+                    <h3 class="character-name">Их отношения</h3>
+                    <p class="character-age">История</p>
+                    <p class="character-text">Не любовь. Не трагедия. Это биение сердца во время падения. Это паутина, из которой нет выхода.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ИНДИКАТОРЫ СТРАНИЦ (DOTS) -->
-    <div class="page-dots" id="dots"></div>
+    <!-- SPACER -->
+    <div class="spacer-lg"></div>
 
-    <!-- ПОДСКАЗКА -->
-    <div class="swipe-hint">Свайпните или используйте стрелки</div>
+    <!-- QUOTE SECTION -->
+    <section class="quote-section">
+        <div class="quote-wrapper fade-in">
+            <div class="quote-line"></div>
+            <p class="quote-text">Я полюбил её потому, что не знал, как не умереть без неё.</p>
+            <p class="quote-author">Из романа</p>
+        </div>
+    </section>
+
+    <!-- SPACER -->
+    <div class="spacer-lg"></div>
+
+    <!-- FEATURES SECTION -->
+    <section class="features-section">
+        <div class="features-wrapper fade-in">
+            <h2 class="features-headline">Что вас ждёт.</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3 class="feature-title">Зависимость вместо любви</h3>
+                    <p class="feature-text">Реальный портрет отношений, где близость заменяет дыхание. Где предатель — это лучший друг. Где спасение — это ловушка.</p>
+                </div>
+                <div class="feature-item">
+                    <h3 class="feature-title">Психологический реализм</h3>
+                    <p class="feature-text">Без прикрас и романтики. Без хэппи-энда. Честная история о депрессии, панике, терапии и момента, когда всё рушится.</p>
+                </div>
+                <div class="feature-item">
+                    <h3 class="feature-title">Вопрос, на который нет ответа</h3>
+                    <p class="feature-text">Можно ли выжить, если любовь больше не спасает? Эта книга не ответит. Но она заставит вас жить этим вопросом.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPACER -->
+    <div class="spacer-lg"></div>
+
+    <!-- FINAL CTA -->
+    <section class="cta-final-section">
+        <div class="cta-final-wrapper fade-in">
+            <h2 class="cta-final-headline">Для тех, кто готов почувствовать.</h2>
+            <p class="cta-final-text">Это не лёгкая книга. Это не книга о спасении. Это книга о том, что происходит, когда спасение кончается. И что дальше.</p>
+            <button class="cta-final-button" onclick="alert('Спасибо за интерес. Скоро будет доступно.')">
+                Заказать
+            </button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-copy">
+            <p>© 2024 "Ты ушла, зная..." по Лия Моррейн</p>
+            <p style="margin-top: 0.5rem;">Психологический роман о любви, которая не спасает.</p>
+        </div>
+    </footer>
+
+    <!-- SCROLL HINT -->
+    <div class="scroll-hint" id="scrollHint">Прокрутите</div>
 
     <script>
-        const carousel = document.getElementById('carousel');
-        const dotsContainer = document.getElementById('dots');
-        const pages = document.querySelectorAll('.page-wrapper');
-        const totalPages = pages.length;
+        // Fade in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -80px 0px'
+        };
 
-        let currentPage = 0;
-        let isDragging = false;
-        let startX = 0;
-        let currentX = 0;
-        let velocity = 0;
-        let lastX = 0;
-        let lastTime = 0;
-
-        // Создание индикаторов
-        function createDots() {
-            dotsContainer.innerHTML = '';
-            for (let i = 0; i < totalPages; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'dot' + (i === 0 ? ' active' : '');
-                dot.addEventListener('click', () => goToPage(i));
-                dotsContainer.appendChild(dot);
-            }
-        }
-
-        function updateDots() {
-            const dots = document.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentPage);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
             });
-        }
+        }, observerOptions);
 
-        function goToPage(pageIndex) {
-            currentPage = Math.max(0, Math.min(pageIndex, totalPages - 1));
-            carousel.classList.add('is-animating');
-            carousel.style.transform = `translateX(${-currentPage * 100}%)`;
-            updateDots();
-            setTimeout(() => {
-                carousel.classList.remove('is-animating');
-            }, 600);
-        }
-
-        function nextPage() {
-            if (currentPage < totalPages - 1) {
-                goToPage(currentPage + 1);
-            }
-        }
-
-        function prevPage() {
-            if (currentPage > 0) {
-                goToPage(currentPage - 1);
-            }
-        }
-
-        // Touch события
-        carousel.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            startX = e.touches[0].clientX;
-            currentX = startX;
-            lastX = startX;
-            lastTime = Date.now();
-            carousel.classList.add('is-dragging');
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
 
-        carousel.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            currentX = e.touches[0].clientX;
-            const diff = currentX - startX;
-            const offset = -currentPage * 100;
-            const movePercent = (diff / window.innerWidth) * 100;
-            carousel.style.transform = `translateX(${offset + movePercent}%)`;
-
-            // Вычисляем скорость
-            const now = Date.now();
-            const deltaTime = now - lastTime;
-            if (deltaTime > 0) {
-                velocity = (currentX - lastX) / deltaTime;
-            }
-            lastX = currentX;
-            lastTime = now;
-        });
-
-        carousel.addEventListener('touchend', () => {
-            isDragging = false;
-            carousel.classList.remove('is-dragging');
-            const diff = currentX - startX;
-            const threshold = window.innerWidth * 0.2; // 20% от ширины экрана
-            const fastSwipe = Math.abs(velocity) > 0.5; // Быстрый свайп
-
-            if (Math.abs(diff) > threshold || fastSwipe) {
-                if (diff < 0) {
-                    nextPage();
-                } else {
-                    prevPage();
+        // Hide scroll hint after scroll
+        let scrollTimeout;
+        const scrollHint = document.getElementById('scrollHint');
+        
+        window.addEventListener('scroll', () => {
+            scrollHint.style.opacity = '0';
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (window.scrollY < 100) {
+                    scrollHint.style.opacity = '1';
                 }
-            } else {
-                goToPage(currentPage);
-            }
+            }, 3000);
         });
 
-        // Mouse события для десктопа
-        carousel.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.clientX;
-            currentX = startX;
-            lastX = startX;
-            lastTime = Date.now();
-            carousel.classList.add('is-dragging');
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            currentX = e.clientX;
-            const diff = currentX - startX;
-            const offset = -currentPage * 100;
-            const movePercent = (diff / window.innerWidth) * 100;
-            carousel.style.transform = `translateX(${offset + movePercent}%)`;
-
-            const now = Date.now();
-            const deltaTime = now - lastTime;
-            if (deltaTime > 0) {
-                velocity = (currentX - lastX) / deltaTime;
-            }
-            lastX = currentX;
-            lastTime = now;
-        });
-
-        document.addEventListener('mouseup', () => {
-            if (!isDragging) return;
-            isDragging = false;
-            carousel.classList.remove('is-dragging');
-            const diff = currentX - startX;
-            const threshold = window.innerWidth * 0.2;
-            const fastSwipe = Math.abs(velocity) > 0.5;
-
-            if (Math.abs(diff) > threshold || fastSwipe) {
-                if (diff < 0) {
-                    nextPage();
-                } else {
-                    prevPage();
-                }
-            } else {
-                goToPage(currentPage);
-            }
-        });
-
-        // Клавиатура
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') nextPage();
-            if (e.key === 'ArrowLeft') prevPage();
-        });
-
-        // Инициализация
-        createDots();
-        goToPage(0);
+        scrollHint.style.transition = 'opacity 0.3s ease';
     </script>
 </body>
 </html>
