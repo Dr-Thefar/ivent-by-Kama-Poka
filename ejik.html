@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EJIK — ELVIUM Junior International Kindergarten. International kindergarten with small groups and daily English. Davtashen, Yerevan." />
+  <title>EJIK 🦔 — ELVIUM Junior International Kindergarten</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & BASE ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #F6F1E7;
+      --primary:  #F4A261;
+      --secondary:#A8C8A0;
+      --blue:     #A7C7E7;
+      --text:     #333333;
+      --text-muted: #777;
+      --white:    #FFFFFF;
+      --card-bg:  #FFFDF8;
+      --radius-card: 24px;
+      --radius-btn: 999px;
+      --shadow: 0 8px 40px rgba(0,0,0,.07);
+      --shadow-hover: 0 16px 60px rgba(0,0,0,.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    h1,h2,h3,h4 { font-family: 'Poppins', sans-serif; line-height: 1.2; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ─── LANGUAGE OVERLAY ───────────────────────────────────────── */
+    #lang-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(246,241,231,.92);
+      backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: center;
+      animation: fadeIn .4s ease;
+    }
+
+    .overlay-box {
+      background: var(--white);
+      border-radius: 32px;
+      padding: 52px 44px 44px;
+      max-width: 460px; width: 90%;
+      box-shadow: 0 24px 80px rgba(0,0,0,.12);
+      text-align: center;
+    }
+
+    .overlay-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.8rem; font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+
+    .overlay-tagline {
+      font-size: .75rem; font-weight: 500;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 36px;
+    }
+
+    .overlay-langs {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 0;
+    }
+
+    .overlay-lang-item {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg);
+      border-radius: var(--radius-btn);
+      padding: 14px 20px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all .2s ease;
+    }
+    .overlay-lang-item:hover { border-color: var(--primary); background: #FFF6EE; }
+
+    .overlay-lang-flag { font-size: 1.5rem; }
+    .overlay-lang-name { font-family:'Poppins',sans-serif; font-weight:600; font-size:.95rem; color:var(--text); }
+    .overlay-lang-native { font-size:.82rem; color:var(--text-muted); margin-left:auto; }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────────── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: rgba(246,241,231,.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      transition: box-shadow .3s;
+    }
+    #navbar.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.07); }
+
+    .nav-logo {
+      font-family:'Poppins',sans-serif; font-weight:800; font-size:1.35rem;
+      color:var(--primary); letter-spacing:-1px; text-decoration:none;
+    }
+
+    .nav-links {
+      display: flex; gap: 28px; list-style: none;
+    }
+    .nav-links a {
+      font-size:.85rem; font-weight:500; color:var(--text);
+      text-decoration:none; opacity:.7; transition:opacity .2s;
+    }
+    .nav-links a:hover { opacity:1; }
+
+    .nav-cta {
+      background: var(--primary); color: #fff;
+      border: none; border-radius: var(--radius-btn);
+      padding: 10px 22px; font-family:'Poppins',sans-serif;
+      font-weight:600; font-size:.83rem; cursor:pointer;
+      transition: transform .2s, box-shadow .2s;
+      text-decoration:none;
+      letter-spacing:.02em;
+    }
+    .nav-cta:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(244,162,97,.35); }
+
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--text); border-radius:2px; transition:.3s; }
+
+    /* ─── DECORATIVE BLOBS ───────────────────────────────────────── */
+    .blob {
+      position:absolute; border-radius:50%; opacity:.45; filter:blur(70px);
+      pointer-events:none; z-index:0;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      padding: 120px 5% 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blob-hero-1 { width:420px; height:420px; background:var(--primary); top:-80px; right:-80px; }
+    .blob-hero-2 { width:300px; height:300px; background:var(--blue); bottom:20px; left:-60px; }
+    .blob-hero-3 { width:200px; height:200px; background:var(--secondary); bottom:120px; right:30%; }
+
+    .hero-content { position:relative; z-index:1; }
+
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,.75); border:1px solid rgba(244,162,97,.3);
+      border-radius:var(--radius-btn); padding:7px 16px;
+      font-size:.78rem; font-weight:500; color:var(--text-muted);
+      margin-bottom:28px;
+      letter-spacing:.04em;
+    }
+    .hero-badge .dot { width:7px; height:7px; background:var(--secondary); border-radius:50%; }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight:800; color:var(--text);
+      letter-spacing:-3px; line-height:1;
+      margin-bottom:12px;
+    }
+    .hero-title span { color:var(--primary); }
+
+    .hero-subtitle {
+      font-size: clamp(.9rem,1.5vw,1.05rem);
+      font-weight:500; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--text-muted); margin-bottom:24px;
+    }
+
+    .hero-desc {
+      font-size:1.05rem; color:var(--text); opacity:.8;
+      max-width:440px; margin-bottom:40px; line-height:1.7;
+    }
+
+    .hero-actions { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+
+    .btn-primary {
+      background:var(--primary); color:#fff;
+      border:none; border-radius:var(--radius-btn);
+      padding:15px 32px; font-family:'Poppins',sans-serif;
+      font-weight:600; font-size:.95rem; cursor:pointer;
+      transition:transform .2s, box-shadow .2s;
+      text-decoration:none; display:inline-block;
+    }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(244,162,97,.4); }
+
+    .btn-outline {
+      background:transparent; color:var(--text);
+      border:2px solid rgba(51,51,51,.2); border-radius:var(--radius-btn);
+      padding:13px 28px; font-family:'Poppins',sans-serif;
+      font-weight:600; font-size:.9rem; cursor:pointer;
+      transition:border-color .2s, color .2s;
+      text-decoration:none; display:inline-block;
+    }
+    .btn-outline:hover { border-color:var(--primary); color:var(--primary); }
+
+    .hero-visual {
+      position:relative; z-index:1;
+      display:flex; justify-content:center; align-items:center;
+    }
+
+    .hero-illustration {
+      width:100%; max-width:460px;
+      background:var(--white);
+      border-radius:40px;
+      box-shadow: var(--shadow);
+      padding:48px 40px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-illustration::before {
+      content:'';
+      position:absolute; top:-40px; right:-40px;
+      width:160px; height:160px;
+      background:var(--primary); opacity:.12;
+      border-radius:50%;
+    }
+
+    .hedgehog-large {
+      font-size:8rem; text-align:center; line-height:1;
+      margin-bottom:20px; display:block;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-12px); }
+    }
+
+    .hero-stats {
+      display:grid; grid-template-columns:1fr 1fr 1fr;
+      gap:12px; margin-top:24px;
+    }
+
+    .hero-stat {
+      background:var(--bg);
+      border-radius:16px; padding:16px 12px;
+      text-align:center;
+    }
+    .hero-stat-num {
+      font-family:'Poppins',sans-serif; font-weight:700;
+      font-size:1.3rem; color:var(--primary); display:block;
+    }
+    .hero-stat-label { font-size:.72rem; color:var(--text-muted); font-weight:500; }
+
+    /* ─── SECTIONS COMMON ────────────────────────────────────────── */
+    section { padding:100px 5%; position:relative; overflow:hidden; }
+
+    .section-label {
+      font-size:.72rem; font-weight:600; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--primary);
+      display:block; margin-bottom:12px;
+    }
+
+    .section-title {
+      font-size:clamp(2rem,4vw,2.8rem);
+      font-weight:700; letter-spacing:-1px;
+      margin-bottom:20px;
+    }
+
+    .section-text {
+      font-size:1.05rem; line-height:1.8;
+      color:var(--text); opacity:.8; max-width:560px;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────────────── */
+    #about { background:var(--white); }
+
+    .about-inner {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:80px; align-items:center;
+    }
+
+    .about-features {
+      display:flex; flex-direction:column; gap:16px;
+      margin-top:36px;
+    }
+
+    .about-feature {
+      display:flex; align-items:center; gap:14px;
+      background:var(--bg); border-radius:16px;
+      padding:16px 20px;
+    }
+    .about-feature-icon {
+      width:42px; height:42px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.3rem; flex-shrink:0;
+    }
+    .about-feature-text { font-weight:500; font-size:.9rem; }
+
+    .about-visual {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+
+    .about-card-big {
+      grid-column:1/-1;
+      background:var(--primary); border-radius:var(--radius-card);
+      padding:36px; color:#fff; position:relative; overflow:hidden;
+    }
+    .about-card-big::after {
+      content:'🌟'; font-size:5rem;
+      position:absolute; right:20px; bottom:-10px; opacity:.3;
+    }
+    .about-card-big h3 { font-size:1.4rem; font-weight:700; margin-bottom:8px; }
+    .about-card-big p { font-size:.88rem; opacity:.85; line-height:1.6; }
+
+    .about-card-sm {
+      background:var(--bg); border-radius:var(--radius-card);
+      padding:28px 22px; text-align:center;
+    }
+    .about-card-sm .emoji { font-size:2.2rem; display:block; margin-bottom:10px; }
+    .about-card-sm span { font-family:'Poppins',sans-serif; font-weight:600; font-size:.9rem; }
+
+    /* ─── APPROACH ───────────────────────────────────────────────── */
+    #approach { background:var(--bg); }
+
+    .approach-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:24px; margin-top:56px;
+    }
+
+    .approach-card {
+      background:var(--card-bg);
+      border-radius:var(--radius-card);
+      padding:40px 32px;
+      box-shadow:var(--shadow);
+      transition:transform .3s, box-shadow .3s;
+      position:relative; overflow:hidden;
+    }
+    .approach-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-hover); }
+
+    .approach-card::before {
+      content:''; position:absolute;
+      bottom:-40px; right:-40px;
+      width:120px; height:120px;
+      border-radius:50%; opacity:.08;
+    }
+    .approach-card:nth-child(1)::before { background:var(--primary); }
+    .approach-card:nth-child(2)::before { background:var(--blue); }
+    .approach-card:nth-child(3)::before { background:var(--secondary); }
+
+    .approach-icon {
+      width:60px; height:60px; border-radius:18px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.8rem; margin-bottom:24px;
+    }
+    .approach-card:nth-child(1) .approach-icon { background:#FFF0E4; }
+    .approach-card:nth-child(2) .approach-icon { background:#E8F3FF; }
+    .approach-card:nth-child(3) .approach-icon { background:#E8F5E4; }
+
+    .approach-card h3 {
+      font-size:1.2rem; font-weight:700; margin-bottom:12px;
+    }
+    .approach-card p { font-size:.9rem; line-height:1.7; color:var(--text); opacity:.75; }
+
+    /* ─── AGE GROUPS ─────────────────────────────────────────────── */
+    #ages {
+      background:linear-gradient(135deg, #F6F1E7 0%, #FFF8F0 100%);
+    }
+
+    .ages-inner {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:80px; align-items:center;
+    }
+
+    .ages-list {
+      display:flex; flex-direction:column;
+      gap:16px; margin-top:40px;
+    }
+
+    .age-item {
+      display:flex; align-items:center;
+      background:var(--white); border-radius:20px;
+      padding:24px 28px; gap:20px;
+      box-shadow:var(--shadow);
+      transition:transform .25s, box-shadow .25s;
+      cursor:default;
+    }
+    .age-item:hover { transform:translateX(8px); box-shadow:var(--shadow-hover); }
+
+    .age-bubble {
+      width:56px; height:56px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Poppins',sans-serif; font-weight:700;
+      font-size:.85rem; flex-shrink:0; color:#fff;
+    }
+    .age-bubble.orange { background:var(--primary); }
+    .age-bubble.blue   { background:var(--blue); }
+    .age-bubble.green  { background:var(--secondary); }
+
+    .age-info strong {
+      font-family:'Poppins',sans-serif; font-weight:700;
+      font-size:1.1rem; display:block; margin-bottom:3px;
+    }
+    .age-info span { font-size:.83rem; color:var(--text-muted); }
+
+    .ages-visual {
+      display:flex; justify-content:center; align-items:center;
+    }
+
+    .ages-illustration {
+      background:var(--white); border-radius:40px;
+      padding:48px; text-align:center;
+      box-shadow:var(--shadow);
+      width:100%; max-width:340px;
+    }
+    .ages-illustration .big-emoji {
+      font-size:5rem; display:block; margin-bottom:16px;
+      animation: float 5s ease-in-out infinite;
+    }
+    .ages-illustration p {
+      font-family:'Poppins',sans-serif; font-weight:600;
+      font-size:.95rem; color:var(--text-muted);
+    }
+
+    /* ─── LOCATION ───────────────────────────────────────────────── */
+    #location { background:var(--white); }
+
+    .location-inner {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:60px; align-items:start;
+    }
+
+    .location-details { margin-top:36px; display:flex; flex-direction:column; gap:16px; }
+
+    .location-item {
+      display:flex; align-items:center; gap:14px;
+      font-size:.95rem;
+    }
+    .location-item .icon {
+      width:40px; height:40px; border-radius:12px;
+      background:var(--bg); display:flex;
+      align-items:center; justify-content:center;
+      font-size:1.1rem; flex-shrink:0;
+    }
+
+    .map-container {
+      border-radius:var(--radius-card); overflow:hidden;
+      box-shadow:var(--shadow);
+      border:4px solid var(--white);
+      outline:1px solid rgba(0,0,0,.06);
+    }
+    .map-container iframe {
+      width:100%; height:320px; border:0; display:block;
+    }
+
+    /* ─── PRE-REGISTRATION ───────────────────────────────────────── */
+    #register {
+      background: linear-gradient(135deg, var(--primary) 0%, #F7B57E 100%);
+      padding:100px 5%;
+    }
+
+    .register-inner {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:80px; align-items:center;
+    }
+
+    .register-content h2 {
+      font-size:clamp(2.2rem,5vw,3.2rem);
+      font-weight:800; color:#fff;
+      letter-spacing:-1.5px; margin-bottom:16px;
+    }
+    .register-content p { color:rgba(255,255,255,.85); font-size:1.05rem; line-height:1.7; }
+
+    .register-badges {
+      display:flex; gap:10px; margin-top:28px; flex-wrap:wrap;
+    }
+    .register-badge {
+      background:rgba(255,255,255,.2);
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:var(--radius-btn);
+      padding:8px 18px; color:#fff;
+      font-size:.8rem; font-weight:500;
+    }
+
+    .register-form {
+      background:var(--white); border-radius:var(--radius-card);
+      padding:40px; box-shadow:0 24px 80px rgba(0,0,0,.15);
+    }
+
+    .register-form h3 {
+      font-size:1.2rem; font-weight:700;
+      margin-bottom:8px;
+    }
+    .register-form .form-subtitle {
+      font-size:.85rem; color:var(--text-muted); margin-bottom:28px;
+    }
+
+    .form-group { margin-bottom:16px; }
+    .form-group label {
+      display:block; font-size:.78rem; font-weight:600;
+      color:var(--text-muted); letter-spacing:.06em;
+      text-transform:uppercase; margin-bottom:7px;
+    }
+    .form-group input, .form-group select {
+      width:100%; padding:13px 16px;
+      border:2px solid rgba(0,0,0,.08);
+      border-radius:14px; font-family:'Inter',sans-serif;
+      font-size:.92rem; color:var(--text);
+      background:var(--bg);
+      transition:border-color .2s, background .2s;
+      outline:none;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color:var(--primary);
+      background:var(--white);
+    }
+
+    .form-submit {
+      width:100%; margin-top:8px;
+      background:var(--primary); color:#fff;
+      border:none; border-radius:var(--radius-btn);
+      padding:16px; font-family:'Poppins',sans-serif;
+      font-weight:700; font-size:1rem; cursor:pointer;
+      transition:transform .2s, box-shadow .2s;
+    }
+    .form-submit:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(244,162,97,.4); }
+
+    /* ─── INSTAGRAM ──────────────────────────────────────────────── */
+    #instagram { background:var(--bg); }
+
+    .instagram-header {
+      text-align:center; margin-bottom:48px;
+    }
+
+    .instagram-handle {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--white); border-radius:var(--radius-btn);
+      padding:10px 22px; margin-top:12px;
+      font-weight:600; font-size:.92rem;
+      box-shadow:var(--shadow);
+      text-decoration:none; color:var(--text);
+      transition:transform .2s;
+    }
+    .instagram-handle:hover { transform:translateY(-2px); }
+    .instagram-handle .ig-icon {
+      width:22px; height:22px;
+      background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);
+      border-radius:6px; display:flex; align-items:center; justify-content:center;
+    }
+    .instagram-handle .ig-icon svg { width:13px; height:13px; fill:#fff; }
+
+    .instagram-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:16px; max-width:720px; margin:0 auto;
+    }
+
+    .instagram-placeholder {
+      aspect-ratio:1; border-radius:20px;
+      overflow:hidden; position:relative;
+      cursor:pointer;
+    }
+
+    .instagram-placeholder:nth-child(1) { background:linear-gradient(135deg,#FFE4D0,#F4A261); }
+    .instagram-placeholder:nth-child(2) { background:linear-gradient(135deg,#D0EAFF,#A7C7E7); }
+    .instagram-placeholder:nth-child(3) { background:linear-gradient(135deg,#D0F0D0,#A8C8A0); }
+    .instagram-placeholder:nth-child(4) { background:linear-gradient(135deg,#FFD7B5,#E8896A); }
+    .instagram-placeholder:nth-child(5) { background:linear-gradient(135deg,#B5D4F0,#7AAED4); }
+    .instagram-placeholder:nth-child(6) { background:linear-gradient(135deg,#B5E0B5,#7EC87E); }
+
+    .ig-placeholder-inner {
+      width:100%; height:100%;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:8px; padding:20px;
+    }
+    .ig-placeholder-inner .emoji { font-size:2.5rem; }
+    .ig-placeholder-inner span {
+      font-family:'Poppins',sans-serif; font-weight:600;
+      font-size:.72rem; color:rgba(51,51,51,.6);
+      text-align:center; line-height:1.3;
+    }
+
+    .ig-overlay {
+      position:absolute; inset:0;
+      background:rgba(0,0,0,0);
+      display:flex; align-items:center; justify-content:center;
+      transition:background .2s;
+    }
+    .instagram-placeholder:hover .ig-overlay { background:rgba(0,0,0,.12); }
+    .ig-overlay svg { opacity:0; transition:opacity .2s; fill:#fff; width:28px; height:28px; }
+    .instagram-placeholder:hover .ig-overlay svg { opacity:1; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+    #footer {
+      background:var(--text); color:rgba(255,255,255,.8);
+      padding:60px 5% 40px;
+    }
+
+    .footer-inner {
+      display:grid; grid-template-columns:2fr 1fr 1fr;
+      gap:60px; margin-bottom:48px;
+    }
+
+    .footer-brand .logo {
+      font-family:'Poppins',sans-serif; font-weight:800;
+      font-size:1.5rem; color:#fff; margin-bottom:6px;
+    }
+    .footer-brand .tagline {
+      font-size:.75rem; opacity:.5; letter-spacing:.08em;
+      text-transform:uppercase; margin-bottom:16px;
+    }
+    .footer-brand .location {
+      font-size:.88rem; opacity:.65;
+    }
+
+    .footer-col h4 {
+      font-family:'Poppins',sans-serif; font-weight:600;
+      font-size:.8rem; letter-spacing:.1em;
+      text-transform:uppercase; color:rgba(255,255,255,.4);
+      margin-bottom:16px;
+    }
+    .footer-col a {
+      display:block; color:rgba(255,255,255,.75);
+      text-decoration:none; font-size:.88rem;
+      margin-bottom:10px; transition:color .2s;
+    }
+    .footer-col a:hover { color:#fff; }
+
+    .footer-social { display:flex; gap:12px; margin-top:20px; }
+    .footer-social a {
+      width:40px; height:40px; border-radius:12px;
+      background:rgba(255,255,255,.08);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.1rem; text-decoration:none;
+      transition:background .2s;
+    }
+    .footer-social a:hover { background:rgba(255,255,255,.18); }
+
+    .footer-bottom {
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:24px;
+      display:flex; justify-content:space-between;
+      align-items:center; font-size:.78rem; opacity:.45;
+    }
+
+    /* ─── LANGUAGE SWITCHER (nav) ────────────────────────────────── */
+    .lang-switcher {
+      display:flex; gap:4px; background:rgba(0,0,0,.05);
+      border-radius:var(--radius-btn); padding:4px;
+    }
+    .lang-btn {
+      border:none; background:transparent; border-radius:var(--radius-btn);
+      padding:5px 12px; font-family:'Poppins',sans-serif;
+      font-size:.73rem; font-weight:600; cursor:pointer;
+      color:var(--text-muted); transition:.2s;
+    }
+    .lang-btn.active { background:#fff; color:var(--text); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+
+    /* ─── SCROLL ANIMATIONS ──────────────────────────────────────── */
+    .reveal {
+      opacity:0; transform:translateY(30px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:.1s; }
+    .reveal-delay-2 { transition-delay:.2s; }
+    .reveal-delay-3 { transition-delay:.3s; }
+
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+    /* ─── NOTIFICATION TOAST ─────────────────────────────────────── */
+    #toast {
+      position:fixed; bottom:28px; right:28px; z-index:9000;
+      background:var(--text); color:#fff;
+      padding:16px 24px; border-radius:16px;
+      font-size:.9rem; font-weight:500;
+      box-shadow:0 12px 40px rgba(0,0,0,.2);
+      transform:translateY(80px); opacity:0;
+      transition:.4s cubic-bezier(.34,1.56,.64,1);
+      pointer-events:none;
+    }
+    #toast.show { transform:translateY(0); opacity:1; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #hero, .about-inner, .ages-inner,
+      .location-inner, .register-inner { grid-template-columns:1fr; gap:40px; }
+
+      .hero-visual, .ages-visual { order:-1; }
+
+      .approach-grid { grid-template-columns:1fr; }
+      .footer-inner { grid-template-columns:1fr 1fr; }
+
+      .nav-links { display:none; }
+      .hamburger { display:flex; }
+
+      #hero { padding-top:100px; }
+
+      .instagram-grid { grid-template-columns:repeat(3,1fr); }
+    }
+
+    @media (max-width: 600px) {
+      section { padding:70px 5%; }
+      .hero-stats { grid-template-columns:1fr 1fr 1fr; }
+      .footer-inner { grid-template-columns:1fr; gap:32px; }
+      .footer-bottom { flex-direction:column; gap:8px; text-align:center; }
+      .about-visual { grid-template-columns:1fr; }
+      .about-card-big { grid-column:1; }
+      .instagram-grid { grid-template-columns:repeat(2,1fr); }
+    }
+  </style>
+
+</head>
+<body>
+
+<!-- ─── LANGUAGE OVERLAY ─────────────────────────────────────────── -->
+
+<div id="lang-overlay">
+  <div class="overlay-box">
+    <div class="overlay-logo">EJIK 🦔</div>
+    <div class="overlay-tagline">ELVIUM Junior International Kindergarten</div>
+    <div class="overlay-langs">
+      <div class="overlay-lang-item" onclick="setLang('hy')">
+        <span class="overlay-lang-flag">🇦🇲</span>
+        <span class="overlay-lang-name">Հայերեն</span>
+        <span class="overlay-lang-native">Բարի գալուստ EJIK</span>
+      </div>
+      <div class="overlay-lang-item" onclick="setLang('ru')">
+        <span class="overlay-lang-flag">🇷🇺</span>
+        <span class="overlay-lang-name">Русский</span>
+        <span class="overlay-lang-native">Добро пожаловать в EJIK</span>
+      </div>
+      <div class="overlay-lang-item" onclick="setLang('en')">
+        <span class="overlay-lang-flag">🇬🇧</span>
+        <span class="overlay-lang-name">English</span>
+        <span class="overlay-lang-native">Welcome to EJIK</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── TOAST ─────────────────────────────────────────────────────── -->
+
+<div id="toast">🎉 <span id="toast-text">Thank you! We will contact you soon.</span></div>
+
+<!-- ─── NAVBAR ────────────────────────────────────────────────────── -->
+
+<nav id="navbar">
+  <a href="#" class="nav-logo">EJIK 🦔</a>
+  <ul class="nav-links">
+    <li><a href="#about" class="lang-en lang-hy lang-ru nav-link" data-en="About" data-ru="О нас" data-hy="Մեր մասին">About</a></li>
+    <li><a href="#approach" class="lang-en lang-hy lang-ru nav-link" data-en="Approach" data-ru="Подход" data-hy="Մոտեցում">Approach</a></li>
+    <li><a href="#ages" class="lang-en lang-hy lang-ru nav-link" data-en="Age Groups" data-ru="Возрасты" data-hy="Տարիքային խ.">Age Groups</a></li>
+    <li><a href="#location" class="lang-en lang-hy lang-ru nav-link" data-en="Location" data-ru="Местоположение" data-hy="Գտնվելու վայր">Location</a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn" onclick="setLang('hy')">ՀՅ</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────────────────────────────── -->
+
+<section id="hero">
+  <div class="blob blob-hero-1"></div>
+  <div class="blob blob-hero-2"></div>
+  <div class="blob blob-hero-3"></div>
+
+  <div class="hero-content reveal">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span class="lang-en">Opening Soon · Davtashen, Yerevan</span>
+      <span class="lang-ru" style="display:none">Скоро открытие · Давташен, Ереван</span>
+      <span class="lang-hy" style="display:none">Շուտով կբացվի · Դավթաշեն, Երևան</span>
+    </div>
+
+```
+<h1 class="hero-title">EJIK <span>🦔</span></h1>
+<p class="hero-subtitle">ELVIUM Junior International Kindergarten</p>
+
+<p class="hero-desc">
+  <span class="lang-en">International kindergarten with small groups and daily English — a warm place where children grow through play.</span>
+  <span class="lang-ru" style="display:none">Международный детский сад с маленькими группами и английским каждый день — тёплое место, где дети растут через игру.</span>
+  <span class="lang-hy" style="display:none">Միջազգային մանկապարտեզ փոքր խմբերով և անգլերենով ամեն օր — ջերմ վայր, որտեղ երեխաները աճում են խաղի միջոցով։</span>
+</p>
+
+<div class="hero-actions">
+  <a href="#register" class="btn-primary">
+    <span class="lang-en">Reserve a place 🌟</span>
+    <span class="lang-ru" style="display:none">Забронировать место 🌟</span>
+    <span class="lang-hy" style="display:none">Ամրագրել տեղ 🌟</span>
+  </a>
+  <a href="#about" class="btn-outline">
+    <span class="lang-en">Learn more</span>
+    <span class="lang-ru" style="display:none">Узнать больше</span>
+    <span class="lang-hy" style="display:none">Իմանալ ավելին</span>
+  </a>
+</div>
+```
+
+  </div>
+
+  <div class="hero-visual reveal reveal-delay-2">
+    <div class="hero-illustration">
+      <span class="hedgehog-large">🦔</span>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">3</span>
+          <span class="hero-stat-label lang-en">Languages</span>
+          <span class="hero-stat-label lang-ru" style="display:none">Языка</span>
+          <span class="hero-stat-label lang-hy" style="display:none">Լեզու</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">8</span>
+          <span class="hero-stat-label lang-en">Max per group</span>
+          <span class="hero-stat-label lang-ru" style="display:none">В группе</span>
+          <span class="hero-stat-label lang-hy" style="display:none">Խմբում</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">2–6</span>
+          <span class="hero-stat-label lang-en">Years old</span>
+          <span class="hero-stat-label lang-ru" style="display:none">Лет</span>
+          <span class="hero-stat-label lang-hy" style="display:none">Տարեկան</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─────────────────────────────────────────────────────── -->
+
+<section id="about">
+  <div class="about-inner">
+    <div class="reveal">
+      <span class="section-label lang-en">About us</span>
+      <span class="section-label lang-ru" style="display:none">О нас</span>
+      <span class="section-label lang-hy" style="display:none">Մեր մասին</span>
+
+```
+  <h2 class="section-title">About EJIK</h2>
+
+  <p class="section-text">
+    <span class="lang-en">EJIK is a safe and caring place where children grow and explore the world through play. We believe the early years are the most magical — and we treat them that way.</span>
+    <span class="lang-ru" style="display:none">EJIK — это безопасное и тёплое пространство, где дети растут, учатся и исследуют мир через игру. Мы верим, что первые годы жизни — самые важные.</span>
+    <span class="lang-hy" style="display:none">EJIK-ը անվտանգ և ջերմ միջավայր է, որտեղ երեխաները զարգանում են խաղի և ստեղծագործության միջոցով։ Մենք հավատում ենք, որ առաջին տարիները ամենակախտան են։</span>
+  </p>
+
+  <div class="about-features">
+    <div class="about-feature">
+      <div class="about-feature-icon" style="background:#FFF0E4">🌍</div>
+      <span class="about-feature-text lang-en">International environment from day one</span>
+      <span class="about-feature-text lang-ru" style="display:none">Международная среда с первого дня</span>
+      <span class="about-feature-text lang-hy" style="display:none">Միջազգային միջավայր առաջին օրից</span>
+    </div>
+    <div class="about-feature">
+      <div class="about-feature-icon" style="background:#E8F3FF">👩‍🏫</div>
+      <span class="about-feature-text lang-en">Qualified and caring educators</span>
+      <span class="about-feature-text lang-ru" style="display:none">Квалифицированные и заботливые педагоги</span>
+      <span class="about-feature-text lang-hy" style="display:none">Որակավորված և հոգատար մանկավարժներ</span>
+    </div>
+    <div class="about-feature">
+      <div class="about-feature-icon" style="background:#E8F5E4">🏡</div>
+      <span class="about-feature-text lang-en">Home-like atmosphere, not institutional</span>
+      <span class="about-feature-text lang-ru" style="display:none">Домашняя атмосфера, не казённая</span>
+      <span class="about-feature-text lang-hy" style="display:none">Տնային մթնոլորտ, ոչ ինստիտուցիոնալ</span>
+    </div>
+  </div>
+</div>
+
+<div class="about-visual reveal reveal-delay-2">
+  <div class="about-card-big">
+    <h3 class="lang-en">ELVIUM's first kindergarten</h3>
+    <h3 class="lang-ru" style="display:none">Первый детский сад ELVIUM</h3>
+    <h3 class="lang-hy" style="display:none">ELVIUM-ի առաջին մանկապարտեզը</h3>
+    <p class="lang-en">Backed by years of experience in international education and a passion for early childhood development.</p>
+    <p class="lang-ru" style="display:none">Опыт международного образования и любовь к раннему развитию детей.</p>
+    <p class="lang-hy" style="display:none">Հիմնված է միջազգային կրթության բազմամյա փորձի և վաղ մանկական զարգացման հանդեպ կրքի վրա:</p>
+  </div>
+  <div class="about-card-sm">
+    <span class="emoji">🎨</span>
+    <span class="lang-en">Creative arts daily</span>
+    <span class="lang-ru" style="display:none">Творчество каждый день</span>
+    <span class="lang-hy" style="display:none">Ստեղծագործություն ամեն օր</span>
+  </div>
+  <div class="about-card-sm">
+    <span class="emoji">🌿</span>
+    <span class="lang-en">Nature & outdoor play</span>
+    <span class="lang-ru" style="display:none">Природа и прогулки</span>
+    <span class="lang-hy" style="display:none">Բնություն ու դրսում խաղ</span>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ─── APPROACH ──────────────────────────────────────────────────── -->
+
+<section id="approach">
+  <div style="text-align:center; max-width:560px; margin:0 auto;" class="reveal">
+    <span class="section-label lang-en">Our philosophy</span>
+    <span class="section-label lang-ru" style="display:none">Наша философия</span>
+    <span class="section-label lang-hy" style="display:none">Մեր փիլիսոփայությունը</span>
+    <h2 class="section-title">
+      <span class="lang-en">Our Approach</span>
+      <span class="lang-ru" style="display:none">Наш подход</span>
+      <span class="lang-hy" style="display:none">Մեր մոտեցումը</span>
+    </h2>
+  </div>
+
+  <div class="approach-grid">
+    <div class="approach-card reveal reveal-delay-1">
+      <div class="approach-icon">🎮</div>
+      <h3 class="lang-en">Learning through play</h3>
+      <h3 class="lang-ru" style="display:none">Обучение через игру</h3>
+      <h3 class="lang-hy" style="display:none">Ուսուցում խաղի միջոցով</h3>
+      <p class="lang-en">Every activity is designed to spark curiosity and joy. Children learn best when they're having fun — we make sure of that every day.</p>
+      <p class="lang-ru" style="display:none">Каждое занятие создано, чтобы разжечь любопытство и радость. Дети учатся лучше всего, когда им весело.</p>
+      <p class="lang-hy" style="display:none">Յուրաքանչյուր գործողություն նախատեսված է հետաքրքրություն և ուրախություն բորբոքելու համար։ Երեխաները ավելի լավ են սովորում, երբ զվարճանում են:</p>
+    </div>
+    <div class="approach-card reveal reveal-delay-2">
+      <div class="approach-icon">🇬🇧</div>
+      <h3 class="lang-en">English every day</h3>
+      <h3 class="lang-ru" style="display:none">Английский каждый день</h3>
+      <h3 class="lang-hy" style="display:none">Անգլերեն ամեն օր</h3>
+      <p class="lang-en">English is woven naturally into daily routines — songs, games, stories and conversations. No pressure, just immersion.</p>
+      <p class="lang-ru" style="display:none">Английский органично вплетён в повседневные занятия — песни, игры, истории. Без давления, только погружение.</p>
+      <p class="lang-hy" style="display:none">Անգլերենը բնականոն կերպով հյուսված է ամենօրյա ռեժիմի մեջ՝ երգեր, խաղեր, պատմություններ։ Ճնշում չկա, միայն ընկղմում:</p>
+    </div>
+    <div class="approach-card reveal reveal-delay-3">
+      <div class="approach-icon">👶</div>
+      <h3 class="lang-en">Small groups</h3>
+      <h3 class="lang-ru" style="display:none">Маленькие группы</h3>
+      <h3 class="lang-hy" style="display:none">Փոքր խմբեր</h3>
+      <p class="lang-en">We keep groups small so every child gets real attention. Up to 8 children per group means educators can truly connect with each little one.</p>
+      <p class="lang-ru" style="display:none">Мы держим группы маленькими — до 8 детей — чтобы каждый ребёнок получал настоящее внимание и заботу.</p>
+      <p class="lang-hy" style="display:none">Մենք խմբերը փոքր ենք պահում, որպեսզի յուրաքանչյուր երեխա ստանա իրական ուշադրություն։ Մինչև 8 երեխա խմբում:</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── AGE GROUPS ────────────────────────────────────────────────── -->
+
+<section id="ages">
+  <div class="ages-inner">
+    <div class="reveal">
+      <span class="section-label lang-en">Who we welcome</span>
+      <span class="section-label lang-ru" style="display:none">Кого мы принимаем</span>
+      <span class="section-label lang-hy" style="display:none">Ում ենք ընդունում</span>
+      <h2 class="section-title">
+        <span class="lang-en">Age Groups</span>
+        <span class="lang-ru" style="display:none">Возрастные группы</span>
+        <span class="lang-hy" style="display:none">Տարիքային խմբեր</span>
+      </h2>
+      <p class="section-text">
+        <span class="lang-en">We tailor our program to each developmental stage, ensuring every child flourishes at their own pace.</span>
+        <span class="lang-ru" style="display:none">Мы адаптируем программу к каждому этапу развития, чтобы каждый ребёнок расцветал в своём темпе.</span>
+        <span class="lang-hy" style="display:none">Մենք հարմարեցնում ենք մեր ծրագիրը յուրաքանչյուր զարգացման փուլին:</span>
+      </p>
+
+```
+  <div class="ages-list">
+    <div class="age-item reveal reveal-delay-1">
+      <div class="age-bubble orange">2–3</div>
+      <div class="age-info">
+        <strong class="lang-en">Toddlers · 2–3 years</strong>
+        <strong class="lang-ru" style="display:none">Малыши · 2–3 года</strong>
+        <strong class="lang-hy" style="display:none">Փոքրիկներ · 2–3 տարեկան</strong>
+        <span class="lang-en">Sensory play, routines & first words</span>
+        <span class="lang-ru" style="display:none">Сенсорные игры, режим и первые слова</span>
+        <span class="lang-hy" style="display:none">Զգայական խաղ, ռեժիմ և առաջին բառեր</span>
+      </div>
+    </div>
+    <div class="age-item reveal reveal-delay-2">
+      <div class="age-bubble blue">3–4</div>
+      <div class="age-info">
+        <strong class="lang-en">Explorers · 3–4 years</strong>
+        <strong class="lang-ru" style="display:none">Исследователи · 3–4 года</strong>
+        <strong class="lang-hy" style="display:none">Հետախույզներ · 3–4 տարեկան</strong>
+        <span class="lang-en">Creativity, storytelling & social skills</span>
+        <span class="lang-ru" style="display:none">Творчество, рассказывание историй, социальные навыки</span>
+        <span class="lang-hy" style="display:none">Ստեղծագործություն, պատմություններ, սոցիալական հմտություններ</span>
+      </div>
+    </div>
+    <div class="age-item reveal reveal-delay-3">
+      <div class="age-bubble green">4–6</div>
+      <div class="age-info">
+        <strong class="lang-en">Pre-schoolers · 4–6 years</strong>
+        <strong class="lang-ru" style="display:none">Дошкольники · 4–6 лет</strong>
+        <strong class="lang-hy" style="display:none">Նախադպրոցականներ · 4–6 տարեկան</strong>
+        <span class="lang-en">School readiness, literacy & bilingual growth</span>
+        <span class="lang-ru" style="display:none">Готовность к школе, грамотность и двуязычное развитие</span>
+        <span class="lang-hy" style="display:none">Դպրոցի պատրաստություն, գրագիտություն</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ages-visual reveal reveal-delay-2">
+  <div class="ages-illustration">
+    <span class="big-emoji">🌱</span>
+    <p class="lang-en">Every child grows at their own beautiful pace.</p>
+    <p class="lang-ru" style="display:none">Каждый ребёнок растёт в своём прекрасном темпе.</p>
+    <p class="lang-hy" style="display:none">Յուրաքանչյուր երեխա աճում է իր գեղեցիկ տեմպով:</p>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ─── LOCATION ──────────────────────────────────────────────────── -->
+
+<section id="location">
+  <div class="location-inner">
+    <div class="reveal">
+      <span class="section-label lang-en">Find us</span>
+      <span class="section-label lang-ru" style="display:none">Как нас найти</span>
+      <span class="section-label lang-hy" style="display:none">Գտեք մեզ</span>
+      <h2 class="section-title">
+        <span class="lang-en">Location</span>
+        <span class="lang-ru" style="display:none">Местоположение</span>
+        <span class="lang-hy" style="display:none">Գտնվելու վայր</span>
+      </h2>
+      <p class="section-text">
+        <span class="lang-en">Located in Davtashen — one of Yerevan's most family-friendly neighbourhoods, with parks, fresh air and easy access.</span>
+        <span class="lang-ru" style="display:none">Находимся в Давташене — одном из самых дружелюбных к семьям районов Еревана.</span>
+        <span class="lang-hy" style="display:none">Գտնվում ենք Դավթաշենում՝ Երևանի ամենաընտանեկան թաղամասերից մեկում։</span>
+      </p>
+      <div class="location-details">
+        <div class="location-item">
+          <div class="icon">📍</div>
+          <span><strong>Davtashen · Yerevan, Armenia</strong></span>
+        </div>
+        <div class="location-item">
+          <div class="icon">🕐</div>
+          <span class="lang-en">Opening hours: 8:00 – 18:00</span>
+          <span class="lang-ru" style="display:none">Часы работы: 8:00 – 18:00</span>
+          <span class="lang-hy" style="display:none">Աշխատանքային ժամեր: 8:00 – 18:00</span>
+        </div>
+        <div class="location-item">
+          <div class="icon">📞</div>
+          <span>
+            <span class="lang-en">Contact via WhatsApp</span>
+            <span class="lang-ru" style="display:none">Связаться через WhatsApp</span>
+            <span class="lang-hy" style="display:none">Կապ WhatsApp-ի միջոցով</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+```
+<div class="map-container reveal reveal-delay-2">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12156.505!2d44.4946!3d40.1936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406abc7b60a2a2fb%3A0x27f793aba2f96f4!2sDavtashen%2C%20Yerevan%2C%20Armenia!5e0!3m2!1sen!2s!4v1699000000000"
+    allowfullscreen="" loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    title="EJIK Kindergarten Location">
+  </iframe>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ─── PRE-REGISTRATION ──────────────────────────────────────────── -->
+
+<section id="register" style="padding:0;">
+  <div class="register-inner" style="padding:100px 5%;">
+    <div class="register-content reveal">
+      <span class="section-label" style="color:rgba(255,255,255,.65)">
+        <span class="lang-en">Limited spots</span>
+        <span class="lang-ru" style="display:none">Ограниченные места</span>
+        <span class="lang-hy" style="display:none">Սահմանափակ տեղեր</span>
+      </span>
+      <h2>
+        <span class="lang-en">Opening Soon</span>
+        <span class="lang-ru" style="display:none">Скоро открытие</span>
+        <span class="lang-hy" style="display:none">Շուտով կբացվի</span>
+      </h2>
+      <p>
+        <span class="lang-en">Places are limited. Be among the first families to join EJIK — reserve your child's spot before we open.</span>
+        <span class="lang-ru" style="display:none">Мест немного. Станьте одной из первых семей EJIK — забронируйте место для вашего ребёнка уже сейчас.</span>
+        <span class="lang-hy" style="display:none">Տեղերը սահմանափակ են: Եղեք EJIK-ի առաջին ընտանիքներից՝ ամրագրեք ձեր երեխայի տեղը:</span>
+      </p>
+      <div class="register-badges">
+        <span class="register-badge lang-en">🎯 Small groups only</span>
+        <span class="register-badge lang-en">🌍 Trilingual environment</span>
+        <span class="register-badge lang-en">💛 Family-centred</span>
+        <span class="register-badge lang-ru" style="display:none">🎯 Только малые группы</span>
+        <span class="register-badge lang-ru" style="display:none">🌍 Трёхязычная среда</span>
+        <span class="register-badge lang-ru" style="display:none">💛 Семейный подход</span>
+        <span class="register-badge lang-hy" style="display:none">🎯 Միայն փոքր խմբեր</span>
+        <span class="register-badge lang-hy" style="display:none">🌍 Եռալեզու միջավայր</span>
+        <span class="register-badge lang-hy" style="display:none">💛 Ընտանեկան մոտեցում</span>
+      </div>
+    </div>
+
+```
+<div class="register-form reveal reveal-delay-2">
+  <h3>
+    <span class="lang-en">Reserve a place</span>
+    <span class="lang-ru" style="display:none">Забронировать место</span>
+    <span class="lang-hy" style="display:none">Ամրագրել տեղ</span>
+  </h3>
+  <p class="form-subtitle">
+    <span class="lang-en">We'll get back to you within 24 hours.</span>
+    <span class="lang-ru" style="display:none">Мы свяжемся с вами в течение 24 часов.</span>
+    <span class="lang-hy" style="display:none">Մենք կկապվենք ձեզ հետ 24 ժամվա ընթացքում:</span>
+  </p>
+
+  <div class="form-group">
+    <label>
+      <span class="lang-en">Your name</span>
+      <span class="lang-ru" style="display:none">Ваше имя</span>
+      <span class="lang-hy" style="display:none">Ձեր անունը</span>
+    </label>
+    <input type="text" id="f-name" placeholder="Anna Petrosyan" />
+  </div>
+  <div class="form-group">
+    <label>
+      <span class="lang-en">Phone number</span>
+      <span class="lang-ru" style="display:none">Номер телефона</span>
+      <span class="lang-hy" style="display:none">Հեռախոսի համարը</span>
+    </label>
+    <input type="tel" id="f-phone" placeholder="+374 xx xxx xxx" />
+  </div>
+  <div class="form-group">
+    <label>
+      <span class="lang-en">Child's age</span>
+      <span class="lang-ru" style="display:none">Возраст ребёнка</span>
+      <span class="lang-hy" style="display:none">Երեխայի տարիքը</span>
+    </label>
+    <select id="f-age">
+      <option value="" disabled selected>
+        <span class="lang-en">Select age</span>
+      </option>
+      <option value="2-3">2 – 3 years</option>
+      <option value="3-4">3 – 4 years</option>
+      <option value="4-6">4 – 6 years</option>
+    </select>
+  </div>
+  <button class="form-submit" onclick="submitForm()">
+    <span class="lang-en">Reserve a place 🌟</span>
+    <span class="lang-ru" style="display:none">Забронировать место 🌟</span>
+    <span class="lang-hy" style="display:none">Ամրագրել տեղ 🌟</span>
+  </button>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- ─── INSTAGRAM ─────────────────────────────────────────────────── -->
+
+<section id="instagram">
+  <div class="instagram-header reveal">
+    <span class="section-label lang-en">Our community</span>
+    <span class="section-label lang-ru" style="display:none">Наше сообщество</span>
+    <span class="section-label lang-hy" style="display:none">Մեր հանրությունը</span>
+    <h2 class="section-title">
+      <span class="lang-en">Follow our journey</span>
+      <span class="lang-ru" style="display:none">Следите за нами</span>
+      <span class="lang-hy" style="display:none">Հետևեք մեզ</span>
+    </h2>
+    <a href="https://instagram.com/ejik.kindergarten" target="_blank" class="instagram-handle">
+      <span class="ig-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </span>
+      @ejik.kindergarten
+    </a>
+  </div>
+
+  <div class="instagram-grid reveal">
+    <div class="instagram-placeholder">
+      <div class="ig-placeholder-inner">
+        <span class="emoji">🎨</span>
+        <span class="lang-en">Art & Crafts morning</span>
+        <span class="lang-ru" style="display:none">Утро творчества</span>
+        <span class="lang-hy" style="display:none">Արվեստի առաջ</span>
+      </div>
+      <div class="ig-overlay"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07..."/></svg></div>
+    </div>
+    <div class="instagram-placeholder">
+      <div class="ig-placeholder-inner">
+        <span class="emoji">📚</span>
+        <span class="lang-en">Story time in English</span>
+        <span class="lang-ru" style="display:none">Чтение на английском</span>
+        <span class="lang-hy" style="display:none">Պատմություն անգլերենով</span>
+      </div>
+      <div class="ig-overlay"></div>
+    </div>
+    <div class="instagram-placeholder">
+      <div class="ig-placeholder-inner">
+        <span class="emoji">🌿</span>
+        <span class="lang-en">Garden & outdoor play</span>
+        <span class="lang-ru" style="display:none">Прогулки на улице</span>
+        <span class="lang-hy" style="display:none">Դրսի խաղ</span>
+      </div>
+      <div class="ig-overlay"></div>
+    </div>
+    <div class="instagram-placeholder">
+      <div class="ig-placeholder-inner">
+        <span class="emoji">🎵</span>
+        <span class="lang-en">Music & movement</span>
+        <span class="lang-ru" style="display:none">Музыка и движение</span>
+        <span class="lang-hy" style="display:none">Երաժշտություն</span>
+      </div>
+      <div class="ig-overlay"></div>
+    </div>
+    <div class="instagram-placeholder">
+      <div class="ig-placeholder-inner">
+        <span class="emoji">🧩</span>
+        <span class="lang-en">Problem solving fun</span>
+        <span class="lang-ru" style="display:none">Весёлые задачки</span>
+        <span class="lang-hy" style="display:none">Զվարճալի առաջադրանքներ</span>
+      </div>
+      <div class="ig-overlay"></div>
+    </div>
+    <div class="instagram-placeholder">
+      <div class="ig-placeholder-inner">
+        <span class="emoji">🦔</span>
+        <span class="lang-en">EJIK family moments</span>
+        <span class="lang-ru" style="display:none">Моменты семьи EJIK</span>
+        <span class="lang-hy" style="display:none">EJIK ընտանեկան պահեր</span>
+      </div>
+      <div class="ig-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────────────── -->
+
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo">EJIK 🦔</div>
+      <div class="tagline">ELVIUM Junior International Kindergarten</div>
+      <div class="location">📍 Davtashen · Yerevan, Armenia</div>
+      <div class="footer-social" style="margin-top:20px">
+        <a href="https://instagram.com/ejik.kindergarten" target="_blank" title="Instagram">📸</a>
+        <a href="https://wa.me/" target="_blank" title="WhatsApp">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 class="lang-en">Navigate</h4>
+      <h4 class="lang-ru" style="display:none">Навигация</h4>
+      <h4 class="lang-hy" style="display:none">Նավիգացիա</h4>
+      <a href="#about">
+        <span class="lang-en">About</span>
+        <span class="lang-ru" style="display:none">О нас</span>
+        <span class="lang-hy" style="display:none">Մեր մասին</span>
+      </a>
+      <a href="#approach">
+        <span class="lang-en">Approach</span>
+        <span class="lang-ru" style="display:none">Подход</span>
+        <span class="lang-hy" style="display:none">Մոտեցում</span>
+      </a>
+      <a href="#ages">
+        <span class="lang-en">Age Groups</span>
+        <span class="lang-ru" style="display:none">Возрасты</span>
+        <span class="lang-hy" style="display:none">Տարիքային խ.</span>
+      </a>
+      <a href="#location">
+        <span class="lang-en">Location</span>
+        <span class="lang-ru" style="display:none">Адрес</span>
+        <span class="lang-hy" style="display:none">Հասցե</span>
+      </a>
+    </div>
+    <div class="footer-col">
+      <h4 class="lang-en">Contact</h4>
+      <h4 class="lang-ru" style="display:none">Контакты</h4>
+      <h4 class="lang-hy" style="display:none">Կապ</h4>
+      <a href="https://instagram.com/ejik.kindergarten" target="_blank">Instagram</a>
+      <a href="https://wa.me/" target="_blank">WhatsApp</a>
+      <a href="#register">
+        <span class="lang-en">Reserve a place</span>
+        <span class="lang-ru" style="display:none">Забронировать</span>
+        <span class="lang-hy" style="display:none">Ամրագրել տեղ</span>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 EJIK — ELVIUM Junior International Kindergarten</span>
+    <span>Made with 💛 in Yerevan</span>
+  </div>
+</footer>
+
+<!-- ─── JAVASCRIPT ─────────────────────────────────────────────────── -->
+
+<script>
+  /* ── LANGUAGE SYSTEM ─────────────────────────────────────────── */
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('lang-overlay').style.display = 'none';
+
+    // Show/hide all language spans
+    ['en','ru','hy'].forEach(l => {
+      document.querySelectorAll('.lang-' + l).forEach(el => {
+        el.style.display = (l === lang) ? '' : 'none';
+      });
+    });
+
+    // Update nav link text via data attributes
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const text = link.getAttribute('data-' + lang);
+      if (text) {
+        // Replace first text node that isn't a .lang- span
+        const spans = link.querySelectorAll('[class^="lang-"]');
+        // Already handled by show/hide above
+      }
+    });
+
+    // Update active lang button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    const map = { en: 2, ru: 1, hy: 0 };
+    document.querySelectorAll('.lang-btn')[map[lang]].classList.add('active');
+
+    // Update html lang attribute
+    document.documentElement.lang = lang === 'hy' ? 'hy' : lang === 'ru' ? 'ru' : 'en';
+
+    // Update form select placeholder text
+    const sel = document.getElementById('f-age');
+    if (sel && sel.options[0]) {
+      const placeholders = { en:'Select age', ru:'Выберите возраст', hy:'Ընտրեք տարիքը' };
+      sel.options[0].text = placeholders[lang] || placeholders.en;
+    }
+
+    // Fix age option labels
+    const ageLabels = {
+      en: ['2 – 3 years', '3 – 4 years', '4 – 6 years'],
+      ru: ['2 – 3 года', '3 – 4 года', '4 – 6 лет'],
+      hy: ['2 – 3 տարեկան', '3 – 4 տարեկան', '4 – 6 տարեկան'],
+    };
+    if (sel) {
+      for (let i = 1; i <= 3; i++) {
+        if (sel.options[i]) sel.options[i].text = ageLabels[lang][i-1];
+      }
+    }
+  }
+
+  /* ── FORM SUBMIT ─────────────────────────────────────────────── */
+  function submitForm() {
+    const name  = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const age   = document.getElementById('f-age').value;
+
+    if (!name || !phone || !age) {
+      const msgs = {
+        en: 'Please fill in all fields.',
+        ru: 'Пожалуйста, заполните все поля.',
+        hy: 'Խնդրում ենք լրացնել բոլոր դաշտերը:',
+      };
+      showToast(msgs[currentLang] || msgs.en, '⚠️');
+      return;
+    }
+
+    const msgs = {
+      en: 'Thank you! We will contact you soon.',
+      ru: 'Спасибо! Мы скоро с вами свяжемся.',
+      hy: 'Շնորհակալություն! Մենք շուտով կկապվենք ձեզ հետ:',
+    };
+    showToast(msgs[currentLang] || msgs.en, '🎉');
+
+    // Reset form
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-phone').value = '';
+    document.getElementById('f-age').value = '';
+  }
+
+  /* ── TOAST ───────────────────────────────────────────────────── */
+  function showToast(msg, icon) {
+    const toast = document.getElementById('toast');
+    toast.innerHTML = icon + ' ' + msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  }
+
+  /* ── NAVBAR SCROLL ───────────────────────────────────────────── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  /* ── MOBILE MENU ─────────────────────────────────────────────── */
+  let menuOpen = false;
+  function toggleMenu() {
+    const links = document.querySelector('.nav-links');
+    menuOpen = !menuOpen;
+    if (menuOpen) {
+      links.style.display = 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '68px';
+      links.style.left = '0'; links.style.right = '0';
+      links.style.background = 'rgba(246,241,231,.97)';
+      links.style.padding = '20px 5%';
+      links.style.gap = '16px';
+      links.style.backdropFilter = 'blur(14px)';
+      links.style.borderBottom = '1px solid rgba(0,0,0,.06)';
+    } else {
+      links.style.display = 'none';
+    }
+  }
+
+  /* ── SCROLL REVEAL ───────────────────────────────────────────── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── CLOSE MENU ON LINK CLICK ────────────────────────────────── */
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (menuOpen) toggleMenu();
+    });
+  });
+</script>
+
+</body>
+</html>
