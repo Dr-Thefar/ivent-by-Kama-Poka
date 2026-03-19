@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26 — День Рождения</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0f;
+            position: relative;
+        }
+
+        /* Blurred background layer - underneath everything */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/IMAGE%202026-03-19%2022%3A11%3A06.jpg') center/cover;
+            z-index: -2;
+            pointer-events: none;
+            filter: blur(60px) brightness(0.4);
+        }
+
+        /* Full visible background image */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/assets/IMAGE%202026-03-19%2022%3A11%3A06.jpg') center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+
+        .container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .container::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .container::-webkit-scrollbar-thumb {
+            background: rgba(255, 107, 157, 0.3);
+            border-radius: 4px;
+        }
+
+        .container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 107, 157, 0.5);
+        }
+
+        /* Scroll snap sections */
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Card styles */
+        .card {
+            position: relative;
+            max-width: 600px;
+            width: 100%;
+            background: rgba(15, 15, 25, 0.78);
+            border: 1px solid rgba(255, 100, 150, 0.12);
+            border-radius: 24px;
+            padding: 50px 45px;
+            box-shadow: 
+                0 0 100px rgba(255, 100, 150, 0.1),
+                0 40px 100px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(30px);
+            animation: fadeIn 0.8s ease 0.2s both;
+            z-index: 2;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 107, 157, 0.6), transparent);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll hint */
+        .scroll-hint {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+            color: rgba(255, 107, 157, 0.8);
+            text-align: center;
+            animation: bounce 2s infinite;
+            z-index: 2;
+        }
+
+        .scroll-hint svg {
+            width: 20px;
+            height: 20px;
+            margin: 5px auto;
+            opacity: 0.6;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-8px); }
+        }
+
+        /* Number badge */
+        .number-badge {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 75px;
+            height: 75px;
+            background: linear-gradient(135deg, #ff1744, #ff6b9d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 15px 50px rgba(255, 100, 150, 0.5);
+            border: 4px solid rgba(15, 15, 25, 0.9);
+            animation: pulse 2.2s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 15px 50px rgba(255, 100, 150, 0.5); }
+            50% { box-shadow: 0 15px 100px rgba(255, 100, 150, 0.8); }
+        }
+
+        .greeting-main {
+            font-size: 28px;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .greeting-main strong {
+            font-weight: 600;
+            color: #ff6b9d;
+        }
+
+        .divider-line {
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 107, 157, 0.5) 15%,
+                rgba(255, 107, 157, 0.8) 50%,
+                rgba(255, 107, 157, 0.5) 85%,
+                transparent);
+            margin: 25px 0;
+        }
+
+        /* Timer */
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.08), rgba(255, 23, 68, 0.05));
+            padding: 25px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .timer-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.12), rgba(255, 23, 68, 0.08));
+            border: 1px solid rgba(255, 107, 157, 0.25);
+            border-radius: 8px;
+            padding: 14px 11px;
+            min-width: 56px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timer-number {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ff6b9d;
+            line-height: 1;
+            margin-bottom: 6px;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 10px rgba(255, 107, 157, 0.3);
+        }
+
+        .timer-label-small {
+            font-size: 9px;
+            color: #b0b0d0;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 700;
+        }
+
+        .timer-separator {
+            color: #ff6b9d;
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 18px;
+            animation: blink 1.2s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.2; }
+        }
+
+        /* Invitation text */
+        .invitation-text {
+            text-align: center;
+            font-size: 15px;
+            color: #d8d8e8;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+
+        /* Events Section */
+        .events-title {
+            font-size: 13px;
+            color: #ff6b9d;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 0 0 12px rgba(255, 107, 157, 0.4);
+        }
+
+        .event-item {
+            margin-bottom: 18px;
+            padding: 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.08), rgba(255, 23, 68, 0.04));
+            border: 1px solid rgba(255, 107, 157, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .event-item:hover {
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.12), rgba(255, 23, 68, 0.08));
+            border-color: rgba(255, 107, 157, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.1);
+        }
+
+        .event-type {
+            font-size: 12px;
+            color: #ff6b9d;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .event-details-text {
+            font-size: 14px;
+            color: #d8d8e8;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .event-details-text strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .dress-code-box {
+            background: linear-gradient(135deg, rgba(255, 23, 68, 0.15), rgba(255, 107, 157, 0.12));
+            border: 2px solid rgba(255, 107, 157, 0.3);
+            border-radius: 12px;
+            padding: 22px;
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(255, 107, 157, 0.15);
+            position: relative;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .dress-code-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Form section */
+        .form-title {
+            font-size: 13px;
+            color: #ff6b9d;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 0 0 12px rgba(255, 107, 157, 0.4);
+        }
+
+        .form-wrapper {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 20px;
+            background: rgba(15, 15, 25, 0.5);
+            border: 1px solid rgba(255, 107, 157, 0.15);
+            padding: 3px;
+            box-shadow: 
+                0 0 50px rgba(255, 100, 150, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        iframe {
+            border-radius: 13px !important;
+            box-shadow: none !important;
+            display: block;
+            width: 100%;
+            filter: brightness(0.98) saturate(0.9);
+            background: rgba(250, 250, 250, 0.95) !important;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 11px;
+            color: #707090;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* Comments section */
+        .comments-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .comments-subtitle {
+            font-size: 12px;
+            color: #b0b0d0;
+            text-align: center;
+            margin-bottom: 32px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .comment-input-group {
+            margin-bottom: 28px;
+        }
+
+        .comment-input-label {
+            font-size: 11px;
+            color: #b0b0d0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 107, 157, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 300;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            resize: vertical;
+            min-height: 85px;
+            backdrop-filter: blur(5px);
+        }
+
+        .comment-input:focus {
+            outline: none;
+            background: rgba(255, 107, 157, 0.06);
+            border-color: #ff6b9d;
+            box-shadow: 0 0 12px rgba(255, 107, 157, 0.25), inset 0 0 10px rgba(255, 107, 157, 0.05);
+        }
+
+        .comment-input::placeholder {
+            color: #707090;
+        }
+
+        .submit-comment-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #ff1744, #ff6b9d);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-comment-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .submit-comment-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-comment-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 107, 157, 0.6);
+        }
+
+        .submit-comment-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-comment-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .comments-container {
+            margin-top: 32px;
+            max-height: 350px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .comments-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .comments-container::-webkit-scrollbar-track {
+            background: rgba(255, 107, 157, 0.05);
+            border-radius: 3px;
+        }
+
+        .comments-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 107, 157, 0.2);
+            border-radius: 3px;
+        }
+
+        .comments-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 107, 157, 0.35);
+        }
+
+        .comment-item {
+            padding: 14px;
+            background: rgba(255, 107, 157, 0.05);
+            border-left: 3px solid #ff6b9d;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .comment-text {
+            color: #d8d8e8;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 6px;
+            font-weight: 300;
+            word-wrap: break-word;
+        }
+
+        .comment-time {
+            font-size: 10px;
+            color: #707090;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .empty-comments {
+            text-align: center;
+            color: #707090;
+            padding: 30px 15px;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        .loading {
+            text-align: center;
+            color: #ff6b9d;
+            padding: 25px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 650px) {
+            .card {
+                padding: 40px 25px;
+            }
+
+            .greeting-main {
+                font-size: 22px;
+            }
+
+            .timer-box {
+                min-width: 48px;
+                padding: 12px 9px;
+            }
+
+            .timer-number {
+                font-size: 22px;
+            }
+
+            .number-badge {
+                width: 65px;
+                height: 65px;
+                font-size: 32px;
+                top: -32px;
+            }
+
+            .event-item {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- TIMER SECTION -->
+        <div class="scroll-section">
+            <div class="card">
+                <div class="number-badge">26</div>
+
+                <div class="greeting-main">
+                    Дорогой друг, мне исполнится <strong>26 лет</strong> через
+                </div>
+
+                <div class="divider-line"></div>
+
+                <div class="timer-container">
+                    <div class="timer-box">
+                        <div class="timer-number" id="days">00</div>
+                        <div class="timer-label-small">дней</div>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-box">
+                        <div class="timer-number" id="hours">00</div>
+                        <div class="timer-label-small">часов</div>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-box">
+                        <div class="timer-number" id="minutes">00</div>
+                        <div class="timer-label-small">минут</div>
+                    </div>
+                    <div class="timer-separator">:</div>
+                    <div class="timer-box">
+                        <div class="timer-number" id="seconds">00</div>
+                        <div class="timer-label-small">секунд</div>
+                    </div>
+                </div>
+
+                <div class="invitation-text">
+                    Хочу встретить это событие с тобой.
+                </div>
+            </div>
+
+            <div class="scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 15 12 9 18 15"></polyline>
+                </svg>
+                Свайп вверх
+            </div>
+        </div>
+
+        <!-- EVENTS SECTION -->
+        <div class="scroll-section">
+            <div class="card">
+                <div class="events-title">📍 Программа Вечера</div>
+
+                <div class="event-item">
+                    <div class="event-type">🌙 Пре Пати</div>
+                    <div class="event-details-text">
+                        <strong>21 марта</strong> в <strong>19:00</strong><br>
+                        ул. Лесная поляна, 14
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-type">🎤 Основное Событие</div>
+                    <div class="event-details-text">
+                        <strong>21 марта</strong> к <strong>23:00</strong><br>
+                        Караоке бар "Liquor"<br>
+                        ул. Кольцовская, 24К
+                    </div>
+                </div>
+
+                <div class="dress-code-box">
+                    🖤 Дресс Код: ЧЕРНЫЙ
+                </div>
+            </div>
+
+            <div class="scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 15 12 9 18 15"></polyline>
+                </svg>
+                Свайп вверх
+            </div>
+        </div>
+
+        <!-- FORM SECTION -->
+        <div class="scroll-section">
+            <div class="card">
+                <span class="form-title">✓ Подтверди свое участие</span>
+                
+                <div class="form-wrapper">
+                    <iframe 
+                        src="https://docs.google.com/forms/d/e/1FAIpQLSd1_-ySzApew5sUIP889IOAG7UjxHaWu0gw2JRe_6ZsCg9H9w/viewform?embedded=true" 
+                        width="100%" 
+                        height="420" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0"
+                        style="border: none;"
+                    >Загрузка…</iframe>
+                </div>
+
+                <div class="footer-note">
+                    ✨ Твое подтверждение автоматически сохраняется
+                </div>
+            </div>
+
+            <div class="scroll-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 15 12 9 18 15"></polyline>
+                </svg>
+                Свайп вверх
+            </div>
+        </div>
+
+        <!-- COMMENTS SECTION -->
+        <div class="scroll-section">
+            <div class="card">
+                <div class="comments-title">Комментарии</div>
+                <div class="comments-subtitle">Оставь пожелание, прикол или мудрость</div>
+
+                <div class="comment-input-group">
+                    <label class="comment-input-label">Твое сообщение</label>
+                    <textarea 
+                        class="comment-input" 
+                        id="commentInput" 
+                        placeholder="Напиши что-нибудь крутое (макс. 300 символов)..."
+                        maxlength="300"
+                    ></textarea>
+                </div>
+
+                <button class="submit-comment-btn" id="submitCommentBtn">💬 Отправить</button>
+
+                <div class="comments-container" id="commentsContainer">
+                    <div class="loading">Загрузка комментариев...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js"></script>
+
+    <script>
+        // ============ FIREBASE CONFIG ============
+        const firebaseConfig = {
+            apiKey: "AIzaSyCx80z_cU_Dd9az2T3XxxfDGkMJi110DHk",
+            authDomain: "birthday26-6078a.firebaseapp.com",
+            databaseURL: "https://birthday26-6078a-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "birthday26-6078a",
+            storageBucket: "birthday26-6078a.firebasestorage.app",
+            messagingSenderId: "152728454764",
+            appId: "1:152728454764:web:53d91b40fcef82282c3a49"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database(app);
+
+        // ============ COUNTDOWN TIMER ============
+        function updateTimer() {
+            // Target: March 22, 2026 00:00 UTC (день рождения!)
+            const targetDate = new Date('2026-03-22T00:00:00Z').getTime();
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        // ============ COMMENTS ============
+        const commentInput = document.getElementById('commentInput');
+        const submitBtn = document.getElementById('submitCommentBtn');
+        const commentsContainer = document.getElementById('commentsContainer');
+
+        console.log('🔧 Firebase инициализация...', database);
+
+        function loadComments() {
+            console.log('📥 Загрузка комментариев...');
+            
+            try {
+                const commentsRef = database.ref('comments');
+                
+                // Check connection
+                database.ref('.info/connected').once('value', (snapshot) => {
+                    if (snapshot.val()) {
+                        console.log('✅ Firebase подключён');
+                    } else {
+                        console.log('❌ Firebase НЕ подключён');
+                        commentsContainer.innerHTML = '<div class="empty-comments">⚠️ Нет подключения к Firebase</div>';
+                    }
+                });
+
+                // Load all comments once
+                commentsRef.once('value', (snapshot) => {
+                    console.log('📦 Получены комментарии:', snapshot.val());
+                    
+                    const comments = [];
+                    snapshot.forEach((childSnapshot) => {
+                        comments.push(childSnapshot.val());
+                    });
+
+                    commentsContainer.innerHTML = '';
+
+                    if (comments.length === 0) {
+                        console.log('📝 Комментариев нет');
+                        commentsContainer.innerHTML = '<div class="empty-comments">Комментариев пока нет.<br>Будь первым! 👇</div>';
+                    } else {
+                        console.log('✨ Показываем ' + comments.length + ' комментариев');
+                        // Показываем новые комментарии сверху
+                        comments.reverse().forEach((comment) => {
+                            if (!comment || !comment.text) return;
+                            
+                            const date = new Date(comment.timestamp);
+                            const timeString = date.toLocaleString('ru-RU', {
+                                month: 'short',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            });
+
+                            const commentEl = document.createElement('div');
+                            commentEl.className = 'comment-item';
+                            commentEl.innerHTML = `
+                                <div class="comment-text">"${escapeHtml(comment.text)}"</div>
+                                <div class="comment-time">${timeString}</div>
+                            `;
+                            commentsContainer.appendChild(commentEl);
+                        });
+                    }
+                }).catch((error) => {
+                    console.error('❌ Ошибка загрузки Firebase:', error);
+                    commentsContainer.innerHTML = '<div class="empty-comments">❌ Ошибка: ' + error.code + '</div>';
+                });
+
+            } catch (error) {
+                console.error('❌ Ошибка в loadComments:', error);
+                commentsContainer.innerHTML = '<div class="empty-comments">❌ Ошибка: ' + error.message + '</div>';
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        submitBtn.addEventListener('click', async () => {
+            const text = commentInput.value.trim();
+
+            if (text.length === 0) {
+                alert('Напиши что-нибудь перед отправкой 😉');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = '⏳ Отправка...';
+
+            try {
+                console.log('📤 Отправка комментария:', text);
+                
+                const commentsRef = database.ref('comments');
+                const newCommentRef = commentsRef.push();
+                
+                await newCommentRef.set({
+                    text: text,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                });
+
+                console.log('✅ Комментарий отправлен!');
+                commentInput.value = '';
+                submitBtn.textContent = '💬 Отправить';
+                submitBtn.disabled = false;
+                
+                // Reload comments
+                setTimeout(() => {
+                    loadComments();
+                }, 500);
+                
+            } catch (error) {
+                console.error('❌ Ошибка отправки:', error);
+                alert('Ошибка: ' + error.message + '\n\nПроверь Firebase Rules!\nF12 → Console для деталей');
+                submitBtn.textContent = '💬 Отправить';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Initial load
+        console.log('🚀 Загружаю комментарии...');
+        loadComments();
+
+        console.log('✅ Приглашение готово! Весь фон виден целиком.');
+    </script>
+</body>
+</html>
