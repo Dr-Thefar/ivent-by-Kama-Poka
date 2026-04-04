@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOGGY YOGGY — подарочный сертификат</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:'Montserrat',sans-serif;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:#000;
+    }
+
+    .story{
+      width:min(420px, 100%);
+      aspect-ratio:9/16;
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+
+      background-image:
+        linear-gradient(
+          180deg,
+          rgba(0,0,0,.02) 0%,
+          rgba(0,0,0,.10) 52%,
+          rgba(0,0,0,.22) 100%
+        ),
+        url("https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/podarok1.jpg");
+
+      background-size:cover;
+      background-position:center;
+      background-repeat:no-repeat;
+      filter:contrast(1.08) saturate(1.08) brightness(0.99);
+    }
+
+    .story::before{
+      content:"";
+      position:absolute;
+      inset:-20%;
+      background:
+        radial-gradient(520px 360px at 15% 6%, rgba(255,96,170,.18), transparent 60%),
+        radial-gradient(520px 360px at 85% 8%, rgba(90,200,255,.10), transparent 60%);
+      mix-blend-mode:screen;
+      opacity:.34;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .content{
+      position:absolute;
+      inset:0;
+      padding:18px;
+      z-index:1;
+    }
+
+    .safeTop{
+      padding-top:18px;
+      padding-left:14px;
+      max-width:280px;
+    }
+
+    .badge{
+      font-weight:900;
+      font-size:11px;
+      letter-spacing:.04em;
+      color:#fff;
+      margin-bottom:8px;
+      text-shadow:0 4px 14px rgba(0,0,0,.35);
+    }
+
+    .title{
+      font-weight:900;
+      font-size:36px;
+      line-height:.92;
+      color:#fff;
+      text-shadow:0 8px 22px rgba(0,0,0,.28);
+    }
+
+    .title span{
+      display:block;
+      background:linear-gradient(90deg, #ff4f93 0%, #ff7fb2 45%, #ffd3e5 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .by{
+      margin-top:8px;
+      font-weight:800;
+      font-size:11px;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.82);
+      text-shadow:0 4px 14px rgba(0,0,0,.35);
+    }
+
+    .personal{
+      margin-top:250px;
+      padding-left:14px;
+      max-width:270px;
+      color:#fff;
+    }
+
+    .to{
+      font-weight:900;
+      font-size:17px;
+      margin-bottom:8px;
+      text-shadow:0 4px 14px rgba(0,0,0,.35);
+    }
+
+    .wish{
+      font-weight:700;
+      font-size:11.8px;
+      line-height:1.4;
+      color:rgba(255,255,255,.96);
+      text-shadow:0 4px 14px rgba(0,0,0,.35);
+    }
+
+    .from{
+      margin-top:8px;
+      font-weight:800;
+      font-size:11px;
+      letter-spacing:.04em;
+      color:rgba(255,255,255,.82);
+      text-shadow:0 4px 14px rgba(0,0,0,.35);
+     }
+     .cta{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:35px;
+      width:100%;
+      max-width:360px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      align-items:center;
+      padding:0 10px;
+     }
+
+    .btnFake{
+      width:100%;
+      padding:15px 18px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:14px;
+      text-align:center;
+      color:#fff;
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.28);
+      backdrop-filter:blur(8px);
+      box-shadow:0 12px 28px rgba(0,0,0,.22);
+      pointer-events:none;
+      text-shadow:0 4px 14px rgba(0,0,0,.35);
+    }
+
+    .btn{
+      width:100%;
+      padding:18px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:16px;
+      color:#fff;
+      text-align:center;
+      background:linear-gradient(135deg,#ff7eb3,#ff6f91);
+      box-shadow:0 18px 40px rgba(255,117,140,.38);
+      text-decoration:none;
+      text-shadow:0 4px 14px rgba(0,0,0,.18);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 20px 44px rgba(255,117,140,.44);
+    }
+
+    .hint{
+      font-size:12px;
+      font-weight:900;
+      color:rgba(255,255,255,.95);
+      text-align:center;
+      text-shadow:0 4px 14px rgba(0,0,0,.35);
+      max-width:320px;
+      line-height:1.35;
+    }
+
+    .footer{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:15px;
+      font-size:11px;
+      font-weight:800;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.58);
+      text-shadow:0 4px 14px rgba(0,0,0,.35);
+      pointer-events:none;
+      white-space:nowrap;
+    }
+
+    @media (max-width: 420px){
+      .content{
+        padding:16px;
+      }
+
+      .safeTop{
+        max-width:260px;
+      }
+
+      .title{
+        font-size:34px;
+      }
+
+      .personal{
+        margin-top:235px;
+        max-width:255px;
+      }
+
+      .cta{
+        bottom:108px;
+      }
+
+      .btnFake,
+      .btn{
+        font-size:14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="story">
+    <div class="content">
+
+      <div class="safeTop">
+        <div class="badge">ПОДАРОЧНЫЙ СЕРТИФИКАТ • DOGGY YOGGY</div>
+        <div class="title">
+          DOGGY
+          <span>YOGGY</span>
+        </div>
+        <div class="by">by Kama Poka</div>
+      </div>
+
+      <div class="personal">
+        <div class="to">Для Дарьи 🫶</div>
+        <div class="wish">
+          Хочу, чтобы ты совмещала приятное с приятным 🫶
+        </div>
+        <div class="from">С любовью, Владислав</div>
+      </div>
+
+      <div class="cta">
+        <div class="btnFake">
+          Подарочный сеанс йоги с собаками
+        </div>
+
+        <a class="btn" href="https://t.me/doggy_yoggy_vrn" target="_blank">
+          Активировать в Telegram
+        </a>
+
+        <div class="hint">
+          Нажми кнопку — согласуем дату, время и адрес
+        </div>
+      </div>
+
+      <div class="footer">ELVIUM GROUP PROJECT</div>
+
+    </div>
+  </div>
+</body>
+</html>
