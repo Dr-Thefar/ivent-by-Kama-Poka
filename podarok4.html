@@ -26,7 +26,7 @@
 
     .story{
       width:min(420px, 100%);
-      aspect-ratio:9/16;
+      height: calc(min(420px, 100%) * 16 / 9); /* замена aspect-ratio */
       position:relative;
       overflow:hidden;
       isolation:isolate;
@@ -38,8 +38,7 @@
           rgba(0,0,0,.10) 52%,
           rgba(0,0,0,.22) 100%
         ),
-        url("https://raw.githubusercontent.com/Dr-Thefar/ivent-by-Kama-Poka/main/podarok4.jpg");
-
+        url("podarok4.jpg"); /* относительный путь */
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
@@ -108,13 +107,14 @@
       text-shadow:0 4px 14px rgba(0,0,0,.35);
     }
 
-   .personal{
-      margin-top:90px; /* вместо 250px */
+    /* поднятый текст */
+    .personal{
+      margin-top:40px; /* подняли текст */
       padding-left:14px;
-      max-width:280px; /* чуть больше для удобного отображения */
+      max-width:280px;
       color:#fff;
     }
-    
+
     .to{
       font-weight:900;
       font-size:17px;
@@ -138,7 +138,8 @@
       color:rgba(255,255,255,.82);
       text-shadow:0 4px 14px rgba(0,0,0,.35);
      }
-     .cta{
+
+    .cta{
       position:absolute;
       left:50%;
       transform:translateX(-50%);
@@ -227,7 +228,7 @@
       }
 
       .personal{
-        margin-top:235px;
+        margin-top:30px; /* подъем для мобильных */
         max-width:255px;
       }
 
@@ -257,9 +258,9 @@
       </div>
 
       <div class="personal">
-        <div class="to">Для Дарьи 🫶</div>
+        <div class="to">Для Дарьи ❤️</div>
         <div class="wish">
-          С Днём Рождения, наш френд 🫶
+          С Днём Рождения, наш френд ❤️
         </div>
         <div class="from">С любовью, Бутерфлай💖</div>
       </div>
